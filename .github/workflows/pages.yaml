@@ -14,6 +14,8 @@ jobs:
 
       - name: Install and Build 🔧
         run: |
+          export GEM_HOME="$HOME/gems"
+          export PATH="$HOME/gems/bin:$PATH"
           gem install jekyll nokogiri
           jekyll build
           rm .gitignore
