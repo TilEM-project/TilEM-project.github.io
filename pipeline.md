@@ -78,3 +78,35 @@ The processed tile can now be saved to disk.
 ### Send Tile Filepath
 
 The filepath of the processed tile can now be sent via the [broker](/broker.html) to other services.
+
+### Min, Max, Mean
+
+This node calculates the minimum, maximum, and mean pixel values.
+
+### Send Min, Max, Mean
+
+This node sends the minimum, maximum, and mean pixel values to other services via the [broker](/broker.html).
+
+### FFT
+
+This node crops out the center of the tile and computes the Fast Fourier Transform.
+
+### Focus Score
+
+This ndoe uses the FFT data to create a metric for the quality of the focus.
+
+### Send Focus Score
+
+This node sends the focus score to other services via the [broker](/broker.html)
+
+### Calculate Histogram
+
+A small histogram image is created using this node.
+
+### Save Histogram
+
+This node saves the histogram to SSD storage.
+
+### Send Histogram
+
+This node sends the filepath to the histogram to other services using the [broker](/broker.html).
