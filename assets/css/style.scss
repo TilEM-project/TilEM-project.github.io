@@ -13,7 +13,7 @@ $card-supporting-text-text-color: $text-color;
 @import "_material-design-lite/src/material-design-lite.scss";
 
 .page-container {
-  max-width: 900px;
+  max-width: 1200px;
   padding: 0;
   display: flex;
   width: 100%;
@@ -129,6 +129,10 @@ $card-supporting-text-text-color: $text-color;
   blockquote::after {
     content: none;
   }
+
+  // .diagram {
+  //   overflow-x: scroll;
+  // }
 }
 
 .mdl-layout-title a {

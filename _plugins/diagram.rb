@@ -70,11 +70,19 @@ exit(0)
             puts stderr
             if status.success?
                 svg = Nokogiri::XML(stdout)
+                svg.children.each do |child|
+                    if child.name == "svg" && child.is_a?(Nokogiri::XML::Element)
+                        child.delete("width")
+                        child.delete("height")
+                    else
+                        child.remove
+                    end
+                end
                 svg.search("//svg:image", NAMESPACES).each do |img|
                     add_icon(context, img["xlink:href"])
                     img["xlink:href"] = "/icons/" + File.basename(img["xlink:href"]) 
                 end
-                return svg.to_s
+                return '<div class="diagram">%s</div>' % [svg.to_s.split("\n").drop(1).join("\n")]
             else
                 puts "Python exited with code #{status.exitstatus}"
             end
