@@ -20,6 +20,7 @@ jobs:
           export PATH="$HOME/gems/bin:$PATH"
           gem install bundle jekyll nokogiri
           pip install diagrams
+          apt-get install -y graphviz
           jekyll build
           rm .gitignore
 
