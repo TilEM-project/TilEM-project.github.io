@@ -11,12 +11,15 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
+        with:
+          submodules: true
 
       - name: Install and Build 🔧
         run: |
           export GEM_HOME="$HOME/gems"
           export PATH="$HOME/gems/bin:$PATH"
           gem install bundle jekyll nokogiri
+          pip install diagrams
           jekyll build
           rm .gitignore
 
