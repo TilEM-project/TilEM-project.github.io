@@ -10423,7 +10423,7 @@ fieldset[disabled] .mdl-textfield .mdl-textfield__label, .mdl-textfield.is-disab
   }
 }
 .page-container {
-  max-width: 900px;
+  max-width: 1200px;
   padding: 0;
   display: flex;
   width: 100%;

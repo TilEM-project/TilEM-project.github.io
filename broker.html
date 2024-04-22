@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <title> - TEM Architecture</title>
+    <title>Broker - TEM Architecture</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.-.min.css"/> -->
@@ -45,27 +45,25 @@
 <!-- </div> -->
 
       <main class="mdl-layout__content">
-        <style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
+        <div class="mdl-grid page-container">
+  <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title--text">
+        Broker
+      </h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <p>To enable messages to be passed between different services, a message broker is used.
+The message broker seleced with <a href="https://activemq.apache.org/components/artemis/">ActiveMQ Artemis</a> built by Apache.
+This message broker has some very useful featues such as fixed size Journal which provides persistence, and possibly error recovery in the future.
+It is also set up to provide one to many message passing which is essential for our application.</p>
 
-<div class="container">
-  <h1>404</h1>
+<p>To communicate through the broker, services can use the <a href="https://stomp.github.io/">STOMP protocol</a> using a <a href="https://pypi.org/project/stomp-py/">Python library</a>.
+The broker will also be set up to allow anonymous connections.</p>
 
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
+    </div>
+  </div>
 </div>
-
         <footer class="mdl-mega-footer">
   <div class="mdl-mega-footer__middle-section">
     
