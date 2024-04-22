@@ -1,0 +1,28 @@
+<!-- <div class="mdl-layout--fixed-header mdl-layout__header--scroll"> -->
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">
+        <a href="/">{{ site.title }}</a>
+      </span>
+      <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+        {% for link in site.header.navigation %}
+          <a class="mdl-navigation__link" href="{{ link.href }}">{{ link.name }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">{{ site.title }}</span>
+    <nav class="mdl-navigation">
+      {% for link in site.header.drawer %}
+        <a class="mdl-navigation__link" href="{{ link.href }}">{{ link.name }}</a>
+        {% if link.sublinks %}
+          {% for sublink in link.sublinks %}
+            <a class="mdl-navigation__link sublink" href="{{ sublink.href }}">{{ sublink.name }}</a>
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    </nav>
+  </div>
+<!-- </div> -->
