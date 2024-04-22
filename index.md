@@ -19,27 +19,29 @@ from diagrams.onprem.client import Client
 from diagrams.custom import Custom
 
 with Cluster("AWS", graph_attr={"bgcolor": "#FFE0B2"}):
-    db = Dynamodb("DynamoDB", pin="true", pos="0, 0.25")
-    s3 = S3("S3 Bucket", pin="true", pos="0.25, 0")
+    db = Dynamodb("DynamoDB", pin="true", pos="0, 0.375")
+    s3 = S3("S3 Bucket", pin="true", pos="0.25, -0.125")
 
-    tem_db = Python("TEM DB\nService\n(FastAPI)", pin="true", pos="0.25, 0.25")
+    tem_db = Python("TEM DB", pin="true", pos="0.25, 0.375")
 
-    ac_qc = Python("AC/QC Service\n(Python/Vue.js)", pin="true", pos="0, 0")
+    ac_qc = Python("AC/QC", pin="true", pos="0, -0.125")
 
-client = Client("AC/QC user", pin="true", pos="-0.25, 0")
+    aloha = Python("Aloha", pin="true", pos="0.25, 0.125")
+
+client = Client("AC/QC user", pin="true", pos="-0.25, -0.125")
 operator = Client("Microscope Operator", pin="true", pos="1.25, 0.25")
 
 with Cluster("Docker Compose", graph_attr={"bgcolor": "#E0F2F1"}):
     event_bus = Activemq("ActiveMQ", pin="true", pos="0.5, -0.25", href="/broker.html")
 
     state_machine = Python(
-        "State Machine\n(Business Logic)", pin="true", pos="0.75, 0.25"
+        "pyTEM", pin="true", pos="0.75, 0.25"
     )
     microscope_service = Python("Microscope\nService", pin="true", pos="1, 0.5")
     camera_service = Python("Camera\nService", pin="true", pos="0.5, 0.5")
     stage_service = Python("Stage\nService", pin="true", pos="0.75, 0.5")
-    cpp_pipeline = Cpp("C++ Pipeline\n(OpenCV, CUDA)", pin="true", pos="1, 0", href="/pipeline.html")
-    buffer = Python("Buffer\nService", pin="true", pos="0.75, 0", href="/buffer.html")
+    cpp_pipeline = Cpp("C++ Pipeline\n(OpenCV, CUDA)", pin="true", pos="0.875, 0", href="/pipeline.html")
+    buffer = Python("Buffer\nService", pin="true", pos="0.625, 0", href="/buffer.html")
     ui_server = Python("UI Server", pin="true", pos="1, 0.25")
 
 microscope = Custom("Microscope", "_my_icons/TEM.png", pin="true", pos="1, 0.75")
@@ -61,6 +63,7 @@ operator << Edge() >> ui_server
 microscope << Edge() >> microscope_service
 stage << Edge() >> stage_service
 camera << Edge() >> camera_service
+s3 << Edge() >> aloha << Edge() >> tem_db
 {% enddiagram %}
 
 Many of the nodes in this diagram are hyperlinks to further documentation on this system.
