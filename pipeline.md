@@ -1,6 +1,14 @@
 ---
 title: Image Processing Pipeline
 layout: page
+recieves:
+    - tile.raw
+sends:
+    - tile.processed
+    - tile.statistics.min_max_mean
+    - tile.statistics.focus
+    - tile.statistics.histogram
+github: AllenInstitute/TEM_graph
 ---
 
 The image processing pipeline is primarily written in C++ with some Python bindings.
@@ -8,6 +16,8 @@ It utilizes the [Intel Thread Building Blocks](https://www.intel.com/content/www
 
 {% diagram %}
 from diagrams.programming.language import Cpp, Python
+from diagrams.generic.blank import Blank
+from diagrams import Node
 
 with Cluster("Intel TBB", graph_attr={"bgcolor": "#FFE0B2"}):
     input = Python("Recieve Tile Filepath", pin="true", pos="0, 0", href="#recieve-tile-filepath")
@@ -34,6 +44,12 @@ input >> load >> to_gpu >> flip >> flatfield >> clahe >> lens_correction >> from
 clahe >> min_max_mean >> output_min_max_mean
 clahe >> fft >> focus >> output_focus
 clahe >> from_gpu_hist >> hist >> save_hist >> output_hist
+
+input << Edge(label="tile.raw", href="/topics.html#tile.raw") << Blank(pin="true", pos="-0.375, 0")
+output_min_max_mean >> Edge(headlabel="statistics.min_max_mean") >> Blank(pin="true", pos="2.625, 0.375")
+output_focus >> Edge(headlabel="statistics.focus") >> Blank(pin="true", pos="2.625, 0.125")
+output_hist >> Edge(headlabel="statistics.histogram") >> Blank(pin="true", pos="2.625, -0.125")
+output >> Edge(headlabel="tile.processed") >> Blank(pin="true", pos="2.625, -0.375")
 {% enddiagram %}
 
 ### Recieve Tile Filepath

@@ -32,7 +32,7 @@ client = Client("AC/QC user", pin="true", pos="-0.25, -0.125")
 operator = Client("Microscope Operator", pin="true", pos="1.25, 0.25")
 
 with Cluster("Docker Compose", graph_attr={"bgcolor": "#E0F2F1"}):
-    event_bus = Activemq("ActiveMQ", pin="true", pos="0.5, -0.25", href="/broker.html")
+    event_bus = Activemq("ActiveMQ", pin="true", pos="1, -0.25", href="/broker.html")
 
     state_machine = Python(
         "pyTEM", pin="true", pos="0.75, 0.25"
@@ -40,8 +40,8 @@ with Cluster("Docker Compose", graph_attr={"bgcolor": "#E0F2F1"}):
     microscope_service = Python("Microscope\nService", pin="true", pos="1, 0.5")
     camera_service = Python("Camera\nService", pin="true", pos="0.5, 0.5")
     stage_service = Python("Stage\nService", pin="true", pos="0.75, 0.5")
-    cpp_pipeline = Cpp("C++ Pipeline\n(OpenCV, CUDA)", pin="true", pos="0.875, 0", href="/pipeline.html")
-    buffer = Python("Buffer\nService", pin="true", pos="0.625, 0", href="/buffer.html")
+    cpp_pipeline = Cpp("C++ Pipeline\n(OpenCV, CUDA)", pin="true", pos="0.75, 0", href="/pipeline.html")
+    buffer = Python("Buffer\nService", pin="true", pos="0.5, 0", href="/buffer.html")
     ui_server = Python("UI Server", pin="true", pos="1, 0.25")
 
 microscope = Custom("Microscope", "_my_icons/TEM.png", pin="true", pos="1, 0.75")
@@ -64,6 +64,8 @@ microscope << Edge() >> microscope_service
 stage << Edge() >> stage_service
 camera << Edge() >> camera_service
 s3 << Edge() >> aloha << Edge() >> tem_db
+cpp_pipeline >> ui_server
+camera_service >> cpp_pipeline
 {% enddiagram %}
 
 Many of the nodes in this diagram are hyperlinks to further documentation on this system.
