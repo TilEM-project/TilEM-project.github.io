@@ -1,13 +1,16 @@
 ---
 title: Image Processing Pipeline
 layout: page
-recieves:
+receives:
     - tile.raw
 sends:
     - tile.processed
     - tile.statistics.min_max_mean
     - tile.statistics.focus
     - tile.statistics.histogram
+    - tile.minimap
+    - tile.transform
+    - tile.jpeg
 github: AllenInstitute/TEM_graph
 ---
 
@@ -20,45 +23,60 @@ from diagrams.generic.blank import Blank
 from diagrams import Node
 
 with Cluster("Intel TBB", graph_attr={"bgcolor": "#FFE0B2"}):
-    input = Python("Recieve Tile Filepath", pin="true", pos="0, 0", href="#recieve-tile-filepath")
+    input = Python("Receive Tile Filepath", pin="true", pos="0, 0", href="#receive-tile-filepath")
     load = Cpp("Load Tile", pin="true", pos="0.25, 0", href="#load-tile")
     to_gpu = Cpp("Transfer to GPU", pin="true", pos="0.5, 0", href="#transfer-to-gpu")
     flip = Cpp("Horizontal Flip", pin="true", pos="0.75, 0", href="#flip")
     flatfield = Cpp("Flat-Field Correction", pin="true", pos="1, 0", href="#flat-field-correction")
     clahe = Cpp("CLAHE", pin="true", pos="1.25, 0", href="#clahe")
-    min_max_mean = Cpp("Min, Max, Mean", pin="true", pos="1.5, 0.375", href="#min-max-mean")
-    output_min_max_mean = Python("Send Min, Max, Mean", pin="true", pos="1.75, 0.375", href="#send-min-max-mean")
-    fft = Cpp("FFT", pin="true", pos="1.5, 0.125", href="#fft")
-    focus = Cpp("Compute Focus Score", pin="true", pos="1.75, 0.125", href="#focus-score")
-    output_focus = Python("Send Focus Score", pin="true", pos="2, 0.125", href="#send-focus-score")
+    min_max_mean = Cpp("Min, Max, Mean", pin="true", pos="1.5, 0.625", href="#min-max-mean")
+    output_min_max_mean = Python("Send Min, Max, Mean", pin="true", pos="1.75, 0.625", href="#send-min-max-mean")
+    fft = Cpp("FFT", pin="true", pos="1.5, 0.375", href="#fft")
+    focus = Cpp("Compute Focus Score", pin="true", pos="1.75, 0.375", href="#focus-score")
+    output_focus = Python("Send Focus Score", pin="true", pos="2, 0.375", href="#send-focus-score")
     from_gpu_hist = Cpp("Transfer to CPU Memory", pin="true", pos="1.5, -0.125")
     hist = Cpp("Calculate Histogram", pin="true", pos="1.75, -0.125", href="#calculate-histogram")
     save_hist = Cpp("Save Histogram", pin="true", pos="2, -0.125", href="#save-histogram")
     output_hist = Python("Send Histogram Filepath", pin="true", pos="2.25, -0.125", href="#send-histogram-filepath")
+    downsample = Cpp("Downsample", pin="true", pos="1.5, 0.125")
+    from_gpu_jpeg = Cpp("Transfer to CPU Memory", pin="true", pos="1.75, 0.125")
+    save_jpeg = Cpp("Save JPEG", pin="true", pos="2, 0.125")
+    output_jpeg = Python("Send JPEG", pin="true", pos="2.25, 0.125")
     lens_correction = Cpp("Lens Correction", pin="true", pos="1.5, -0.375", href="#lens-correction")
     from_gpu = Cpp("Transfer to CPU Memory", pin="true", pos="1.75, -0.375", href="#transfer-to-cpu-memory")
     save = Cpp("Save Tile", pin="true", pos="2, -0.375", href="#save-tile")
     output = Python("Send Processed Tile Filepath", pin="true", pos="2.25, -0.375", href="#send-tile-filepath")
+    matcher = Cpp("Tile Matcher", pin="true", pos="1.5, -0.625", href="#tile-matcher")
+    minimap_from_gpu = Cpp("Transfer to CPU Memory", pin="true", pos="1.75, -0.625")
+    save_minimap = Cpp("Save Mini-Map", pin="true", pos="2, -0.625")
+    output_minimap = Python("Send Mini-Map", pin="true", pos="2.25, -0.625")
+    output_transform = Python("Send Transform", pin="true", pos="1.5, -0.875")
 
 input >> load >> to_gpu >> flip >> flatfield >> clahe >> lens_correction >> from_gpu >> save >> output
 clahe >> min_max_mean >> output_min_max_mean
 clahe >> fft >> focus >> output_focus
 clahe >> from_gpu_hist >> hist >> save_hist >> output_hist
+lens_correction >> matcher >> minimap_from_gpu >> save_minimap >> output_minimap
+matcher >> output_transform
+clahe >> downsample >> from_gpu_jpeg >> save_jpeg >> output_jpeg
 
-input << Edge(label="tile.raw", href="/topics.html#tile.raw") << Blank(pin="true", pos="-0.375, 0")
-output_min_max_mean >> Edge(headlabel="statistics.min_max_mean") >> Blank(pin="true", pos="2.625, 0.375")
-output_focus >> Edge(headlabel="statistics.focus") >> Blank(pin="true", pos="2.625, 0.125")
-output_hist >> Edge(headlabel="statistics.histogram") >> Blank(pin="true", pos="2.625, -0.125")
-output >> Edge(headlabel="tile.processed") >> Blank(pin="true", pos="2.625, -0.375")
+input << Edge(label="tile.raw", href="/topics.html#tileraw") << Blank(pin="true", pos="-0.375, 0")
+output_min_max_mean >> Edge(headlabel="tile.statistics.min_max_mean", href="/topics.html#tilestatisticsmin_max_mean") >> Blank(pin="true", pos="2.625, 0.625")
+output_focus >> Edge(headlabel="tile.statistics.focus", href="/topics.html#tilestatisticsfocus") >> Blank(pin="true", pos="2.625, 0.375")
+output_jpeg >> Edge(headlabel="tile.jpeg", href="/topics.html#tilejpeg") >> Blank(pin="true", pos="2.625, 0.125")
+output_hist >> Edge(headlabel="tile.statistics.histogram", href="/topics.html#tilestatisticshistogram") >> Blank(pin="true", pos="2.625, -0.125")
+output >> Edge(headlabel="tile.processed", href="/topics.html#tileprocessed") >> Blank(pin="true", pos="2.625, -0.375")
+output_minimap >> Edge(headlabel="tile.minimap", href="/topics.html#tileminimap") >> Blank(pin="true", pos="2.625, -0.625")
+output_transform >> Edge(headlabel="tile.transform", href="/topics.html#tiletransform") >> Blank(pin="true", pos="2.625, -0.875")
 {% enddiagram %}
 
-### Recieve Tile Filepath
+### Receive Tile Filepath
 
-This node recieves the metadata for a tile to process from the [message broker](/broker.html), and passes the filename to the load image node.
+This node receives the metadata for a tile to process from the [message broker](/broker.html), and passes the filename to the load image node.
 
 ### Load Tile
 
-This node recieves the metadata and filename, and uses openCV to load a tile into CPU memory from SSD based storage.
+This node receives the metadata and filename, and uses openCV to load a tile into CPU memory from SSD based storage.
 
 ### Transfer to GPU
 

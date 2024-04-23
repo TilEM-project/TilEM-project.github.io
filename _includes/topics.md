@@ -1,4 +1,5 @@
-{% for topic in page.topics %}
+{% assign topics = page.topics | sort %}
+{% for topic in topics %}
 
 ### {{ topic[0] }}
 
@@ -24,7 +25,7 @@
 }
 ```
 
-#### Senders
+#### Sender
 
 {% for page in site.pages %}
 {%- if page.sends contains topic[0] -%}
@@ -32,11 +33,11 @@
 {%- endif -%}
 {% endfor %}
 
-#### Recievers
+#### Receivers
 
 {% for page in site.pages %}
-{%- if page.recieves contains topic[0] -%}
+{%- if page.receives contains topic[0] -%}
 * [{{ page.title }}]({{ page.url }})
-{%- endif -%}
+{% endif -%}
 {% endfor %}
 {% endfor %}
