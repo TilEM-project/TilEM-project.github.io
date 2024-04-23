@@ -22,7 +22,7 @@ with Cluster("AWS", graph_attr={"bgcolor": "#FFE0B2"}):
     db = Dynamodb("DynamoDB", pin="true", pos="0, 0.375")
     s3 = S3("S3 Bucket", pin="true", pos="0.25, -0.125")
 
-    tem_db = Python("TEM DB", pin="true", pos="0.25, 0.375")
+    tem_db = Python("TEM DB", pin="true", pos="0.25, 0.375", href="/tem_db.html")
 
     ac_qc = Python("AC/QC", pin="true", pos="0, -0.125")
 
