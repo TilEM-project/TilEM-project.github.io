@@ -21,36 +21,36 @@ from diagrams.onprem.logging import Loki
 
 with Cluster("AWS", graph_attr={"bgcolor": "#FFE0B2"}):
     db = RDSPostgresqlInstance("Postgres", pin="true", pos="0, 0.375")
-    s3 = S3("S3 Bucket", pin="true", pos="0.25, -0.125")
+    s3 = S3("S3 Bucket", pin="true", pos="-0.25, -0.125")
 
-    tem_db = Python("TEM DB", pin="true", pos="0.25, 0.375", href="/tem_db.html")
+    tem_db = Python("TEM DB", pin="true", pos="-0.25, 0.375", href="/tem_db.html")
 
     ac_qc = Python("AC/QC", pin="true", pos="0, -0.125")
 
-    aloha = Python("Aloha", pin="true", pos="0.25, 0.125", href="/aloha.html")
+    aloha = Python("Aloha", pin="true", pos="-0.25, 0.125", href="/aloha.html")
 
-client = Client("AC/QC user", pin="true", pos="-0.25, -0.125")
-operator = Client("Microscope Operator", pin="true", pos="1.25, 0.25", href="/ui.html")
+client = Client("AC/QC user", pin="true", pos="0.25, -0.125")
+operator = Client("Microscope Operator", pin="true", pos="-1.25, 0.25", href="/ui.html")
 
 with Cluster("Docker Compose", graph_attr={"bgcolor": "#E0F2F1"}):
-    event_bus = Activemq("ActiveMQ", pin="true", pos="1, -0.25", href="/broker.html")
+    event_bus = Activemq("ActiveMQ", pin="true", pos="-1, -0.25", href="/broker.html")
 
     state_machine = Python(
-        "pyTEM", pin="true", pos="0.75, 0.25"
+        "pyTEM", pin="true", pos="-0.75, 0.25"
     )
-    microscope_service = Python("Microscope\nService", pin="true", pos="1, 0.5")
-    camera_service = Cpp("Camera\nService", pin="true", pos="0.5, 0.5", href="/camera.html")
-    stage_service = Python("Stage\nService", pin="true", pos="0.75, 0.5", href="/stage.html")
-    cpp_pipeline = Cpp("C++ Pipeline\n(OpenCV, CUDA)", pin="true", pos="0.75, 0", href="/pipeline.html")
-    buffer = Python("Buffer\nService", pin="true", pos="0.5, 0", href="/buffer.html")
-    ui_server = Python("UI Server", pin="true", pos="1, 0.25", href="/ui_server.html")
+    microscope_service = Python("Microscope\nService", pin="true", pos="-1, 0.5")
+    camera_service = Cpp("Camera\nService", pin="true", pos="-0.5, 0.5", href="/camera.html")
+    stage_service = Python("Stage\nService", pin="true", pos="-0.75, 0.5", href="/stage.html")
+    cpp_pipeline = Cpp("C++ Pipeline\n(OpenCV, CUDA)", pin="true", pos="-0.75, 0", href="/pipeline.html")
+    buffer = Python("Buffer\nService", pin="true", pos="-0.5, 0", href="/buffer.html")
+    ui_server = Python("UI Server", pin="true", pos="-1, 0.25", href="/ui_server.html")
 
-microscope = Custom("Microscope", "_my_icons/TEM.png", pin="true", pos="1, 0.75")
-stage = Custom("Stage", "_my_icons/stage.png", pin="true", pos="0.75, 0.75")
-camera = Custom("Camera", "_my_icons/camera.png", pin="true", pos="0.5, 0.75")
+microscope = Custom("Microscope", "_my_icons/TEM.png", pin="true", pos="-1, 0.75")
+stage = Custom("Stage", "_my_icons/stage.png", pin="true", pos="-0.75, 0.75")
+camera = Custom("Camera", "_my_icons/camera.png", pin="true", pos="-0.5, 0.75")
 
 with Cluster("Platform9", graph_attr={"bgcolor": "#b2ffc7"}):
-    log = Loki("Log Server", pin="true", pos="0.25, -0.375", href="/log.html")
+    log = Loki("Log Server", pin="true", pos="-0.25, -0.375", href="/log.html")
 
 s3 >> ac_qc
 tem_db << Edge() >> db
