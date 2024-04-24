@@ -2,11 +2,17 @@
 layout: raw_page
 ---
 
+{% assign topics = page.topics | sort %}
+
 <div class="mdl-card__supporting-text mdl-card--border">
-    {{ content | toc }}
+    {{ content }}
+    <ul>
+        {% for topic in topics %}
+            <li><a href="#{{ topic[0] | replace: '.', '-' }}">{{ topic[0] }}</a></li>
+        {% endfor %}
+    </ul>
 </div>
 
-{% assign topics = page.topics | sort %}
 {% for topic in topics %}
     <div class="mdl-card__supporting-text mdl-card--border topic-container">
         <h3 id="{{ topic[0] | replace: '.', '-' }}">{{ topic[0] }}</h3>
