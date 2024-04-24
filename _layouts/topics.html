@@ -9,13 +9,13 @@ layout: raw_page
 {% assign topics = page.topics | sort %}
 {% for topic in topics %}
     <div class="mdl-card__supporting-text mdl-card--border">
-        <h3>{{ topic[0] }}</h3>
-        <p>{{ topic[1].description }}</p>
+        <h3 id="{{ topic[0] | replace: '.', '-' }}">{{ topic[0] }}</h3>
+        <p>{{ topic[1].description | markdownify }}</p>
 
         <h4>Payload</h4>
         <ul>
             {% for element in topic[1].payload %}
-                <li><strong>{{ element[0] }}</strong> ({{ element[1].type }}): {{ element[1].description }}</li>
+                <li><strong>{{ element[0] }}</strong> ({{ element[1].type }}): {{ element[1].description | markdownify }}</li>
             {% endfor %}
         </ul>
 

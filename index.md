@@ -39,8 +39,8 @@ with Cluster("Docker Compose", graph_attr={"bgcolor": "#E0F2F1"}):
         "pyTEM", pin="true", pos="0.75, 0.25"
     )
     microscope_service = Python("Microscope\nService", pin="true", pos="1, 0.5")
-    camera_service = Python("Camera\nService", pin="true", pos="0.5, 0.5", href="/camera.html")
-    stage_service = Python("Stage\nService", pin="true", pos="0.75, 0.5")
+    camera_service = Cpp("Camera\nService", pin="true", pos="0.5, 0.5", href="/camera.html")
+    stage_service = Python("Stage\nService", pin="true", pos="0.75, 0.5", href="/stage.html")
     cpp_pipeline = Cpp("C++ Pipeline\n(OpenCV, CUDA)", pin="true", pos="0.75, 0", href="/pipeline.html")
     buffer = Python("Buffer\nService", pin="true", pos="0.5, 0", href="/buffer.html")
     ui_server = Python("UI Server", pin="true", pos="1, 0.25", href="/ui_server.html")

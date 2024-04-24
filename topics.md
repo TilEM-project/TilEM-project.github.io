@@ -198,6 +198,100 @@ topics:
                 type: string
                 description: The serial number of the camera sensor.
                 example: aljewoia
+    stage.aperature.command:
+        description: This message is used to instruct the hardware to move to a specific aperature.
+        payload:
+            aperature_id:
+                type: int or null
+                description: The desired aperature ID, or `null` to remain unchanged.
+                example: 000008
+            calibrate:
+                type: bool
+                description: A flag to denote that the hardware should be calibrated.
+                example: false
+    stage.aperature.status:
+        description: This message contains status information about the aperature changing hardware.
+        payload:
+            current_aperature:
+                type: int
+                description: The ID of the current aperature.
+                example: 000007
+            callibrated:
+                type: bool
+                description: A flag to denote if the hardware is calibrated.
+                example: true
+            error:
+                type: string
+                description: The current error message from the device, or an empty string if no error.
+                example: ""
+    stage.rotation.command:
+        description: This message is used to instruct the hardware to rotate to a given tilt angle.
+        payload:
+            angle_x:
+                type: float or null
+                description: The desired tilt angle about the X axis in radians, or `null` for the angle to remain unchanged.
+                example: 0.524
+            angle_y:
+                type: float or null
+                description: The desired tilt angle about the Y axis in radians, or `null` for the angle to remain unchanged.
+                example: 0.0
+            calibrate:
+                type: bool
+                description: A flag to denote that the hardware should be calibrated.
+                example: false
+    stage.rotation.status:
+        description: This message contains status information about the tilt imaging hardware.
+        payload:
+            angle_x:
+                type: float
+                description: The current tilt angle about the X axis in radians.
+                example: 0.523
+            angle_y:
+                type: float
+                description: The current tilt angle about the Y axis in radians.
+                example: -0.001
+            in_motion:
+                type: bool
+                description: A flag which is true when at least one actuator is in motion.
+                example: true
+            error:
+                type: string
+                description: The current error message from the device, or an empty string if no error.
+                example: ""
+    stage.motion.command:
+        description: This message is used to instruct the stages to move to a the sample to a given location.
+        payload:
+            x:
+                type: int or null
+                description: The desired X stage location in nanometers, or `null` for the location to remain unchanged.
+                example: 750176
+            y:
+                type: int or null
+                description: The desired Y stage location in nanometers, or `null` for the location to remain unchanged.
+                example: 531087
+            calibrate:
+                type: bool
+                description: A flag to denote that the hardware should be calibrated.
+                example: false
+    stage.motion.status:
+        description: This message contains status information about the aperature changing hardware.
+        payload:
+            x:
+                type: int
+                description: The current X stage location in nanometers.
+                example: 750254
+            y:
+                type: int
+                description: The current Y stage location in nanometers.
+                example: 531054
+            in_motion:
+                type: bool
+                description: A flag which is true when at least one actuator is in motion.
+                example: true
+            error:
+                type: string
+                description: The current error message from the device, or an empty string if no error.
+                example: ""
 ---
 
 The topics are listed below.
