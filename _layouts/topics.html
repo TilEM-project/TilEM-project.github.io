@@ -30,12 +30,17 @@ layout: raw_page
             <div class="highlight">
                 <pre class="highlight">
 <code>{
+    {%- assign items_left = topic[1].payload | size -%}
     {%- for element in topic[1].payload %}
         {%- if element[1].type == "string" %}
-    "{{ element[0] }}": "{{ element[1].example }}",
+    "{{ element[0] }}": "{{ element[1].example }}"
         {%- else %}
-    "{{ element[0] }}": {{ element[1].example }},
-        {%- endif %}
+    "{{ element[0] }}": {{ element[1].example }}
+        {%- endif -%}
+        {%- assign items_left = items_left | minus: 1 -%}
+        {%- if items_left != 0 -%}
+,
+        {%- endif -%}
     {%- endfor %}
 }</code>
                 </pre>
