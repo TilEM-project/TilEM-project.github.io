@@ -85,13 +85,13 @@
   </div>
 
 <div class="mdl-card__supporting-text">
-  <p>The stage service abstracts the interfaces of the various hardware components related to positioning and transitioning between aperatures.
-This service can be split into three components, moving between aperatures, rotating samples, and positioning samples.</p>
+  <p>The stage service abstracts the interfaces of the various hardware components related to positioning and transitioning between apertures.
+This service can be split into three components, moving between apertures, rotating samples, and positioning samples.</p>
 
-<p>For changing between aperatures, two topics are used, <a href="/topics.html#stage-aperature-command"><code class="language-plaintext highlighter-rouge">stage.aperature.command</code></a> and <a href="/topics.html#stage-aperature-status"><code class="language-plaintext highlighter-rouge">stage.aperature.status</code></a>.
-The <code class="language-plaintext highlighter-rouge">stage.aperature.command</code> topic is used to send commands to the hardware to change the aperature, and/or optionally calibrate the hardware.
-The <code class="language-plaintext highlighter-rouge">stage.aperature.status</code> topic normally has a message published at a frequency of no less than 1 Hz, at a frequency of no less than 20 Hz when in motion, and immediately once any motion is complete.
-This message contains the status of the hardware including the ID of the current aperature, if the hardware is calibrated, along with any errors.</p>
+<p>For changing between apertures, two topics are used, <a href="/topics.html#stage-aperture-command"><code class="language-plaintext highlighter-rouge">stage.aperture.command</code></a> and <a href="/topics.html#stage-aperture-status"><code class="language-plaintext highlighter-rouge">stage.aperture.status</code></a>.
+The <code class="language-plaintext highlighter-rouge">stage.aperture.command</code> topic is used to send commands to the hardware to change the aperture, and/or optionally calibrate the hardware.
+The <code class="language-plaintext highlighter-rouge">stage.aperture.status</code> topic normally has a message published at a frequency of no less than 1 Hz, at a frequency of no less than 20 Hz when in motion, and immediately once any motion is complete.
+This message contains the status of the hardware including the ID of the current aperture, if the hardware is calibrated, along with any errors.</p>
 
 <p>For moving the stages, two topics are used, <a href="/topics.html#stage-motion-command"><code class="language-plaintext highlighter-rouge">stage.motion.command</code></a> and <a href="/topics.html#stage-motion-status"><code class="language-plaintext highlighter-rouge">stage.motion.status</code></a>.
 The <code class="language-plaintext highlighter-rouge">stage.motion.command</code> topic is used to send commands to the stages.
