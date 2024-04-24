@@ -8,7 +8,7 @@ layout: raw_page
 
 {% assign topics = page.topics | sort %}
 {% for topic in topics %}
-    <div class="mdl-card__supporting-text mdl-card--border">
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
         <h3 id="{{ topic[0] | replace: '.', '-' }}">{{ topic[0] }}</h3>
         <p>{{ topic[1].description | markdownify }}</p>
 
