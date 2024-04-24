@@ -292,6 +292,21 @@ topics:
                 type: string
                 description: The current error message from the device, or an empty string if no error.
                 example: ""
+    buffer.status:
+        description: This message contains status information about the tile upload buffer.
+        payload:
+            queue_length:
+                type: int
+                description: The number of tiles queued for upload.
+                example: 11
+            free_space:
+                type: int
+                description: The amount of free disk space for storing tiles in bytes.
+                example: 549755813888
+            upload_rate:
+                type: int
+                description: The current data upload rate in bits-per-second.
+                example: 53687091200
 ---
 
 The topics are listed below.

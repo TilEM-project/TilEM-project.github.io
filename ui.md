@@ -8,6 +8,7 @@ receives:
     - stage.motion.status
     - tile.statistics.min_max_mean
     - tile.statistics.focus
+    - buffer.status
 ---
 
 The microscope user interface is a webpage available from the [UI server](/ui_server.html).
