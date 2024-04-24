@@ -10590,4 +10590,8 @@ nav .sublink {
   padding-left: calc(40px + 2em) !important;
 }
 
+.topic-container p {
+  display: inline;
+}
+
 /*# sourceMappingURL=style.css.map */
