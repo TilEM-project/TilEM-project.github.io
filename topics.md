@@ -198,23 +198,23 @@ topics:
                 type: string
                 description: The serial number of the camera sensor.
                 example: aljewoia
-    stage.aperature.command:
-        description: This message is used to instruct the hardware to move to a specific aperature.
+    stage.aperture.command:
+        description: This message is used to instruct the hardware to move to a specific aperture.
         payload:
-            aperature_id:
+            aperture_id:
                 type: int or null
-                description: The desired aperature ID, or `null` to remain unchanged.
+                description: The desired aperture ID, or `null` to remain unchanged.
                 example: 000008
             calibrate:
                 type: bool
                 description: A flag to denote that the hardware should be calibrated.
                 example: false
-    stage.aperature.status:
-        description: This message contains status information about the aperature changing hardware.
+    stage.aperture.status:
+        description: This message contains status information about the aperture changing hardware.
         payload:
-            current_aperature:
+            current_aperture:
                 type: int
-                description: The ID of the current aperature.
+                description: The ID of the current aperture.
                 example: 000007
             callibrated:
                 type: bool
@@ -274,7 +274,7 @@ topics:
                 description: A flag to denote that the hardware should be calibrated.
                 example: false
     stage.motion.status:
-        description: This message contains status information about the aperature changing hardware.
+        description: This message contains status information about the aperture changing hardware.
         payload:
             x:
                 type: int

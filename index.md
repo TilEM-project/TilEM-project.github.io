@@ -30,7 +30,7 @@ with Cluster("AWS", graph_attr={"bgcolor": "#FFE0B2"}):
     aloha = Python("Aloha", pin="true", pos="0.25, 0.125", href="/aloha.html")
 
 client = Client("AC/QC user", pin="true", pos="-0.25, -0.125")
-operator = Client("Microscope Operator", pin="true", pos="1.25, 0.25")
+operator = Client("Microscope Operator", pin="true", pos="1.25, 0.25", href="/ui.html")
 
 with Cluster("Docker Compose", graph_attr={"bgcolor": "#E0F2F1"}):
     event_bus = Activemq("ActiveMQ", pin="true", pos="1, -0.25", href="/broker.html")

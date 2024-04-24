@@ -5,13 +5,13 @@ sends:
     - tile.raw
     - camera.command
     - camera.settings
-    - stage.aperature.command
+    - stage.aperture.command
     - stage.rotation.command
     - stage.motion.command
 receives:
     - camera.image
     - camera.status
-    - stage.aperature.status
+    - stage.aperture.status
     - stage.rotation.status
     - stage.motion.status
 ---
