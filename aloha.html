@@ -59,8 +59,8 @@
         </div>
         
 <div class="mdl-card__supporting-text">
-  <p>Aloha is a service that takes raw tile images from the S3 bucket, and saves downsampled and compressed image for use in <a href="https://github.com/google/neuroglancer">Neuroglancer</a> and other tools.
-This service finds tiles without downsampled images in <a href="/tem_db.html">TEM DB</a>, performs the downsampling and compression, saves the compressed images to S3, and places the S3 URIs in <a href="/tem_db.html">TEM DB</a>.</p>
+  <p>Aloha is an AWS Lambda Function which takes raw tile images uploaded from the <a href="/buffer.html">tile upload buffer</a>, and saves downsampled and compressed image to AWS S3 for use in <a href="https://github.com/google/neuroglancer">Neuroglancer</a> and other tools.
+This service performs the downsampling and compression, saves the compressed images to S3, and places the S3 URIs in <a href="/tem_db.html">TEM DB</a>.</p>
 
 </div>
     </div>

@@ -65,6 +65,118 @@
 
 
     <div class="mdl-card__supporting-text mdl-card--border">
+        <h3 id="buffer-status">buffer.status</h3>
+        <p><p>This message contains status information about the tile upload buffer.</p>
+</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>queue_length</strong> (int): <p>The number of tiles queued for upload.</p>
+</li>
+            
+                <li><strong>free_space</strong> (int): <p>The amount of free disk space for storing tiles in bytes.</p>
+</li>
+            
+                <li><strong>upload_rate</strong> (int): <p>The current data upload rate in bits-per-second.</p>
+</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "queue_length": 11,
+    "free_space": 549755813888,
+    "upload_rate": 53687091200,
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/buffer.html">Tile Upload Buffer</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/ui.html">User Interface</a></li>
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
         <h3 id="camera-command">camera.command</h3>
         <p><p>This message signals that an image should be acquired by the camera.</p>
 </p>
@@ -1502,7 +1614,7 @@
                 
             
                 
-                    <li><a href="/buffer.html">Upload Buffer</a></li>
+                    <li><a href="/buffer.html">Tile Upload Buffer</a></li>
                 
             
                 
