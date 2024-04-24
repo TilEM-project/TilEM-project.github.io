@@ -19,6 +19,8 @@ from diagrams.programming.language import Cpp, Python
 from diagrams.onprem.client import Client
 from diagrams.custom import Custom
 from diagrams.onprem.logging import Loki
+from diagrams.onprem.vcs import Github
+from diagrams.onprem.container import Docker
 
 with Cluster("AWS", graph_attr={"bgcolor": "#FFE0B2"}):
     db = RDSPostgresqlInstance("Postgres", pin="true", pos="0, 0.25")
@@ -50,6 +52,10 @@ camera = Custom("Camera", "_my_icons/camera.png", pin="true", pos="-1, 0.75")
 
 with Cluster("Platform9", graph_attr={"bgcolor": "#b2ffc7"}):
     log = Loki("Log Server", pin="true", pos="-0.25, 0.5", href="/log.html")
+
+with Cluster("", graph_attr={"bgcolor": "#ffb2b2"}):
+    registry = Docker("Container Registry", pin="true", pos="0, 0.5", href="/registry.html")
+    runner = Github("GitHub Actions\nRunner", pin="true", pos="0.25, 0.5", href="/runner.html")
 
 s3 >> ac_qc
 tem_db << Edge() >> db
