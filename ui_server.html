@@ -33,6 +33,8 @@
       <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         
+          <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        
       </nav>
     </div>
   </header>
@@ -40,44 +42,47 @@
     <span class="mdl-layout-title">TEM Architecture</span>
     <nav class="mdl-navigation">
       
+        <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        
+      
     </nav>
   </div>
 <!-- </div> -->
 
       <main class="mdl-layout__content">
         <div class="mdl-grid page-container">
-  <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
-    <div class="mdl-card__title">
-      <h2 class="mdl-card__title--text">
-        UI Server
-      </h2>
-    </div>
+    <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title--text">
+                UI Server
+            </h2>
+        </div>
+        
+  <div class="mdl-card__supporting-text mdl-card--border">
     
-      <div class="mdl-card__supporting-text mdl-card--border">
-        
-        
-        
-          <h3>Receives</h3>
-          <ul>
-            
-            
-              <li><a href="/topics.html#tilejpeg">tile.jpeg</a></li>
-            
-              <li><a href="/topics.html#tileminimap">tile.minimap</a></li>
-            
-          </ul>
-        
-      </div>
     
-    <div class="mdl-card__supporting-text">
-      <p>The UI Server is a service which provides a web based user interface for the microscope.
+    
+      <h3>Receives</h3>
+      <ul>
+        
+        
+          <li><a href="/topics.html#tilejpeg">tile.jpeg</a></li>
+        
+          <li><a href="/topics.html#tileminimap">tile.minimap</a></li>
+        
+      </ul>
+    
+  </div>
+
+<div class="mdl-card__supporting-text">
+  <p>The UI Server is a service which provides a web based user interface for the microscope.
 It primarily serves HTML and JavaScript files to the client.
 Additionally, the downsampled JPEG tiles and minimap recieved on the <a href="/topics.html#tilejpeg"><code class="language-plaintext highlighter-rouge">tile.jpeg</code></a> and <a href="/topics.html#tileminimap"><code class="language-plaintext highlighter-rouge">tile.minimap</code></a> topics are sent to the client via a websocket.</p>
 
 <p>The JavaScript code running in the client’s browser is written using <a href="https://vuejs.org/">Vue.js</a> and uses <a href="https://github.com/stomp-js/stompjs">STOMP.js</a> to communicate with the <a href="/broker.html">message broker</a>.</p>
 
+</div>
     </div>
-  </div>
 </div>
         <footer class="mdl-mega-footer">
   <div class="mdl-mega-footer__middle-section">

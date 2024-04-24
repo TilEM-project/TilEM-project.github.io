@@ -33,6 +33,8 @@
       <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         
+          <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        
       </nav>
     </div>
   </header>
@@ -40,54 +42,57 @@
     <span class="mdl-layout-title">TEM Architecture</span>
     <nav class="mdl-navigation">
       
+        <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        
+      
     </nav>
   </div>
 <!-- </div> -->
 
       <main class="mdl-layout__content">
         <div class="mdl-grid page-container">
-  <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
-    <div class="mdl-card__title">
-      <h2 class="mdl-card__title--text">
-        Camera Service
-      </h2>
-    </div>
+    <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title--text">
+                Camera Service
+            </h2>
+        </div>
+        
+  <div class="mdl-card__supporting-text mdl-card--border">
     
-      <div class="mdl-card__supporting-text mdl-card--border">
-        
-        
-          <h3>Sends</h3>
-          <ul>
-            
-            
-              <li><a href="/topics.html#cameraimage">camera.image</a></li>
-            
-              <li><a href="/topics.html#camerastatus">camera.status</a></li>
-            
-          </ul>
-        
-        
-          <h3>Receives</h3>
-          <ul>
-            
-            
-              <li><a href="/topics.html#cameracommand">camera.command</a></li>
-            
-              <li><a href="/topics.html#camerasettings">camera.settings</a></li>
-            
-          </ul>
-        
-      </div>
     
-    <div class="mdl-card__supporting-text">
-      <p>The camera service takes care of interacting with the camera using the <a href="https://www.ximea.com/">Ximea</a> <a href="https://www.ximea.com/support/wiki/apis/XiAPI">xiAPI</a>.
+      <h3>Sends</h3>
+      <ul>
+        
+        
+          <li><a href="/topics.html#cameraimage">camera.image</a></li>
+        
+          <li><a href="/topics.html#camerastatus">camera.status</a></li>
+        
+      </ul>
+    
+    
+      <h3>Receives</h3>
+      <ul>
+        
+        
+          <li><a href="/topics.html#cameracommand">camera.command</a></li>
+        
+          <li><a href="/topics.html#camerasettings">camera.settings</a></li>
+        
+      </ul>
+    
+  </div>
+
+<div class="mdl-card__supporting-text">
+  <p>The camera service takes care of interacting with the camera using the <a href="https://www.ximea.com/">Ximea</a> <a href="https://www.ximea.com/support/wiki/apis/XiAPI">xiAPI</a>.
 This service accepts messages from two topics, <a href="/topics.html#camerasettings"><code class="language-plaintext highlighter-rouge">camera.settings</code></a> and <a href="/topics.html#cameracommand"><code class="language-plaintext highlighter-rouge">camera.command</code></a>.
 The <code class="language-plaintext highlighter-rouge">camera.settings</code> topic is used for changing settings on the camera such as exposure or resolution, while the <code class="language-plaintext highlighter-rouge">camera.command</code> topic is used to signal the camera to get an image which is then saved to disk and the path sent on the <a href="/topics.html#cameraimage"><code class="language-plaintext highlighter-rouge">camera.image</code></a> topic.
 The <code class="language-plaintext highlighter-rouge">camera.command</code> message includes the tile ID, and the image should be saved to disk, using this ID is the filename.
 A message should be sent on the <a href="/topics.html#camerastatus"><code class="language-plaintext highlighter-rouge">camera.status</code></a> topic at a rate of no less than 1 Hz.</p>
 
+</div>
     </div>
-  </div>
 </div>
         <footer class="mdl-mega-footer">
   <div class="mdl-mega-footer__middle-section">

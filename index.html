@@ -33,6 +33,8 @@
       <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         
+          <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        
       </nav>
     </div>
   </header>
@@ -40,21 +42,24 @@
     <span class="mdl-layout-title">TEM Architecture</span>
     <nav class="mdl-navigation">
       
+        <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        
+      
     </nav>
   </div>
 <!-- </div> -->
 
       <main class="mdl-layout__content">
         <div class="mdl-grid page-container">
-  <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
-    <div class="mdl-card__title">
-      <h2 class="mdl-card__title--text">
-        TEM Architecture
-      </h2>
-    </div>
-    
-    <div class="mdl-card__supporting-text">
-      <p>Welcome to the documentation for the <a href="https://alleninstitute.org/">Allen Institute</a> next generation TEM data acquisition system.
+    <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title--text">
+                TEM Architecture
+            </h2>
+        </div>
+        
+<div class="mdl-card__supporting-text">
+  <p>Welcome to the documentation for the <a href="https://alleninstitute.org/">Allen Institute</a> next generation TEM data acquisition system.
 This is an event driven system with various components running in docker containers, along with other services running on other machines.
 Below, is a diagram showing a general overview of this system.</p>
 
@@ -76,149 +81,149 @@ Below, is a diagram showing a general overview of this system.</p>
 <path fill="#b2ffc7" stroke="#aeb6be" d="M331,0C331,0 408,0 408,0 414,0 420,-6 420,-12 420,-12 420,-125 420,-125 420,-131 414,-137 408,-137 408,-137 331,-137 331,-137 325,-137 319,-131 319,-125 319,-125 319,-12 319,-12 319,-6 325,0 331,0" />
 <text text-anchor="middle" x="356.5" y="-123.4" font-family="Sans-Serif" font-size="12.00" fill="#2d3436">Platform9</text>
 </g>
-<!-- 03ffb909f587479e9c9fe27769e378e9 -->
+<!-- 4ecc2b744bb243ceae6b946060f46648 -->
 <g id="node1" class="node">
-<title>03ffb909f587479e9c9fe27769e378e9</title>
+<title>4ecc2b744bb243ceae6b946060f46648</title>
 <image xlink:href="/icons/rds-postgresql-instance.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="159.5" y="-597.5" />
 <text text-anchor="middle" x="210" y="-482.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Postgres</text>
 </g>
-<!-- baccfc52e3924367b4bb585b68529d4d -->
+<!-- 3c63838c5c66450586419221f0f1fe21 -->
 <g id="node2" class="node">
-<title>baccfc52e3924367b4bb585b68529d4d</title>
+<title>3c63838c5c66450586419221f0f1fe21</title>
 <image xlink:href="/icons/simple-storage-service-s3.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="319" y="-278.5" />
 <text text-anchor="middle" x="369.5" y="-163.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">S3 Bucket</text>
 </g>
-<!-- aa3c826850494841aa30507b69174dd4 -->
+<!-- bd6b92030fd34e4bbc4e0c5eecdfd46f -->
 <g id="node4" class="node">
-<title>aa3c826850494841aa30507b69174dd4</title>
+<title>bd6b92030fd34e4bbc4e0c5eecdfd46f</title>
 <image xlink:href="/icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="159.5" y="-278.5" />
 <text text-anchor="middle" x="210" y="-163.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">AC/QC</text>
 </g>
-<!-- baccfc52e3924367b4bb585b68529d4d&#45;&gt;aa3c826850494841aa30507b69174dd4 -->
+<!-- 3c63838c5c66450586419221f0f1fe21&#45;&gt;bd6b92030fd34e4bbc4e0c5eecdfd46f -->
 <g id="edge1" class="edge">
-<title>baccfc52e3924367b4bb585b68529d4d-&gt;aa3c826850494841aa30507b69174dd4</title>
+<title>3c63838c5c66450586419221f0f1fe21-&gt;bd6b92030fd34e4bbc4e0c5eecdfd46f</title>
 <path fill="none" stroke="#7b8894" d="M318.59,-228C303.41,-228 286.62,-228 270.87,-228" />
 <polygon fill="#7b8894" stroke="#7b8894" points="270.7,-224.5 260.7,-228 270.7,-231.5 270.7,-224.5" />
 </g>
-<!-- 48c431c7aad34efd84f7d2e20bfbfbfe -->
+<!-- afd100b630e244d1a2ff80bd1c199cff -->
 <g id="node5" class="node">
-<title>48c431c7aad34efd84f7d2e20bfbfbfe</title>
+<title>afd100b630e244d1a2ff80bd1c199cff</title>
 <g id="a_node5"><a xlink:href="/aloha.html" xlink:title="Aloha">
 <image xlink:href="/icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="319" y="-438" />
 <text text-anchor="middle" x="369.5" y="-322.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Aloha</text>
 </a>
 </g>
 </g>
-<!-- baccfc52e3924367b4bb585b68529d4d&#45;&gt;48c431c7aad34efd84f7d2e20bfbfbfe -->
+<!-- 3c63838c5c66450586419221f0f1fe21&#45;&gt;afd100b630e244d1a2ff80bd1c199cff -->
 <g id="edge17" class="edge">
-<title>baccfc52e3924367b4bb585b68529d4d-&gt;48c431c7aad34efd84f7d2e20bfbfbfe</title>
+<title>3c63838c5c66450586419221f0f1fe21-&gt;afd100b630e244d1a2ff80bd1c199cff</title>
 <path fill="none" stroke="#7b8894" d="M369.5,-306.73C369.5,-307.37 369.5,-308.01 369.5,-308.65" />
 <polygon fill="#7b8894" stroke="#7b8894" points="373,-306.57 369.5,-296.57 366,-306.57 373,-306.57" />
 <polygon fill="#7b8894" stroke="#7b8894" points="366,-308.99 369.5,-318.99 373,-308.99 366,-308.99" />
 </g>
-<!-- 630b5defa78d4c8bb06813e14b599941 -->
+<!-- caaf9d53d59049fdaea8f9e09ff3aa58 -->
 <g id="node3" class="node">
-<title>630b5defa78d4c8bb06813e14b599941</title>
+<title>caaf9d53d59049fdaea8f9e09ff3aa58</title>
 <g id="a_node3"><a xlink:href="/tem_db.html" xlink:title="TEM DB">
 <image xlink:href="/icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="319" y="-597.5" />
 <text text-anchor="middle" x="369.5" y="-482.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">TEM DB</text>
 </a>
 </g>
 </g>
-<!-- 630b5defa78d4c8bb06813e14b599941&#45;&gt;03ffb909f587479e9c9fe27769e378e9 -->
+<!-- caaf9d53d59049fdaea8f9e09ff3aa58&#45;&gt;4ecc2b744bb243ceae6b946060f46648 -->
 <g id="edge2" class="edge">
-<title>630b5defa78d4c8bb06813e14b599941-&gt;03ffb909f587479e9c9fe27769e378e9</title>
+<title>caaf9d53d59049fdaea8f9e09ff3aa58-&gt;4ecc2b744bb243ceae6b946060f46648</title>
 <path fill="none" stroke="#7b8894" d="M308.41,-547C296.1,-547 283.16,-547 270.85,-547" />
 <polygon fill="#7b8894" stroke="#7b8894" points="308.59,-550.5 318.59,-547 308.59,-543.5 308.59,-550.5" />
 <polygon fill="#7b8894" stroke="#7b8894" points="270.7,-543.5 260.7,-547 270.7,-550.5 270.7,-543.5" />
 </g>
-<!-- 630b5defa78d4c8bb06813e14b599941&#45;&gt;aa3c826850494841aa30507b69174dd4 -->
+<!-- caaf9d53d59049fdaea8f9e09ff3aa58&#45;&gt;bd6b92030fd34e4bbc4e0c5eecdfd46f -->
 <g id="edge3" class="edge">
-<title>630b5defa78d4c8bb06813e14b599941-&gt;aa3c826850494841aa30507b69174dd4</title>
+<title>caaf9d53d59049fdaea8f9e09ff3aa58-&gt;bd6b92030fd34e4bbc4e0c5eecdfd46f</title>
 <path fill="none" stroke="#7b8894" d="M330.6,-469.19C305.77,-419.55 273.72,-355.44 248.9,-305.8" />
 <polygon fill="#7b8894" stroke="#7b8894" points="327.48,-470.8 335.09,-478.17 333.75,-467.67 327.48,-470.8" />
 <polygon fill="#7b8894" stroke="#7b8894" points="251.95,-304.08 244.35,-296.7 245.69,-307.21 251.95,-304.08" />
 </g>
-<!-- d9cf9c2d0bad429aa272a3ca3c4d278e -->
+<!-- 7fbcd93610b1466d944d1980371b93ea -->
 <g id="node9" class="node">
-<title>d9cf9c2d0bad429aa272a3ca3c4d278e</title>
+<title>7fbcd93610b1466d944d1980371b93ea</title>
 <image xlink:href="/icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="638" y="-517.75" />
 <text text-anchor="middle" x="688.5" y="-402.35" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">pyTEM</text>
 </g>
-<!-- 630b5defa78d4c8bb06813e14b599941&#45;&gt;d9cf9c2d0bad429aa272a3ca3c4d278e -->
+<!-- caaf9d53d59049fdaea8f9e09ff3aa58&#45;&gt;7fbcd93610b1466d944d1980371b93ea -->
 <g id="edge4" class="edge">
-<title>630b5defa78d4c8bb06813e14b599941-&gt;d9cf9c2d0bad429aa272a3ca3c4d278e</title>
+<title>caaf9d53d59049fdaea8f9e09ff3aa58-&gt;7fbcd93610b1466d944d1980371b93ea</title>
 <path fill="none" stroke="#7b8894" d="M420.05,-534.36C476.55,-520.24 567.98,-497.38 628.18,-482.33" />
 <polygon fill="#7b8894" stroke="#7b8894" points="629.07,-485.71 637.93,-479.89 627.38,-478.92 629.07,-485.71" />
 </g>
-<!-- 48c431c7aad34efd84f7d2e20bfbfbfe&#45;&gt;630b5defa78d4c8bb06813e14b599941 -->
+<!-- afd100b630e244d1a2ff80bd1c199cff&#45;&gt;caaf9d53d59049fdaea8f9e09ff3aa58 -->
 <g id="edge18" class="edge">
-<title>48c431c7aad34efd84f7d2e20bfbfbfe-&gt;630b5defa78d4c8bb06813e14b599941</title>
+<title>afd100b630e244d1a2ff80bd1c199cff-&gt;caaf9d53d59049fdaea8f9e09ff3aa58</title>
 <path fill="none" stroke="#7b8894" d="M369.5,-466.23C369.5,-466.87 369.5,-467.51 369.5,-468.15" />
 <polygon fill="#7b8894" stroke="#7b8894" points="373,-466.07 369.5,-456.07 366,-466.07 373,-466.07" />
 <polygon fill="#7b8894" stroke="#7b8894" points="366,-468.49 369.5,-478.49 373,-468.49 366,-468.49" />
 </g>
-<!-- e775c241095345c7ab1e60be10590007 -->
+<!-- 867155a9135848b9a51835effec3abd1 -->
 <g id="node6" class="node">
-<title>e775c241095345c7ab1e60be10590007</title>
+<title>867155a9135848b9a51835effec3abd1</title>
 <image xlink:href="/icons/client.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="0" y="-278.5" />
 <text text-anchor="middle" x="50.5" y="-163.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">AC/QC user</text>
 </g>
-<!-- e775c241095345c7ab1e60be10590007&#45;&gt;aa3c826850494841aa30507b69174dd4 -->
+<!-- 867155a9135848b9a51835effec3abd1&#45;&gt;bd6b92030fd34e4bbc4e0c5eecdfd46f -->
 <g id="edge5" class="edge">
-<title>e775c241095345c7ab1e60be10590007-&gt;aa3c826850494841aa30507b69174dd4</title>
+<title>867155a9135848b9a51835effec3abd1-&gt;bd6b92030fd34e4bbc4e0c5eecdfd46f</title>
 <path fill="none" stroke="#7b8894" d="M111.59,-228C123.9,-228 136.84,-228 149.15,-228" />
 <polygon fill="#7b8894" stroke="#7b8894" points="111.41,-224.5 101.41,-228 111.41,-231.5 111.41,-224.5" />
 <polygon fill="#7b8894" stroke="#7b8894" points="149.3,-231.5 159.3,-228 149.3,-224.5 149.3,-231.5" />
 </g>
-<!-- 2ee4c88cd8ce4b1188e468cbe36f6dfb -->
+<!-- e5f3a9fb1b1a4093ae40b4478f1bf513 -->
 <g id="node7" class="node">
-<title>2ee4c88cd8ce4b1188e468cbe36f6dfb</title>
+<title>e5f3a9fb1b1a4093ae40b4478f1bf513</title>
 <image xlink:href="/icons/client.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="957" y="-517.75" />
 <text text-anchor="middle" x="1007.5" y="-402.35" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Microscope Operator</text>
 </g>
-<!-- 797feed71002465da0484363dbbc4259 -->
+<!-- a1041105e8e04643aae25dcd5bd86f8e -->
 <g id="node15" class="node">
-<title>797feed71002465da0484363dbbc4259</title>
+<title>a1041105e8e04643aae25dcd5bd86f8e</title>
 <g id="a_node15"><a xlink:href="/ui_server.html" xlink:title="UI Server">
 <image xlink:href="/icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="797.5" y="-517.75" />
 <text text-anchor="middle" x="848" y="-402.35" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">UI Server</text>
 </a>
 </g>
 </g>
-<!-- 2ee4c88cd8ce4b1188e468cbe36f6dfb&#45;&gt;797feed71002465da0484363dbbc4259 -->
+<!-- e5f3a9fb1b1a4093ae40b4478f1bf513&#45;&gt;a1041105e8e04643aae25dcd5bd86f8e -->
 <g id="edge13" class="edge">
-<title>2ee4c88cd8ce4b1188e468cbe36f6dfb-&gt;797feed71002465da0484363dbbc4259</title>
+<title>e5f3a9fb1b1a4093ae40b4478f1bf513-&gt;a1041105e8e04643aae25dcd5bd86f8e</title>
 <path fill="none" stroke="#7b8894" d="M946.41,-467.25C934.1,-467.25 921.16,-467.25 908.85,-467.25" />
 <polygon fill="#7b8894" stroke="#7b8894" points="946.59,-470.75 956.59,-467.25 946.59,-463.75 946.59,-470.75" />
 <polygon fill="#7b8894" stroke="#7b8894" points="908.7,-463.75 898.7,-467.25 908.7,-470.75 908.7,-463.75" />
 </g>
-<!-- b23fff7429a946c5bd5189a94b280844 -->
+<!-- 91c14bb0803543a3b0b4fe31b33329b1 -->
 <g id="node8" class="node">
-<title>b23fff7429a946c5bd5189a94b280844</title>
+<title>91c14bb0803543a3b0b4fe31b33329b1</title>
 <g id="a_node8"><a xlink:href="/broker.html" xlink:title="ActiveMQ">
 <image xlink:href="/icons/activemq.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="797.5" y="-198.75" />
 <text text-anchor="middle" x="848" y="-83.35" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">ActiveMQ</text>
 </a>
 </g>
 </g>
-<!-- 5a66989ae1f94cf6840e5c9aacb01c7b -->
+<!-- b2112db2f6484c6cbbec20c5727642bc -->
 <g id="node10" class="node">
-<title>5a66989ae1f94cf6840e5c9aacb01c7b</title>
+<title>b2112db2f6484c6cbbec20c5727642bc</title>
 <image xlink:href="/icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="797.5" y="-677.25" />
 <text text-anchor="middle" x="848" y="-561.35" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Microscope</text>
 <text text-anchor="middle" x="848" y="-547.35" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Service</text>
 </g>
-<!-- d9cf9c2d0bad429aa272a3ca3c4d278e&#45;&gt;5a66989ae1f94cf6840e5c9aacb01c7b -->
+<!-- 7fbcd93610b1466d944d1980371b93ea&#45;&gt;b2112db2f6484c6cbbec20c5727642bc -->
 <g id="edge6" class="edge">
-<title>d9cf9c2d0bad429aa272a3ca3c4d278e-&gt;5a66989ae1f94cf6840e5c9aacb01c7b</title>
+<title>7fbcd93610b1466d944d1980371b93ea-&gt;b2112db2f6484c6cbbec20c5727642bc</title>
 <path fill="none" stroke="#7b8894" d="M746.89,-525.64C760.97,-539.72 776,-554.75 790.06,-568.81" />
 <polygon fill="#7b8894" stroke="#7b8894" points="748.95,-522.75 739.41,-518.16 744,-527.7 748.95,-522.75" />
 <polygon fill="#7b8894" stroke="#7b8894" points="787.76,-571.46 797.3,-576.05 792.71,-566.51 787.76,-571.46" />
 </g>
-<!-- 6eeae7e07298448fbef107daa29d8681 -->
+<!-- 6c0046fab31b492cac5664d18e7d8a91 -->
 <g id="node11" class="node">
-<title>6eeae7e07298448fbef107daa29d8681</title>
+<title>6c0046fab31b492cac5664d18e7d8a91</title>
 <g id="a_node11"><a xlink:href="/camera.html" xlink:title="Camera&#10;Service">
 <image xlink:href="/icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="478.5" y="-677.25" />
 <text text-anchor="middle" x="529" y="-561.35" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Camera</text>
@@ -226,30 +231,30 @@ Below, is a diagram showing a general overview of this system.</p>
 </a>
 </g>
 </g>
-<!-- d9cf9c2d0bad429aa272a3ca3c4d278e&#45;&gt;6eeae7e07298448fbef107daa29d8681 -->
+<!-- 7fbcd93610b1466d944d1980371b93ea&#45;&gt;6c0046fab31b492cac5664d18e7d8a91 -->
 <g id="edge7" class="edge">
-<title>d9cf9c2d0bad429aa272a3ca3c4d278e-&gt;6eeae7e07298448fbef107daa29d8681</title>
+<title>7fbcd93610b1466d944d1980371b93ea-&gt;6c0046fab31b492cac5664d18e7d8a91</title>
 <path fill="none" stroke="#7b8894" d="M630.11,-525.64C616.03,-539.72 601,-554.75 586.95,-568.81" />
 <polygon fill="#7b8894" stroke="#7b8894" points="633,-527.7 637.59,-518.16 628.05,-522.75 633,-527.7" />
 <polygon fill="#7b8894" stroke="#7b8894" points="584.29,-566.51 579.7,-576.05 589.24,-571.46 584.29,-566.51" />
 </g>
-<!-- 7f601a97aca14d95b9d112a3b2553b1f -->
+<!-- 31841382b78a4161923b0a536aaa012e -->
 <g id="node12" class="node">
-<title>7f601a97aca14d95b9d112a3b2553b1f</title>
+<title>31841382b78a4161923b0a536aaa012e</title>
 <image xlink:href="/icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="638" y="-677.25" />
 <text text-anchor="middle" x="688.5" y="-561.35" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Stage</text>
 <text text-anchor="middle" x="688.5" y="-547.35" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Service</text>
 </g>
-<!-- d9cf9c2d0bad429aa272a3ca3c4d278e&#45;&gt;7f601a97aca14d95b9d112a3b2553b1f -->
+<!-- 7fbcd93610b1466d944d1980371b93ea&#45;&gt;31841382b78a4161923b0a536aaa012e -->
 <g id="edge8" class="edge">
-<title>d9cf9c2d0bad429aa272a3ca3c4d278e-&gt;7f601a97aca14d95b9d112a3b2553b1f</title>
+<title>7fbcd93610b1466d944d1980371b93ea-&gt;31841382b78a4161923b0a536aaa012e</title>
 <path fill="none" stroke="#7b8894" d="M688.5,-543.21C688.5,-543.3 688.5,-543.38 688.5,-543.46" />
 <polygon fill="#7b8894" stroke="#7b8894" points="692,-545.82 688.5,-535.82 685,-545.82 692,-545.82" />
 <polygon fill="#7b8894" stroke="#7b8894" points="685,-533.71 688.5,-543.71 692,-533.71 685,-533.71" />
 </g>
-<!-- 24e2c637f97443458e12ee3011d87b03 -->
+<!-- b77d08fc81ab458da2bd27a28509f548 -->
 <g id="node13" class="node">
-<title>24e2c637f97443458e12ee3011d87b03</title>
+<title>b77d08fc81ab458da2bd27a28509f548</title>
 <g id="a_node13"><a xlink:href="/pipeline.html" xlink:title="C++ Pipeline&#10;(OpenCV, CUDA)">
 <image xlink:href="/icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="638" y="-364.563" />
 <text text-anchor="middle" x="688.5" y="-242.35" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">C++ Pipeline</text>
@@ -257,22 +262,22 @@ Below, is a diagram showing a general overview of this system.</p>
 </a>
 </g>
 </g>
-<!-- d9cf9c2d0bad429aa272a3ca3c4d278e&#45;&gt;24e2c637f97443458e12ee3011d87b03 -->
+<!-- 7fbcd93610b1466d944d1980371b93ea&#45;&gt;b77d08fc81ab458da2bd27a28509f548 -->
 <g id="edge9" class="edge">
-<title>d9cf9c2d0bad429aa272a3ca3c4d278e-&gt;24e2c637f97443458e12ee3011d87b03</title>
+<title>7fbcd93610b1466d944d1980371b93ea-&gt;b77d08fc81ab458da2bd27a28509f548</title>
 <path fill="none" stroke="#7b8894" d="M688.5,-398.68C688.5,-398.52 688.5,-398.35 688.5,-398.19" />
 <polygon fill="#7b8894" stroke="#7b8894" points="692,-400.79 688.5,-390.79 685,-400.79 692,-400.79" />
 </g>
-<!-- d9cf9c2d0bad429aa272a3ca3c4d278e&#45;&gt;797feed71002465da0484363dbbc4259 -->
+<!-- 7fbcd93610b1466d944d1980371b93ea&#45;&gt;a1041105e8e04643aae25dcd5bd86f8e -->
 <g id="edge12" class="edge">
-<title>d9cf9c2d0bad429aa272a3ca3c4d278e-&gt;797feed71002465da0484363dbbc4259</title>
+<title>7fbcd93610b1466d944d1980371b93ea-&gt;a1041105e8e04643aae25dcd5bd86f8e</title>
 <path fill="none" stroke="#7b8894" d="M749.59,-467.25C761.9,-467.25 774.84,-467.25 787.15,-467.25" />
 <polygon fill="#7b8894" stroke="#7b8894" points="749.41,-463.75 739.41,-467.25 749.41,-470.75 749.41,-463.75" />
 <polygon fill="#7b8894" stroke="#7b8894" points="787.3,-470.75 797.3,-467.25 787.3,-463.75 787.3,-470.75" />
 </g>
-<!-- d6c70145d34b4793a738fd2fd60bace0 -->
+<!-- b74a696b3c6c4ed6947d6b8885c5cb94 -->
 <g id="node14" class="node">
-<title>d6c70145d34b4793a738fd2fd60bace0</title>
+<title>b74a696b3c6c4ed6947d6b8885c5cb94</title>
 <g id="a_node14"><a xlink:href="/buffer.html" xlink:title="Buffer&#10;Service">
 <image xlink:href="/icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="478.5" y="-358.25" />
 <text text-anchor="middle" x="529" y="-242.35" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Buffer</text>
@@ -280,66 +285,66 @@ Below, is a diagram showing a general overview of this system.</p>
 </a>
 </g>
 </g>
-<!-- 24e2c637f97443458e12ee3011d87b03&#45;&gt;d6c70145d34b4793a738fd2fd60bace0 -->
+<!-- b77d08fc81ab458da2bd27a28509f548&#45;&gt;b74a696b3c6c4ed6947d6b8885c5cb94 -->
 <g id="edge10" class="edge">
-<title>24e2c637f97443458e12ee3011d87b03-&gt;d6c70145d34b4793a738fd2fd60bace0</title>
+<title>b77d08fc81ab458da2bd27a28509f548-&gt;b74a696b3c6c4ed6947d6b8885c5cb94</title>
 <path fill="none" stroke="#7b8894" d="M637.59,-307.75C622.41,-307.75 605.62,-307.75 589.87,-307.75" />
 <polygon fill="#7b8894" stroke="#7b8894" points="589.7,-304.25 579.7,-307.75 589.7,-311.25 589.7,-304.25" />
 </g>
-<!-- 24e2c637f97443458e12ee3011d87b03&#45;&gt;797feed71002465da0484363dbbc4259 -->
+<!-- b77d08fc81ab458da2bd27a28509f548&#45;&gt;a1041105e8e04643aae25dcd5bd86f8e -->
 <g id="edge19" class="edge">
-<title>24e2c637f97443458e12ee3011d87b03-&gt;797feed71002465da0484363dbbc4259</title>
+<title>b77d08fc81ab458da2bd27a28509f548-&gt;a1041105e8e04643aae25dcd5bd86f8e</title>
 <path fill="none" stroke="#7b8894" d="M739.41,-358.66C755.45,-374.7 773.31,-392.56 789.82,-409.07" />
 <polygon fill="#7b8894" stroke="#7b8894" points="787.76,-411.96 797.3,-416.55 792.71,-407.01 787.76,-411.96" />
 </g>
-<!-- d6c70145d34b4793a738fd2fd60bace0&#45;&gt;baccfc52e3924367b4bb585b68529d4d -->
+<!-- b74a696b3c6c4ed6947d6b8885c5cb94&#45;&gt;3c63838c5c66450586419221f0f1fe21 -->
 <g id="edge11" class="edge">
-<title>d6c70145d34b4793a738fd2fd60bace0-&gt;baccfc52e3924367b4bb585b68529d4d</title>
+<title>b74a696b3c6c4ed6947d6b8885c5cb94-&gt;3c63838c5c66450586419221f0f1fe21</title>
 <path fill="none" stroke="#7b8894" d="M478.09,-282.3C462.62,-274.56 445.48,-265.99 429.47,-257.98" />
 <polygon fill="#7b8894" stroke="#7b8894" points="430.7,-254.69 420.2,-253.35 427.57,-260.95 430.7,-254.69" />
 </g>
-<!-- 28f6d19faf5043a6909cb72f6adf2db6 -->
+<!-- 5881c0cd45a846c0b7de68777f71aadd -->
 <g id="node16" class="node">
-<title>28f6d19faf5043a6909cb72f6adf2db6</title>
+<title>5881c0cd45a846c0b7de68777f71aadd</title>
 <image xlink:href="/icons/TEM.png" width="101px" height="129.671px" preserveAspectRatio="xMinYMin meet" x="797.5" y="-851.086" />
 <text text-anchor="middle" x="848" y="-721.35" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Microscope</text>
 </g>
-<!-- 28f6d19faf5043a6909cb72f6adf2db6&#45;&gt;5a66989ae1f94cf6840e5c9aacb01c7b -->
+<!-- 5881c0cd45a846c0b7de68777f71aadd&#45;&gt;b2112db2f6484c6cbbec20c5727642bc -->
 <g id="edge14" class="edge">
-<title>28f6d19faf5043a6909cb72f6adf2db6-&gt;5a66989ae1f94cf6840e5c9aacb01c7b</title>
+<title>5881c0cd45a846c0b7de68777f71aadd-&gt;b2112db2f6484c6cbbec20c5727642bc</title>
 <path fill="none" stroke="#7b8894" d="M848,-710.29C848,-710.2 848,-710.12 848,-710.04" />
 <polygon fill="#7b8894" stroke="#7b8894" points="844.5,-707.68 848,-717.68 851.5,-707.68 844.5,-707.68" />
 <polygon fill="#7b8894" stroke="#7b8894" points="851.5,-719.79 848,-709.79 844.5,-719.79 851.5,-719.79" />
 </g>
-<!-- 84bb19f4fa23489bbb0c754d22dac90f -->
+<!-- 16f67169f17b426cbb61dff15ade8852 -->
 <g id="node17" class="node">
-<title>84bb19f4fa23489bbb0c754d22dac90f</title>
+<title>16f67169f17b426cbb61dff15ade8852</title>
 <image xlink:href="/icons/stage.png" width="101px" height="73.1918px" preserveAspectRatio="xMinYMin meet" x="638" y="-822.846" />
 <text text-anchor="middle" x="688.5" y="-721.35" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Stage</text>
 </g>
-<!-- 84bb19f4fa23489bbb0c754d22dac90f&#45;&gt;7f601a97aca14d95b9d112a3b2553b1f -->
+<!-- 16f67169f17b426cbb61dff15ade8852&#45;&gt;31841382b78a4161923b0a536aaa012e -->
 <g id="edge15" class="edge">
-<title>84bb19f4fa23489bbb0c754d22dac90f-&gt;7f601a97aca14d95b9d112a3b2553b1f</title>
+<title>16f67169f17b426cbb61dff15ade8852-&gt;31841382b78a4161923b0a536aaa012e</title>
 <path fill="none" stroke="#7b8894" d="M688.5,-710.29C688.5,-710.2 688.5,-710.12 688.5,-710.04" />
 <polygon fill="#7b8894" stroke="#7b8894" points="685,-707.68 688.5,-717.68 692,-707.68 685,-707.68" />
 <polygon fill="#7b8894" stroke="#7b8894" points="692,-719.79 688.5,-709.79 685,-719.79 692,-719.79" />
 </g>
-<!-- 82a7b9fb3b5649229c2d66ab7dd4cb22 -->
+<!-- f8e4cf048ce84e429d22c7947612ae0c -->
 <g id="node18" class="node">
-<title>82a7b9fb3b5649229c2d66ab7dd4cb22</title>
+<title>f8e4cf048ce84e429d22c7947612ae0c</title>
 <image xlink:href="/icons/camera.png" width="101px" height="89.843px" preserveAspectRatio="xMinYMin meet" x="478.5" y="-831.172" />
 <text text-anchor="middle" x="529" y="-721.35" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Camera</text>
 </g>
-<!-- 82a7b9fb3b5649229c2d66ab7dd4cb22&#45;&gt;6eeae7e07298448fbef107daa29d8681 -->
+<!-- f8e4cf048ce84e429d22c7947612ae0c&#45;&gt;6c0046fab31b492cac5664d18e7d8a91 -->
 <g id="edge16" class="edge">
-<title>82a7b9fb3b5649229c2d66ab7dd4cb22-&gt;6eeae7e07298448fbef107daa29d8681</title>
+<title>f8e4cf048ce84e429d22c7947612ae0c-&gt;6c0046fab31b492cac5664d18e7d8a91</title>
 <path fill="none" stroke="#7b8894" d="M529,-710.29C529,-710.2 529,-710.12 529,-710.04" />
 <polygon fill="#7b8894" stroke="#7b8894" points="525.5,-707.68 529,-717.68 532.5,-707.68 525.5,-707.68" />
 <polygon fill="#7b8894" stroke="#7b8894" points="532.5,-719.79 529,-709.79 525.5,-719.79 532.5,-719.79" />
 </g>
-<!-- 207df0c6115f496c85ade289f42d29d9 -->
+<!-- 52a2918e0c3a4f5eb07688d9d20c1b9b -->
 <g id="node19" class="node">
-<title>207df0c6115f496c85ade289f42d29d9</title>
+<title>52a2918e0c3a4f5eb07688d9d20c1b9b</title>
 <g id="a_node19"><a xlink:href="/log.html" xlink:title="Log Server">
 <image xlink:href="/icons/loki.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="319" y="-119" />
 <text text-anchor="middle" x="369.5" y="-3.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Log Server</text>
@@ -351,8 +356,8 @@ Below, is a diagram showing a general overview of this system.</p>
 
 <p>Many of the nodes in this diagram are hyperlinks to further documentation on this system.</p>
 
+</div>
     </div>
-  </div>
 </div>
         <footer class="mdl-mega-footer">
   <div class="mdl-mega-footer__middle-section">

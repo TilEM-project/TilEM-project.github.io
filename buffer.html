@@ -33,6 +33,8 @@
       <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         
+          <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        
       </nav>
     </div>
   </header>
@@ -40,35 +42,38 @@
     <span class="mdl-layout-title">TEM Architecture</span>
     <nav class="mdl-navigation">
       
+        <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        
+      
     </nav>
   </div>
 <!-- </div> -->
 
       <main class="mdl-layout__content">
         <div class="mdl-grid page-container">
-  <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
-    <div class="mdl-card__title">
-      <h2 class="mdl-card__title--text">
-        Upload Buffer
-      </h2>
-    </div>
+    <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title--text">
+                Upload Buffer
+            </h2>
+        </div>
+        
+  <div class="mdl-card__supporting-text mdl-card--border">
     
-      <div class="mdl-card__supporting-text mdl-card--border">
-        
-        
-        
-          <h3>Receives</h3>
-          <ul>
-            
-            
-              <li><a href="/topics.html#tileprocessed">tile.processed</a></li>
-            
-          </ul>
-        
-      </div>
     
-    <div class="mdl-card__supporting-text">
-      <p>The purpose of the upload buffer service is to allow the microscope to continue imaging when the internet connection is insufficient for real-time tile upload.
+    
+      <h3>Receives</h3>
+      <ul>
+        
+        
+          <li><a href="/topics.html#tileprocessed">tile.processed</a></li>
+        
+      </ul>
+    
+  </div>
+
+<div class="mdl-card__supporting-text">
+  <p>The purpose of the upload buffer service is to allow the microscope to continue imaging when the internet connection is insufficient for real-time tile upload.
 A functional internet connection is still required for <a href="/pytem.html">pyTEM</a> to run.
 The buffer service has four primary responsibilities:</p>
 
@@ -80,8 +85,8 @@ The buffer service has four primary responsibilities:</p>
 
 <p>This process should be triggered whenever a tile is finished processing by the <a href="/pipeline.html">image processing pipeline</a>, via a message through the <a href="/broker.md">broker</a>.</p>
 
+</div>
     </div>
-  </div>
 </div>
         <footer class="mdl-mega-footer">
   <div class="mdl-mega-footer__middle-section">

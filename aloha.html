@@ -33,6 +33,8 @@
       <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         
+          <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        
       </nav>
     </div>
   </header>
@@ -40,25 +42,28 @@
     <span class="mdl-layout-title">TEM Architecture</span>
     <nav class="mdl-navigation">
       
+        <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        
+      
     </nav>
   </div>
 <!-- </div> -->
 
       <main class="mdl-layout__content">
         <div class="mdl-grid page-container">
-  <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
-    <div class="mdl-card__title">
-      <h2 class="mdl-card__title--text">
-        Aloha
-      </h2>
-    </div>
-    
-    <div class="mdl-card__supporting-text">
-      <p>Aloha is a service that takes raw tile images from the S3 bucket, and saves downsampled and compressed image for use in <a href="https://github.com/google/neuroglancer">Neuroglancer</a> and other tools.
+    <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title--text">
+                Aloha
+            </h2>
+        </div>
+        
+<div class="mdl-card__supporting-text">
+  <p>Aloha is a service that takes raw tile images from the S3 bucket, and saves downsampled and compressed image for use in <a href="https://github.com/google/neuroglancer">Neuroglancer</a> and other tools.
 This service finds tiles without downsampled images in <a href="/tem_db.html">TEM DB</a>, performs the downsampling and compression, saves the compressed images to S3, and places the S3 URIs in <a href="tem_db.html">TEM DB</a>.</p>
 
+</div>
     </div>
-  </div>
 </div>
         <footer class="mdl-mega-footer">
   <div class="mdl-mega-footer__middle-section">

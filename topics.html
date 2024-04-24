@@ -33,6 +33,8 @@
       <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         
+          <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        
       </nav>
     </div>
   </header>
@@ -40,413 +42,1233 @@
     <span class="mdl-layout-title">TEM Architecture</span>
     <nav class="mdl-navigation">
       
+        <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        
+      
     </nav>
   </div>
 <!-- </div> -->
 
       <main class="mdl-layout__content">
         <div class="mdl-grid page-container">
-  <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
-    <div class="mdl-card__title">
-      <h2 class="mdl-card__title--text">
-        Topics
-      </h2>
+    <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title--text">
+                Topics
+            </h2>
+        </div>
+        <div class="mdl-card__supporting-text mdl-card--border">
+    <p>The topics are listed below.</p>
+
+</div>
+
+
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3>camera.command</h3>
+        <p>This message signals that an image should be acquired by the camera.</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>tile_id</strong> (string): The tile ID.</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "tile_id": "69005602-15b0-4407-bf5b-4bddd662914",
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/camera.html">Camera Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
     </div>
-    
-    <div class="mdl-card__supporting-text">
-      <p>The topics are listed below.</p>
 
-<h3 id="cameracommand">camera.command</h3>
-
-<p>This message signals that an image should be acquired by the camera.</p>
-
-<h4 id="payload">Payload</h4>
-
-<ul>
-  <li><strong>tile_id</strong> (string): The tile ID.</li>
-</ul>
-
-<h4 id="example">Example</h4>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"tile_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69005602-15b0-4407-bf5b-4bddd662914"</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h4 id="sender">Sender</h4>
-
-<ul>
-  <li><a href="/pytem.html">pyTEM</a></li>
-</ul>
-
-<h4 id="receivers">Receivers</h4>
-
-<ul>
-  <li><a href="/camera.html">Camera Service</a></li>
-</ul>
-
-<h3 id="cameraimage">camera.image</h3>
-
-<p>This message contains a path to the most recently acquired image.</p>
-
-<h4 id="payload-1">Payload</h4>
-
-<ul>
-  <li><strong>tile_id</strong> (string): The tile ID.</li>
-  <li><strong>path</strong> (string): The path to the image on disk.</li>
-</ul>
-
-<h4 id="example-1">Example</h4>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"tile_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69005602-15b0-4407-bf5b-4bddd662914"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/storage/raw/69005602-15b0-4407-bf5b-4bddd6629141.tiff"</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h4 id="sender-1">Sender</h4>
-
-<ul>
-  <li><a href="/camera.html">Camera Service</a></li>
-</ul>
-
-<h4 id="receivers-1">Receivers</h4>
-
-<ul>
-  <li><a href="/pytem.html">pyTEM</a></li>
-</ul>
-
-<h3 id="camerasettings">camera.settings</h3>
-
-<p>This message is used to modify camera settings.</p>
-
-<h4 id="payload-2">Payload</h4>
-
-<ul>
-  <li><strong>exposure</strong> (float or null): The camera exposure in microseconds, or <code class="language-plaintext highlighter-rouge">null</code> if the value should remain unchanged.</li>
-  <li><strong>width</strong> (int or null): The image width, or <code class="language-plaintext highlighter-rouge">null</code> if the value should remain unchanged.</li>
-  <li><strong>height</strong> (int or null): The current image height, or <code class="language-plaintext highlighter-rouge">null</code> if the value should remain unchanged.</li>
-</ul>
-
-<h4 id="example-2">Example</h4>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"exposure"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h4 id="sender-2">Sender</h4>
-
-<ul>
-  <li><a href="/pytem.html">pyTEM</a></li>
-</ul>
-
-<h4 id="receivers-2">Receivers</h4>
-
-<ul>
-  <li><a href="/camera.html">Camera Service</a></li>
-</ul>
-
-<h3 id="camerastatus">camera.status</h3>
-
-<p>This message is regularly published and includes various status information about the camera.</p>
-
-<h4 id="payload-3">Payload</h4>
-
-<ul>
-  <li><strong>exposure</strong> (float): The current exposure time in microseconds.</li>
-  <li><strong>width</strong> (int): The current image width.</li>
-  <li><strong>height</strong> (int): The current image height.</li>
-  <li><strong>temp</strong> (float): The current temperature of the camera.</li>
-  <li><strong>target_temp</strong> (float): The target temperature for temperature control.</li>
-  <li><strong>device_name</strong> (string): The camera device name.</li>
-  <li><strong>device_model_id</strong> (int): The model ID of the camera.</li>
-  <li><strong>sensor_model_id</strong> (int): The model ID of the camera sensor.</li>
-  <li><strong>device_sn</strong> (string): The camera serial number.</li>
-  <li><strong>sensor_sn</strong> (string): The serial number of the camera sensor.</li>
-</ul>
-
-<h4 id="example-3">Example</h4>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"exposure"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"temp"</span><span class="p">:</span><span class="w"> </span><span class="mf">25.8</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"target_temp"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"device_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ximea Camera"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"device_model_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sensor_model_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"device_sn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alkdsjfalkj"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sensor_sn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aljewoia"</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h4 id="sender-3">Sender</h4>
-
-<ul>
-  <li><a href="/camera.html">Camera Service</a></li>
-</ul>
-
-<h4 id="receivers-3">Receivers</h4>
-
-<ul>
-  <li><a href="/pytem.html">pyTEM</a></li>
-</ul>
-
-<h3 id="tilejpeg">tile.jpeg</h3>
-
-<p>This message contains the path to a downsampled and JPEG compressed tile primarily for UI use.</p>
-
-<h4 id="payload-4">Payload</h4>
-
-<ul>
-  <li><strong>tile_id</strong> (string): The tile ID.</li>
-  <li><strong>path</strong> (string): The path where the compressed tile is stored.</li>
-</ul>
-
-<h4 id="example-4">Example</h4>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"tile_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69005602-15b0-4407-bf5b-4bddd6629141"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/storage/jpeg/69005602-15b0-4407-bf5b-4bddd6629141.jpeg"</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h4 id="sender-4">Sender</h4>
-
-<ul>
-  <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
-</ul>
-
-<h4 id="receivers-4">Receivers</h4>
-
-<ul>
-  <li><a href="/ui_server.html">UI Server</a></li>
-</ul>
-
-<h3 id="tileminimap">tile.minimap</h3>
-
-<p>This message contains the path to low resolution map image of the full montage.</p>
-
-<h4 id="payload-5">Payload</h4>
-
-<ul>
-  <li><strong>tile_id</strong> (string): The tile ID.</li>
-  <li><strong>path</strong> (string): The path where the minimap is stored.</li>
-</ul>
-
-<h4 id="example-5">Example</h4>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"tile_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69005602-15b0-4407-bf5b-4bddd6629141"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/storage/minimap/69005602-15b0-4407-bf5b-4bddd6629141.jpeg"</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h4 id="sender-5">Sender</h4>
-
-<ul>
-  <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
-</ul>
-
-<h4 id="receivers-5">Receivers</h4>
-
-<ul>
-  <li><a href="/ui_server.html">UI Server</a></li>
-</ul>
-
-<h3 id="tileprocessed">tile.processed</h3>
-
-<p>This message contains the path to a fully processed tile.</p>
-
-<h4 id="payload-6">Payload</h4>
-
-<ul>
-  <li><strong>tile_id</strong> (string): The tile ID.</li>
-  <li><strong>path</strong> (string): The path where the processed tile is stored.</li>
-</ul>
-
-<h4 id="example-6">Example</h4>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"tile_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69005602-15b0-4407-bf5b-4bddd6629141"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/storage/processed/69005602-15b0-4407-bf5b-4bddd6629141.tiff"</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h4 id="sender-6">Sender</h4>
-
-<ul>
-  <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
-</ul>
-
-<h4 id="receivers-6">Receivers</h4>
-
-<ul>
-  <li><a href="/buffer.html">Upload Buffer</a></li>
-</ul>
-
-<h3 id="tileraw">tile.raw</h3>
-
-<p>This message is sent whenever a new tile is ready.</p>
-
-<h4 id="payload-7">Payload</h4>
-
-<ul>
-  <li><strong>tile_id</strong> (string): The tile ID.</li>
-  <li><strong>montage_id</strong> (string): The montage ID. If <code class="language-plaintext highlighter-rouge">null</code>, the tile is for UI display purposes only.</li>
-  <li><strong>path</strong> (string): The path where the raw tile is stored.</li>
-  <li><strong>row</strong> (int): The row of the montage where the tile was imaged.</li>
-  <li><strong>column</strong> (int): The column of the montage where the tile was imaged.</li>
-  <li><strong>overlap</strong> (float): The percent overlap of the tiles expressed as a decimal number.</li>
-</ul>
-
-<h4 id="example-7">Example</h4>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"tile_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69005602-15b0-4407-bf5b-4bddd6629141"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"montage_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4330c7cf-e45b-4950-89cf-82dc0f815fe9"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/storage/raw/69005602-15b0-4407-bf5b-4bddd6629141.tiff"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"row"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"column"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"overlap"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h4 id="sender-7">Sender</h4>
-
-<ul>
-  <li><a href="/pytem.html">pyTEM</a></li>
-</ul>
-
-<h4 id="receivers-7">Receivers</h4>
-
-<ul>
-  <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
-</ul>
-
-<h3 id="tilestatisticsfocus">tile.statistics.focus</h3>
-
-<p>This message contains the focus score.</p>
-
-<h4 id="payload-8">Payload</h4>
-
-<ul>
-  <li><strong>tile_id</strong> (string): The tile ID.</li>
-  <li><strong>min</strong> (float): The focus score.</li>
-</ul>
-
-<h4 id="example-8">Example</h4>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"tile_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69005602-15b0-4407-bf5b-4bddd6629141"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.67</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h4 id="sender-8">Sender</h4>
-
-<ul>
-  <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
-</ul>
-
-<h4 id="receivers-8">Receivers</h4>
-
-<h3 id="tilestatisticshistogram">tile.statistics.histogram</h3>
-
-<p>This message contains a path to a histogram saved to disk.</p>
-
-<h4 id="payload-9">Payload</h4>
-
-<ul>
-  <li><strong>tile_id</strong> (string): The tile ID.</li>
-  <li><strong>path</strong> (string): The path where the histogram is stored.</li>
-</ul>
-
-<h4 id="example-9">Example</h4>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"tile_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69005602-15b0-4407-bf5b-4bddd6629141"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/storage/histogram/69005602-15b0-4407-bf5b-4bddd6629141.tiff"</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h4 id="sender-9">Sender</h4>
-
-<ul>
-  <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
-</ul>
-
-<h4 id="receivers-9">Receivers</h4>
-
-<h3 id="tilestatisticsmin_max_mean">tile.statistics.min_max_mean</h3>
-
-<p>This message contains simple statistics about a processed tile.</p>
-
-<h4 id="payload-10">Payload</h4>
-
-<ul>
-  <li><strong>tile_id</strong> (string): The tile ID.</li>
-  <li><strong>min</strong> (int): The minimum pixel value.</li>
-  <li><strong>max</strong> (int): The maximum pixel value.</li>
-  <li><strong>mean</strong> (int): The mean pixel value.</li>
-</ul>
-
-<h4 id="example-10">Example</h4>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"tile_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69005602-15b0-4407-bf5b-4bddd6629141"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"min"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"max"</span><span class="p">:</span><span class="w"> </span><span class="mi">249</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"mean"</span><span class="p">:</span><span class="w"> </span><span class="mi">187</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h4 id="sender-10">Sender</h4>
-
-<ul>
-  <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
-</ul>
-
-<h4 id="receivers-10">Receivers</h4>
-
-<h3 id="tiletransform">tile.transform</h3>
-
-<p>This message contains a transform between the base coordinate system of the montage and the tile to move it into the correct location in the montage.</p>
-
-<h4 id="payload-11">Payload</h4>
-
-<ul>
-  <li><strong>tile_id</strong> (string): The tile ID.</li>
-  <li><strong>rotation</strong> (float): The rotation in radians of the tile for it to fit in the montage.</li>
-  <li><strong>x</strong> (float): The X location of the tile for it to fit in the montage in units of pixels.</li>
-  <li><strong>y</strong> (float): The Y location of the tile for it to fit in the montage in units of pixels.</li>
-</ul>
-
-<h4 id="example-11">Example</h4>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"tile_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69005602-15b0-4407-bf5b-4bddd6629141"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"rotation"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.14</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1019172</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"y"</span><span class="p">:</span><span class="w"> </span><span class="mi">1918840</span><span class="p">,</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<h4 id="sender-11">Sender</h4>
-
-<ul>
-  <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
-</ul>
-
-<h4 id="receivers-11">Receivers</h4>
-
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3>camera.image</h3>
+        <p>This message contains a path to the most recently acquired image.</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>tile_id</strong> (string): The tile ID.</li>
+            
+                <li><strong>path</strong> (string): The path to the image on disk.</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "tile_id": "69005602-15b0-4407-bf5b-4bddd662914",
+    "path": "/storage/raw/69005602-15b0-4407-bf5b-4bddd6629141.tiff",
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/camera.html">Camera Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3>camera.settings</h3>
+        <p>This message is used to modify camera settings.</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>exposure</strong> (float or null): The camera exposure in microseconds, or `null` if the value should remain unchanged.</li>
+            
+                <li><strong>width</strong> (int or null): The image width, or `null` if the value should remain unchanged.</li>
+            
+                <li><strong>height</strong> (int or null): The current image height, or `null` if the value should remain unchanged.</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "exposure": 1000.0,
+    "width": 10000,
+    "height": 10000,
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/camera.html">Camera Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3>camera.status</h3>
+        <p>This message is regularly published and includes various status information about the camera.</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>exposure</strong> (float): The current exposure time in microseconds.</li>
+            
+                <li><strong>width</strong> (int): The current image width.</li>
+            
+                <li><strong>height</strong> (int): The current image height.</li>
+            
+                <li><strong>temp</strong> (float): The current temperature of the camera.</li>
+            
+                <li><strong>target_temp</strong> (float): The target temperature for temperature control.</li>
+            
+                <li><strong>device_name</strong> (string): The camera device name.</li>
+            
+                <li><strong>device_model_id</strong> (int): The model ID of the camera.</li>
+            
+                <li><strong>sensor_model_id</strong> (int): The model ID of the camera sensor.</li>
+            
+                <li><strong>device_sn</strong> (string): The camera serial number.</li>
+            
+                <li><strong>sensor_sn</strong> (string): The serial number of the camera sensor.</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "exposure": 1000.0,
+    "width": 10000,
+    "height": 10000,
+    "temp": 25.8,
+    "target_temp": 20.0,
+    "device_name": "Ximea Camera",
+    "device_model_id": 0,
+    "sensor_model_id": 0,
+    "device_sn": "alkdsjfalkj",
+    "sensor_sn": "aljewoia",
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/camera.html">Camera Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3>tile.jpeg</h3>
+        <p>This message contains the path to a downsampled and JPEG compressed tile primarily for UI use.</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>tile_id</strong> (string): The tile ID.</li>
+            
+                <li><strong>path</strong> (string): The path where the compressed tile is stored.</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "tile_id": "69005602-15b0-4407-bf5b-4bddd6629141",
+    "path": "/storage/jpeg/69005602-15b0-4407-bf5b-4bddd6629141.jpeg",
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/ui_server.html">UI Server</a></li>
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3>tile.minimap</h3>
+        <p>This message contains the path to low resolution map image of the full montage.</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>tile_id</strong> (string): The tile ID.</li>
+            
+                <li><strong>path</strong> (string): The path where the minimap is stored.</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "tile_id": "69005602-15b0-4407-bf5b-4bddd6629141",
+    "path": "/storage/minimap/69005602-15b0-4407-bf5b-4bddd6629141.jpeg",
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/ui_server.html">UI Server</a></li>
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3>tile.processed</h3>
+        <p>This message contains the path to a fully processed tile.</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>tile_id</strong> (string): The tile ID.</li>
+            
+                <li><strong>path</strong> (string): The path where the processed tile is stored.</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "tile_id": "69005602-15b0-4407-bf5b-4bddd6629141",
+    "path": "/storage/processed/69005602-15b0-4407-bf5b-4bddd6629141.tiff",
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/buffer.html">Upload Buffer</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3>tile.raw</h3>
+        <p>This message is sent whenever a new tile is ready.</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>tile_id</strong> (string): The tile ID.</li>
+            
+                <li><strong>montage_id</strong> (string): The montage ID. If `null`, the tile is for UI display purposes only.</li>
+            
+                <li><strong>path</strong> (string): The path where the raw tile is stored.</li>
+            
+                <li><strong>row</strong> (int): The row of the montage where the tile was imaged.</li>
+            
+                <li><strong>column</strong> (int): The column of the montage where the tile was imaged.</li>
+            
+                <li><strong>overlap</strong> (float): The percent overlap of the tiles expressed as a decimal number.</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "tile_id": "69005602-15b0-4407-bf5b-4bddd6629141",
+    "montage_id": "4330c7cf-e45b-4950-89cf-82dc0f815fe9",
+    "path": "/storage/raw/69005602-15b0-4407-bf5b-4bddd6629141.tiff",
+    "row": 5,
+    "column": 24,
+    "overlap": 0.1,
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3>tile.statistics.focus</h3>
+        <p>This message contains the focus score.</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>tile_id</strong> (string): The tile ID.</li>
+            
+                <li><strong>min</strong> (float): The focus score.</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "tile_id": "69005602-15b0-4407-bf5b-4bddd6629141",
+    "min": 2.67,
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3>tile.statistics.histogram</h3>
+        <p>This message contains a path to a histogram saved to disk.</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>tile_id</strong> (string): The tile ID.</li>
+            
+                <li><strong>path</strong> (string): The path where the histogram is stored.</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "tile_id": "69005602-15b0-4407-bf5b-4bddd6629141",
+    "path": "/storage/histogram/69005602-15b0-4407-bf5b-4bddd6629141.tiff",
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3>tile.statistics.min_max_mean</h3>
+        <p>This message contains simple statistics about a processed tile.</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>tile_id</strong> (string): The tile ID.</li>
+            
+                <li><strong>min</strong> (int): The minimum pixel value.</li>
+            
+                <li><strong>max</strong> (int): The maximum pixel value.</li>
+            
+                <li><strong>mean</strong> (int): The mean pixel value.</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "tile_id": "69005602-15b0-4407-bf5b-4bddd6629141",
+    "min": 5,
+    "max": 249,
+    "mean": 187,
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3>tile.transform</h3>
+        <p>This message contains a transform between the base coordinate system of the montage and the tile to move it into the correct location in the montage.</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>tile_id</strong> (string): The tile ID.</li>
+            
+                <li><strong>rotation</strong> (float): The rotation in radians of the tile for it to fit in the montage.</li>
+            
+                <li><strong>x</strong> (float): The X location of the tile for it to fit in the montage in units of pixels.</li>
+            
+                <li><strong>y</strong> (float): The Y location of the tile for it to fit in the montage in units of pixels.</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "tile_id": "69005602-15b0-4407-bf5b-4bddd6629141",
+    "rotation": 3.14,
+    "x": 1019172,
+    "y": 1918840,
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
 
     </div>
-  </div>
 </div>
         <footer class="mdl-mega-footer">
   <div class="mdl-mega-footer__middle-section">
