@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: topics
 title: Topics
 topics:
     tile.raw:
@@ -201,5 +201,3 @@ topics:
 ---
 
 The topics are listed below.
-
-{% include topics.md %}

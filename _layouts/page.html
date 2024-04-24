@@ -1,43 +1,35 @@
 ---
-layout: default
+layout: raw_page
 ---
-<div class="mdl-grid page-container">
-  <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
-    <div class="mdl-card__title">
-      <h2 class="mdl-card__title--text">
-        {{ page.title }}
-      </h2>
-    </div>
-    {% if page.github or page.sends or page.receives %}
-      <div class="mdl-card__supporting-text mdl-card--border">
-        {% if page.github %}
-          <p style="font-size: large;" class="mdl-card__subtitle-text">
-            <i style="color:black;" class="fab fa-github"></i>
-            <a href="https://github.com/{{ page.github }}">{{ page.github }}</a>
-          </p>
-        {% endif %}
-        {% if page.sends %}
-          <h3>Sends</h3>
-          <ul>
-            {% assign topics = page.sends | sort %}
-            {% for topic in topics %}
-              <li><a href="/topics.html#{{ topic | replace: '.', '' }}">{{ topic }}</a></li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-        {% if page.receives %}
-          <h3>Receives</h3>
-          <ul>
-            {% assign topics = page.receives | sort %}
-            {% for topic in topics %}
-              <li><a href="/topics.html#{{ topic | replace: '.', '' }}">{{ topic }}</a></li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
+
+{% if page.github or page.sends or page.receives %}
+  <div class="mdl-card__supporting-text mdl-card--border">
+    {% if page.github %}
+      <p style="font-size: large;" class="mdl-card__subtitle-text">
+        <i style="color:black;" class="fab fa-github"></i>
+        <a href="https://github.com/{{ page.github }}">{{ page.github }}</a>
+      </p>
     {% endif %}
-    <div class="mdl-card__supporting-text">
-      {{ content | toc }}
-    </div>
+    {% if page.sends %}
+      <h3>Sends</h3>
+      <ul>
+        {% assign topics = page.sends | sort %}
+        {% for topic in topics %}
+          <li><a href="/topics.html#{{ topic | replace: '.', '' }}">{{ topic }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if page.receives %}
+      <h3>Receives</h3>
+      <ul>
+        {% assign topics = page.receives | sort %}
+        {% for topic in topics %}
+          <li><a href="/topics.html#{{ topic | replace: '.', '' }}">{{ topic }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
   </div>
+{% endif %}
+<div class="mdl-card__supporting-text">
+  {{ content | toc }}
 </div>

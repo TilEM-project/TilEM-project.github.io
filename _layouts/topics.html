@@ -1,0 +1,58 @@
+---
+layout: raw_page
+---
+
+<div class="mdl-card__supporting-text mdl-card--border">
+    {{ content | toc }}
+</div>
+
+{% assign topics = page.topics | sort %}
+{% for topic in topics %}
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3>{{ topic[0] }}</h3>
+        <p>{{ topic[1].description }}</p>
+
+        <h4>Payload</h4>
+        <ul>
+            {% for element in topic[1].payload %}
+                <li><strong>{{ element[0] }}</strong> ({{ element[1].type }}): {{ element[1].description }}</li>
+            {% endfor %}
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    {%- for element in topic[1].payload %}
+        {%- if element[1].type == "string" %}
+    "{{ element[0] }}": "{{ element[1].example }}",
+        {%- else %}
+    "{{ element[0] }}": {{ element[1].example }},
+        {%- endif %}
+    {%- endfor %}
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            {% for page in site.pages %}
+                {% if page.sends contains topic[0] %}
+                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            {% for page in site.pages %}
+                {% if page.receives contains topic[0] %}
+                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endfor %}
