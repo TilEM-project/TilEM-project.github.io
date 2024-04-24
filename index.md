@@ -36,10 +36,8 @@ operator = Client("Microscope Operator", pin="true", pos="-1.25, 0.25", href="/u
 with Cluster("Docker Compose", graph_attr={"bgcolor": "#E0F2F1"}):
     event_bus = Activemq("ActiveMQ", pin="true", pos="-1, -0.25", href="/broker.html")
 
-    state_machine = Python(
-        "pyTEM", pin="true", pos="-0.75, 0.25"
-    )
-    microscope_service = Python("Microscope\nService", pin="true", pos="-0.5, 0.5")
+    state_machine = Python("pyTEM", pin="true", pos="-0.75, 0.25", href="/pytem.html")
+    microscope_service = Python("Microscope\nService", pin="true", pos="-0.5, 0.5", href="/scope.html")
     camera_service = Cpp("Camera\nService", pin="true", pos="-1, 0.5", href="/camera.html")
     stage_service = Python("Stage\nService", pin="true", pos="-0.75, 0.5", href="/stage.html")
     cpp_pipeline = Cpp("Image Processing\nPipeline", pin="true", pos="-0.75, 0", href="/pipeline.html")
@@ -72,4 +70,4 @@ s3 << aloha >> tem_db
 cpp_pipeline >> ui_server
 {% enddiagram %}
 
-Many of the nodes in this diagram are hyperlinks to further documentation on this system.
+Most of the nodes in this diagram are hyperlinks to further documentation on this system.

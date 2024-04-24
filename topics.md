@@ -307,6 +307,44 @@ topics:
                 type: int
                 description: The current data upload rate in bits-per-second.
                 example: 53687091200
+    scope.command:
+        description: This message contains commands to the microscope.
+        payload:
+            focus:
+                type: int or null
+                description: The desired focus value, or `null` to keep current focus.
+                example: 19385
+            aperture:
+                type: int or null
+                description: The desired aperture, or `null` to keep current aperture.
+                example: 3
+            mag:
+                type: int or null
+                description: The desired magnification level, or `null` to keep current magnification.
+                example: 3000
+    scope.status:
+        description: This message contains status information about the microscope.
+        payload:
+            focus:
+                type: int
+                description: The current focus value.
+                example: 17493
+            aperture:
+                type: int
+                description: The current aperture.
+                example: 2
+            mag:
+                type: int
+                description: The current magnification level.
+                example: 5000
+            vacuum:
+                type: float
+                description: The current vacuum level in Torr.
+                example: 1.27e-6
+            tank_voltage:
+                type: int
+                description: The current HV tank voltage in kilovolts.
+                example: 120
 ---
 
 The topics are listed below.

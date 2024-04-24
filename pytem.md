@@ -8,10 +8,12 @@ sends:
     - stage.aperture.command
     - stage.rotation.command
     - stage.motion.command
+    - scope.command
 receives:
     - camera.image
     - camera.status
     - stage.aperture.status
     - stage.rotation.status
     - stage.motion.status
+    - scope.status
 ---
