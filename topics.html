@@ -65,13 +65,15 @@
 
 
     <div class="mdl-card__supporting-text mdl-card--border">
-        <h3>camera.command</h3>
-        <p>This message signals that an image should be acquired by the camera.</p>
+        <h3 id="camera-command">camera.command</h3>
+        <p><p>This message signals that an image should be acquired by the camera.</p>
+</p>
 
         <h4>Payload</h4>
         <ul>
             
-                <li><strong>tile_id</strong> (string): The tile ID.</li>
+                <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
+</li>
             
         </ul>
 
@@ -120,6 +122,8 @@
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -155,19 +159,24 @@
             
                 
             
+                
+            
         </ul>
     </div>
 
     <div class="mdl-card__supporting-text mdl-card--border">
-        <h3>camera.image</h3>
-        <p>This message contains a path to the most recently acquired image.</p>
+        <h3 id="camera-image">camera.image</h3>
+        <p><p>This message contains a path to the most recently acquired image.</p>
+</p>
 
         <h4>Payload</h4>
         <ul>
             
-                <li><strong>tile_id</strong> (string): The tile ID.</li>
+                <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
+</li>
             
-                <li><strong>path</strong> (string): The path to the image on disk.</li>
+                <li><strong>path</strong> (string): <p>The path to the image on disk.</p>
+</li>
             
         </ul>
 
@@ -217,6 +226,8 @@
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -252,21 +263,27 @@
             
                 
             
+                
+            
         </ul>
     </div>
 
     <div class="mdl-card__supporting-text mdl-card--border">
-        <h3>camera.settings</h3>
-        <p>This message is used to modify camera settings.</p>
+        <h3 id="camera-settings">camera.settings</h3>
+        <p><p>This message is used to modify camera settings.</p>
+</p>
 
         <h4>Payload</h4>
         <ul>
             
-                <li><strong>exposure</strong> (float or null): The camera exposure in microseconds, or `null` if the value should remain unchanged.</li>
+                <li><strong>exposure</strong> (float or null): <p>The camera exposure in microseconds, or <code class="language-plaintext highlighter-rouge">null</code> if the value should remain unchanged.</p>
+</li>
             
-                <li><strong>width</strong> (int or null): The image width, or `null` if the value should remain unchanged.</li>
+                <li><strong>width</strong> (int or null): <p>The image width, or <code class="language-plaintext highlighter-rouge">null</code> if the value should remain unchanged.</p>
+</li>
             
-                <li><strong>height</strong> (int or null): The current image height, or `null` if the value should remain unchanged.</li>
+                <li><strong>height</strong> (int or null): <p>The current image height, or <code class="language-plaintext highlighter-rouge">null</code> if the value should remain unchanged.</p>
+</li>
             
         </ul>
 
@@ -317,6 +334,8 @@
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -352,35 +371,48 @@
             
                 
             
+                
+            
         </ul>
     </div>
 
     <div class="mdl-card__supporting-text mdl-card--border">
-        <h3>camera.status</h3>
-        <p>This message is regularly published and includes various status information about the camera.</p>
+        <h3 id="camera-status">camera.status</h3>
+        <p><p>This message is regularly published and includes various status information about the camera.</p>
+</p>
 
         <h4>Payload</h4>
         <ul>
             
-                <li><strong>exposure</strong> (float): The current exposure time in microseconds.</li>
+                <li><strong>exposure</strong> (float): <p>The current exposure time in microseconds.</p>
+</li>
             
-                <li><strong>width</strong> (int): The current image width.</li>
+                <li><strong>width</strong> (int): <p>The current image width.</p>
+</li>
             
-                <li><strong>height</strong> (int): The current image height.</li>
+                <li><strong>height</strong> (int): <p>The current image height.</p>
+</li>
             
-                <li><strong>temp</strong> (float): The current temperature of the camera.</li>
+                <li><strong>temp</strong> (float): <p>The current temperature of the camera.</p>
+</li>
             
-                <li><strong>target_temp</strong> (float): The target temperature for temperature control.</li>
+                <li><strong>target_temp</strong> (float): <p>The target temperature for temperature control.</p>
+</li>
             
-                <li><strong>device_name</strong> (string): The camera device name.</li>
+                <li><strong>device_name</strong> (string): <p>The camera device name.</p>
+</li>
             
-                <li><strong>device_model_id</strong> (int): The model ID of the camera.</li>
+                <li><strong>device_model_id</strong> (int): <p>The model ID of the camera.</p>
+</li>
             
-                <li><strong>sensor_model_id</strong> (int): The model ID of the camera sensor.</li>
+                <li><strong>sensor_model_id</strong> (int): <p>The model ID of the camera sensor.</p>
+</li>
             
-                <li><strong>device_sn</strong> (string): The camera serial number.</li>
+                <li><strong>device_sn</strong> (string): <p>The camera serial number.</p>
+</li>
             
-                <li><strong>sensor_sn</strong> (string): The serial number of the camera sensor.</li>
+                <li><strong>sensor_sn</strong> (string): <p>The serial number of the camera sensor.</p>
+</li>
             
         </ul>
 
@@ -438,6 +470,8 @@
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -473,19 +507,668 @@
             
                 
             
+                
+            
         </ul>
     </div>
 
     <div class="mdl-card__supporting-text mdl-card--border">
-        <h3>tile.jpeg</h3>
-        <p>This message contains the path to a downsampled and JPEG compressed tile primarily for UI use.</p>
+        <h3 id="stage-aperature-command">stage.aperature.command</h3>
+        <p><p>This message is used to instruct the hardware to move to a specific aperature.</p>
+</p>
 
         <h4>Payload</h4>
         <ul>
             
-                <li><strong>tile_id</strong> (string): The tile ID.</li>
+                <li><strong>aperature_id</strong> (int or null): <p>The desired aperature ID, or <code class="language-plaintext highlighter-rouge">null</code> to remain unchanged.</p>
+</li>
             
-                <li><strong>path</strong> (string): The path where the compressed tile is stored.</li>
+                <li><strong>calibrate</strong> (bool): <p>A flag to denote that the hardware should be calibrated.</p>
+</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "aperature_id": 000008,
+    "calibrate": false,
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3 id="stage-aperature-status">stage.aperature.status</h3>
+        <p><p>This message contains status information about the aperature changing hardware.</p>
+</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>current_aperature</strong> (int): <p>The ID of the current aperature.</p>
+</li>
+            
+                <li><strong>callibrated</strong> (bool): <p>A flag to denote if the hardware is calibrated.</p>
+</li>
+            
+                <li><strong>error</strong> (string): <p>The current error message from the device, or an empty string if no error.</p>
+</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "current_aperature": 7,
+    "callibrated": true,
+    "error": "",
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3 id="stage-motion-command">stage.motion.command</h3>
+        <p><p>This message is used to instruct the stages to move to a the sample to a given location.</p>
+</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>x</strong> (int or null): <p>The desired X stage location in nanometers, or <code class="language-plaintext highlighter-rouge">null</code> for the location to remain unchanged.</p>
+</li>
+            
+                <li><strong>y</strong> (int or null): <p>The desired Y stage location in nanometers, or <code class="language-plaintext highlighter-rouge">null</code> for the location to remain unchanged.</p>
+</li>
+            
+                <li><strong>calibrate</strong> (bool): <p>A flag to denote that the hardware should be calibrated.</p>
+</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "x": 750176,
+    "y": 531087,
+    "calibrate": false,
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/stage.html">Stage Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3 id="stage-motion-status">stage.motion.status</h3>
+        <p><p>This message contains status information about the aperature changing hardware.</p>
+</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>x</strong> (int): <p>The current X stage location in nanometers.</p>
+</li>
+            
+                <li><strong>y</strong> (int): <p>The current Y stage location in nanometers.</p>
+</li>
+            
+                <li><strong>in_motion</strong> (bool): <p>A flag which is true when at least one actuator is in motion.</p>
+</li>
+            
+                <li><strong>error</strong> (string): <p>The current error message from the device, or an empty string if no error.</p>
+</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "x": 750254,
+    "y": 531054,
+    "in_motion": true,
+    "error": "",
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/stage.html">Stage Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3 id="stage-rotation-command">stage.rotation.command</h3>
+        <p><p>This message is used to instruct the hardware to rotate to a given tilt angle.</p>
+</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>angle_x</strong> (float or null): <p>The desired tilt angle about the X axis in radians, or <code class="language-plaintext highlighter-rouge">null</code> for the angle to remain unchanged.</p>
+</li>
+            
+                <li><strong>angle_y</strong> (float or null): <p>The desired tilt angle about the Y axis in radians, or <code class="language-plaintext highlighter-rouge">null</code> for the angle to remain unchanged.</p>
+</li>
+            
+                <li><strong>calibrate</strong> (bool): <p>A flag to denote that the hardware should be calibrated.</p>
+</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "angle_x": 0.524,
+    "angle_y": 0.0,
+    "calibrate": false,
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3 id="stage-rotation-status">stage.rotation.status</h3>
+        <p><p>This message contains status information about the tilt imaging hardware.</p>
+</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>angle_x</strong> (float): <p>The current tilt angle about the X axis in radians.</p>
+</li>
+            
+                <li><strong>angle_y</strong> (float): <p>The current tilt angle about the Y axis in radians.</p>
+</li>
+            
+                <li><strong>in_motion</strong> (bool): <p>A flag which is true when at least one actuator is in motion.</p>
+</li>
+            
+                <li><strong>error</strong> (string): <p>The current error message from the device, or an empty string if no error.</p>
+</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "angle_x": 0.523,
+    "angle_y": -0.001,
+    "in_motion": true,
+    "error": "",
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <h3 id="tile-jpeg">tile.jpeg</h3>
+        <p><p>This message contains the path to a downsampled and JPEG compressed tile primarily for UI use.</p>
+</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
+</li>
+            
+                <li><strong>path</strong> (string): <p>The path where the compressed tile is stored.</p>
+</li>
             
         </ul>
 
@@ -535,10 +1218,14 @@
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
         <ul>
+            
+                
             
                 
             
@@ -574,15 +1261,18 @@
     </div>
 
     <div class="mdl-card__supporting-text mdl-card--border">
-        <h3>tile.minimap</h3>
-        <p>This message contains the path to low resolution map image of the full montage.</p>
+        <h3 id="tile-minimap">tile.minimap</h3>
+        <p><p>This message contains the path to low resolution map image of the full montage.</p>
+</p>
 
         <h4>Payload</h4>
         <ul>
             
-                <li><strong>tile_id</strong> (string): The tile ID.</li>
+                <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
+</li>
             
-                <li><strong>path</strong> (string): The path where the minimap is stored.</li>
+                <li><strong>path</strong> (string): <p>The path where the minimap is stored.</p>
+</li>
             
         </ul>
 
@@ -632,10 +1322,14 @@
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
         <ul>
+            
+                
             
                 
             
@@ -671,15 +1365,18 @@
     </div>
 
     <div class="mdl-card__supporting-text mdl-card--border">
-        <h3>tile.processed</h3>
-        <p>This message contains the path to a fully processed tile.</p>
+        <h3 id="tile-processed">tile.processed</h3>
+        <p><p>This message contains the path to a fully processed tile.</p>
+</p>
 
         <h4>Payload</h4>
         <ul>
             
-                <li><strong>tile_id</strong> (string): The tile ID.</li>
+                <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
+</li>
             
-                <li><strong>path</strong> (string): The path where the processed tile is stored.</li>
+                <li><strong>path</strong> (string): <p>The path where the processed tile is stored.</p>
+</li>
             
         </ul>
 
@@ -729,6 +1426,8 @@
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -764,27 +1463,36 @@
             
                 
             
+                
+            
         </ul>
     </div>
 
     <div class="mdl-card__supporting-text mdl-card--border">
-        <h3>tile.raw</h3>
-        <p>This message is sent whenever a new tile is ready.</p>
+        <h3 id="tile-raw">tile.raw</h3>
+        <p><p>This message is sent whenever a new tile is ready.</p>
+</p>
 
         <h4>Payload</h4>
         <ul>
             
-                <li><strong>tile_id</strong> (string): The tile ID.</li>
+                <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
+</li>
             
-                <li><strong>montage_id</strong> (string): The montage ID. If `null`, the tile is for UI display purposes only.</li>
+                <li><strong>montage_id</strong> (string): <p>The montage ID. If <code class="language-plaintext highlighter-rouge">null</code>, the tile is for UI display purposes only.</p>
+</li>
             
-                <li><strong>path</strong> (string): The path where the raw tile is stored.</li>
+                <li><strong>path</strong> (string): <p>The path where the raw tile is stored.</p>
+</li>
             
-                <li><strong>row</strong> (int): The row of the montage where the tile was imaged.</li>
+                <li><strong>row</strong> (int): <p>The row of the montage where the tile was imaged.</p>
+</li>
             
-                <li><strong>column</strong> (int): The column of the montage where the tile was imaged.</li>
+                <li><strong>column</strong> (int): <p>The column of the montage where the tile was imaged.</p>
+</li>
             
-                <li><strong>overlap</strong> (float): The percent overlap of the tiles expressed as a decimal number.</li>
+                <li><strong>overlap</strong> (float): <p>The percent overlap of the tiles expressed as a decimal number.</p>
+</li>
             
         </ul>
 
@@ -838,6 +1546,8 @@
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -873,19 +1583,24 @@
             
                 
             
+                
+            
         </ul>
     </div>
 
     <div class="mdl-card__supporting-text mdl-card--border">
-        <h3>tile.statistics.focus</h3>
-        <p>This message contains the focus score.</p>
+        <h3 id="tile-statistics-focus">tile.statistics.focus</h3>
+        <p><p>This message contains the focus score.</p>
+</p>
 
         <h4>Payload</h4>
         <ul>
             
-                <li><strong>tile_id</strong> (string): The tile ID.</li>
+                <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
+</li>
             
-                <li><strong>min</strong> (float): The focus score.</li>
+                <li><strong>min</strong> (float): <p>The focus score.</p>
+</li>
             
         </ul>
 
@@ -935,6 +1650,8 @@
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -968,19 +1685,24 @@
             
                 
             
+                
+            
         </ul>
     </div>
 
     <div class="mdl-card__supporting-text mdl-card--border">
-        <h3>tile.statistics.histogram</h3>
-        <p>This message contains a path to a histogram saved to disk.</p>
+        <h3 id="tile-statistics-histogram">tile.statistics.histogram</h3>
+        <p><p>This message contains a path to a histogram saved to disk.</p>
+</p>
 
         <h4>Payload</h4>
         <ul>
             
-                <li><strong>tile_id</strong> (string): The tile ID.</li>
+                <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
+</li>
             
-                <li><strong>path</strong> (string): The path where the histogram is stored.</li>
+                <li><strong>path</strong> (string): <p>The path where the histogram is stored.</p>
+</li>
             
         </ul>
 
@@ -1030,6 +1752,8 @@
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -1063,23 +1787,30 @@
             
                 
             
+                
+            
         </ul>
     </div>
 
     <div class="mdl-card__supporting-text mdl-card--border">
-        <h3>tile.statistics.min_max_mean</h3>
-        <p>This message contains simple statistics about a processed tile.</p>
+        <h3 id="tile-statistics-min_max_mean">tile.statistics.min_max_mean</h3>
+        <p><p>This message contains simple statistics about a processed tile.</p>
+</p>
 
         <h4>Payload</h4>
         <ul>
             
-                <li><strong>tile_id</strong> (string): The tile ID.</li>
+                <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
+</li>
             
-                <li><strong>min</strong> (int): The minimum pixel value.</li>
+                <li><strong>min</strong> (int): <p>The minimum pixel value.</p>
+</li>
             
-                <li><strong>max</strong> (int): The maximum pixel value.</li>
+                <li><strong>max</strong> (int): <p>The maximum pixel value.</p>
+</li>
             
-                <li><strong>mean</strong> (int): The mean pixel value.</li>
+                <li><strong>mean</strong> (int): <p>The mean pixel value.</p>
+</li>
             
         </ul>
 
@@ -1131,6 +1862,8 @@
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -1164,23 +1897,30 @@
             
                 
             
+                
+            
         </ul>
     </div>
 
     <div class="mdl-card__supporting-text mdl-card--border">
-        <h3>tile.transform</h3>
-        <p>This message contains a transform between the base coordinate system of the montage and the tile to move it into the correct location in the montage.</p>
+        <h3 id="tile-transform">tile.transform</h3>
+        <p><p>This message contains a transform between the base coordinate system of the montage and the tile to move it into the correct location in the montage.</p>
+</p>
 
         <h4>Payload</h4>
         <ul>
             
-                <li><strong>tile_id</strong> (string): The tile ID.</li>
+                <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
+</li>
             
-                <li><strong>rotation</strong> (float): The rotation in radians of the tile for it to fit in the montage.</li>
+                <li><strong>rotation</strong> (float): <p>The rotation in radians of the tile for it to fit in the montage.</p>
+</li>
             
-                <li><strong>x</strong> (float): The X location of the tile for it to fit in the montage in units of pixels.</li>
+                <li><strong>x</strong> (float): <p>The X location of the tile for it to fit in the montage in units of pixels.</p>
+</li>
             
-                <li><strong>y</strong> (float): The Y location of the tile for it to fit in the montage in units of pixels.</li>
+                <li><strong>y</strong> (float): <p>The Y location of the tile for it to fit in the montage in units of pixels.</p>
+</li>
             
         </ul>
 
@@ -1232,10 +1972,14 @@
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
         <ul>
+            
+                
             
                 
             

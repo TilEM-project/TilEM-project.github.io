@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <title>Camera Service - TEM Architecture</title>
+    <title>Stage Service - TEM Architecture</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.-.min.css"/> -->
@@ -54,7 +54,7 @@
     <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
         <div class="mdl-card__title">
             <h2 class="mdl-card__title--text">
-                Camera Service
+                Stage Service
             </h2>
         </div>
         
@@ -65,9 +65,9 @@
       <ul>
         
         
-          <li><a href="/topics.html#camera-image">camera.image</a></li>
+          <li><a href="/topics.html#stage-aperture-status">stage.aperture.status</a></li>
         
-          <li><a href="/topics.html#camera-status">camera.status</a></li>
+          <li><a href="/topics.html#stage-motion-status">stage.motion.status</a></li>
         
       </ul>
     
@@ -76,20 +76,27 @@
       <ul>
         
         
-          <li><a href="/topics.html#camera-command">camera.command</a></li>
+          <li><a href="/topics.html#stage-aperture-command">stage.aperture.command</a></li>
         
-          <li><a href="/topics.html#camera-settings">camera.settings</a></li>
+          <li><a href="/topics.html#stage-motion-command">stage.motion.command</a></li>
         
       </ul>
     
   </div>
 
 <div class="mdl-card__supporting-text">
-  <p>The camera service takes care of interacting with the camera using the <a href="https://www.ximea.com/">Ximea</a> <a href="https://www.ximea.com/support/wiki/apis/XiAPI">xiAPI</a>.
-This service accepts messages from two topics, <a href="/topics.html#camera-settings"><code class="language-plaintext highlighter-rouge">camera.settings</code></a> and <a href="/topics.html#camera-command"><code class="language-plaintext highlighter-rouge">camera.command</code></a>.
-The <code class="language-plaintext highlighter-rouge">camera.settings</code> topic is used for changing settings on the camera such as exposure or resolution, while the <code class="language-plaintext highlighter-rouge">camera.command</code> topic is used to signal the camera to get an image which is then saved to disk and the path sent on the <a href="/topics.html#camera-image"><code class="language-plaintext highlighter-rouge">camera.image</code></a> topic.
-The <code class="language-plaintext highlighter-rouge">camera.command</code> message includes the tile ID, and the image should be saved to disk, using this ID is the filename.
-A message should be sent on the <a href="/topics.html#camera-status"><code class="language-plaintext highlighter-rouge">camera.status</code></a> topic at a rate of no less than 1 Hz.</p>
+  <p>The stage service abstracts the interfaces of the various hardware components related to positioning and transitioning between aperatures.
+This service can be split into three components, moving between aperatures, rotating samples, and positioning samples.</p>
+
+<p>For changing between aperatures, two topics are used, <a href="/topics.html#stage-aperature-command"><code class="language-plaintext highlighter-rouge">stage.aperature.command</code></a> and <a href="/topics.html#stage-aperature-status"><code class="language-plaintext highlighter-rouge">stage.aperature.status</code></a>.
+The <code class="language-plaintext highlighter-rouge">stage.aperature.command</code> topic is used to send commands to the hardware to change the aperature, and/or optionally calibrate the hardware.
+The <code class="language-plaintext highlighter-rouge">stage.aperature.status</code> topic normally has a message published at a frequency of no less than 1 Hz, at a frequency of no less than 20 Hz when in motion, and immediately once any motion is complete.
+This message contains the status of the hardware including the ID of the current aperature, if the hardware is calibrated, along with any errors.</p>
+
+<p>For moving the stages, two topics are used, <a href="/topics.html#stage-motion-command"><code class="language-plaintext highlighter-rouge">stage.motion.command</code></a> and <a href="/topics.html#stage-motion-status"><code class="language-plaintext highlighter-rouge">stage.motion.status</code></a>.
+The <code class="language-plaintext highlighter-rouge">stage.motion.command</code> topic is used to send commands to the stages.
+The <code class="language-plaintext highlighter-rouge">stage.motion.status</code> topic normally has a message published at a frequency of no less than 1 Hz, at a frequency of no less the 50 Hz when in motion, and immediately once motion is complete.
+This message contains the status of the hardware including the current locations of the stages, along with other information.</p>
 
 </div>
     </div>
