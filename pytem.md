@@ -17,6 +17,8 @@ receives:
     - stage.motion.status
     - scope.status
 ---
+### Current System
+
 {% diagram %}
 from diagrams import Diagram, Cluster, Node, Edge
 
