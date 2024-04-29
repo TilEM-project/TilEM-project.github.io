@@ -11,7 +11,7 @@ This is an event driven system with various components running in docker contain
 Below, is a diagram showing a general overview of this system.
 
 {% diagram %}
-from diagrams.aws.database import RDSPostgresqlInstance
+from diagrams.aws.database import Database
 from diagrams.aws.storage import S3
 from diagrams.aws.compute import LambdaFunction
 from diagrams.onprem.queue import Activemq
@@ -23,7 +23,7 @@ from diagrams.onprem.vcs import Github
 from diagrams.onprem.container import Docker
 
 with Cluster("AWS", graph_attr={"bgcolor": "#FFE0B2"}):
-    db = RDSPostgresqlInstance("Postgres", pin="true", pos="0, 0.25")
+    db = Database("Database", pin="true", pos="0, 0.25")
     s3 = S3("S3 Bucket", pin="true", pos="-0.25, -0.25")
 
     tem_db = Python("TEM DB", pin="true", pos="-0.25, 0.25", href="/tem_db.html")
