@@ -66,7 +66,7 @@ topics:
                 type: string
                 description: The tile ID.
                 example: 69005602-15b0-4407-bf5b-4bddd6629141
-            min:
+            focus:
                 type: float
                 description: The focus score.
                 example: 2.67
