@@ -186,18 +186,10 @@ topics:
                 type: int
                 description: The model ID of the camera.
                 example: 0
-            sensor_model_id:
-                type: int
-                description: The model ID of the camera sensor.
-                example: 0
             device_sn:
                 type: string
                 description: The camera serial number.
                 example: alkdsjfalkj
-            sensor_sn:
-                type: string
-                description: The serial number of the camera sensor.
-                example: aljewoia
     stage.aperture.command:
         description: This message is used to instruct the hardware to move to a specific aperture.
         payload:
