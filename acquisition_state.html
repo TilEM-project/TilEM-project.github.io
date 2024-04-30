@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Acquisition State - TEM Architecture</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+<!-- <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.-.min.css"/> -->
+<link rel="stylesheet" href="/assets/css/style.css"/>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/font-awesome.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+  window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <!-- <div class="mdl-layout--fixed-header mdl-layout__header--scroll"> -->
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">
+        <a href="/">TEM Architecture</a>
+      </span>
+      <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+        
+          <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">TEM Architecture</span>
+    <nav class="mdl-navigation">
+      
+        <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        
+      
+    </nav>
+  </div>
+<!-- </div> -->
+
+      <main class="mdl-layout__content">
+        <div class="mdl-grid page-container">
+    <div class="mdl-card mdl-cell--12-col mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title--text">
+                Acquisition State
+            </h2>
+        </div>
+        
+<div class="mdl-card__supporting-text">
+  <h2 id="current-functionality">Current Functionality</h2>
+
+<p>Return to pyTEM <a href="/pytem.html">here</a>.</p>
+
+<p>The Acquisition State represents the overall state of the acquisition loop in the system for imaging and processing data. It manages tasks related to moving the stage, capturing images, processing metadata, and handling various states during the acquisition process.</p>
+
+<h3 id="acquisition-state-logic">Acquisition State Logic</h3>
+
+<h4 id="main-acquisition-loop-activation">Main Acquisition Loop Activation</h4>
+
+<p>The acquisition starts if both the main_acquisition_loop_active_event is set and _start_new_aperture() returns True.
+Initialize variables and prepare for the acquisition sequence within a specific aperture.</p>
+
+<h4 id="roi-acquisition-process">ROI Acquisition Process</h4>
+
+<p>Iterate over each ROI in roi_list.</p>
+
+<p>For each ROI:</p>
+
+<ul>
+  <li>Initialize the ROI and calculate the starting position.</li>
+  <li>Move the stage to the initial position and wait for it to stabilize.</li>
+  <li>Enter a nested loop to handle image capture for each tile in the ROI until there are no more positions to move to.
+    <ul>
+      <li>Set metadata for the image.</li>
+      <li>Start camera exposure.</li>
+      <li>If there was a previous image, wait for asynchronous processes to complete and possibly write metadata.</li>
+      <li>Wait for the current exposure to complete.</li>
+      <li>Get the next position and move the stage.</li>
+      <li>Handle synchronization and stabilization of the stage.</li>
+    </ul>
+  </li>
+  <li>After completing all tiles in the ROI, perform final processing such as writing metadata and resetting the stage to the starting position.</li>
+</ul>
+
+<h4 id="lens-correction-process">Lens Correction Process</h4>
+
+<p>If lens correction is part of the current montage, attempt to correct lens distortions using template matching and solving algorithms. Multiple attempts are made, and if unsuccessful, a critical error event is logged.</p>
+
+<h4 id="completion-and-metadata-handling">Completion and Metadata Handling</h4>
+
+<p>Finalize the metadata file and write results to a database.
+Create a robocopy file if not aborting.</p>
+
+<h4 id="abort-or-switch-event">Abort or Switch Event</h4>
+
+<p>If an abort signal is received or it’s time to switch to another aperture, the loop is terminated or adjusted accordingly.</p>
+
+<h4 id="event-scheduling">Event Scheduling</h4>
+
+<p>Schedule callbacks for events like “BACK_TO_SETUP” or “NEXT_APERTURE” based on the conditions met during the loop.</p>
+
+<div class="diagram"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0.00 0.00 1607.97 1324.19">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(144 1180.19)">
+<title>%3</title>
+<g id="clust1" class="cluster">
+<title>cluster_Outer Infinite Loop</title>
+<path fill="#e5f5fd" stroke="#aeb6be" d="M12,-427.02C12,-427.02 89.56,-427.02 89.56,-427.02 95.56,-427.02 101.56,-433.02 101.56,-439.02 101.56,-439.02 101.56,-722.33 101.56,-722.33 101.56,-728.33 95.56,-734.33 89.56,-734.33 89.56,-734.33 12,-734.33 12,-734.33 6,-734.33 0,-728.33 0,-722.33 0,-722.33 0,-439.02 0,-439.02 0,-433.02 6,-427.02 12,-427.02" />
+<text text-anchor="middle" x="64.5" y="-720.73" font-family="Sans-Serif" font-size="12.00" fill="#2d3436">Outer Infinite Loop</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_Main Acquisition</title>
+<path fill="#e5f5fd" stroke="#aeb6be" d="M77.03,-148.41C77.03,-148.41 272.04,-148.41 272.04,-148.41 278.04,-148.41 284.04,-154.41 284.04,-160.41 284.04,-160.41 284.04,-394.88 284.04,-394.88 284.04,-400.88 278.04,-406.88 272.04,-406.88 272.04,-406.88 77.03,-406.88 77.03,-406.88 71.03,-406.88 65.03,-400.88 65.03,-394.88 65.03,-394.88 65.03,-160.41 65.03,-160.41 65.03,-154.41 71.03,-148.41 77.03,-148.41" />
+<text text-anchor="middle" x="121.53" y="-393.28" font-family="Sans-Serif" font-size="12.00" fill="#2d3436">Main Acquisition</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_ROI Acquisition Process</title>
+<path fill="#e5f5fd" stroke="#aeb6be" d="M347.11,-61.53C347.11,-61.53 952.74,-61.53 952.74,-61.53 958.74,-61.53 964.74,-67.53 964.74,-73.53 964.74,-73.53 964.74,-650.65 964.74,-650.65 964.74,-656.65 958.74,-662.65 952.74,-662.65 952.74,-662.65 347.11,-662.65 347.11,-662.65 341.11,-662.65 335.11,-656.65 335.11,-650.65 335.11,-650.65 335.11,-73.53 335.11,-73.53 335.11,-67.53 341.11,-61.53 347.11,-61.53" />
+<text text-anchor="middle" x="412.61" y="-649.05" font-family="Sans-Serif" font-size="12.00" fill="#2d3436">ROI Acquisition Process</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_Per-Tile</title>
+<path fill="#e5f5fd" stroke="#aeb6be" d="M827.77,0C827.77,0 1307.97,0 1307.97,0 1313.97,0 1319.97,-6 1319.97,-12 1319.97,-12 1319.97,-480.04 1319.97,-480.04 1319.97,-486.04 1313.97,-492.04 1307.97,-492.04 1307.97,-492.04 827.77,-492.04 827.77,-492.04 821.77,-492.04 815.77,-486.04 815.77,-480.04 815.77,-480.04 815.77,-12 815.77,-12 815.77,-6 821.77,0 827.77,0" />
+<text text-anchor="middle" x="845.27" y="-478.44" font-family="Sans-Serif" font-size="12.00" fill="#2d3436">Per-Tile</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_Lens Correction Process</title>
+<path fill="#e5f5fd" stroke="#aeb6be" d="M817.68,-682.46C817.68,-682.46 894.68,-682.46 894.68,-682.46 900.68,-682.46 906.68,-688.46 906.68,-694.46 906.68,-694.46 906.68,-807.46 906.68,-807.46 906.68,-813.46 900.68,-819.46 894.68,-819.46 894.68,-819.46 817.68,-819.46 817.68,-819.46 811.68,-819.46 805.68,-813.46 805.68,-807.46 805.68,-807.46 805.68,-694.46 805.68,-694.46 805.68,-688.46 811.68,-682.46 817.68,-682.46" />
+<text text-anchor="middle" x="884.68" y="-805.86" font-family="Sans-Serif" font-size="12.00" fill="#2d3436">Lens Correction Process</text>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_Completion &amp; Metadata Handling</title>
+<path fill="#e5f5fd" stroke="#aeb6be" d="M554.53,-805.82C554.53,-805.82 781.97,-805.82 781.97,-805.82 787.97,-805.82 793.97,-811.82 793.97,-817.82 793.97,-817.82 793.97,-1006.41 793.97,-1006.41 793.97,-1012.41 787.97,-1018.41 781.97,-1018.41 781.97,-1018.41 554.53,-1018.41 554.53,-1018.41 548.53,-1018.41 542.53,-1012.41 542.53,-1006.41 542.53,-1006.41 542.53,-817.82 542.53,-817.82 542.53,-811.82 548.53,-805.82 554.53,-805.82" />
+<text text-anchor="middle" x="650.03" y="-1004.81" font-family="Sans-Serif" font-size="12.00" fill="#2d3436">Completion &amp; Metadata Handling</text>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster_Abort or Switch Event</title>
+<path fill="#e5f5fd" stroke="#aeb6be" d="M222.07,-854.7C222.07,-854.7 463.09,-854.7 463.09,-854.7 469.09,-854.7 475.09,-860.7 475.09,-866.7 475.09,-866.7 475.09,-1024.19 475.09,-1024.19 475.09,-1030.19 469.09,-1036.19 463.09,-1036.19 463.09,-1036.19 222.07,-1036.19 222.07,-1036.19 216.07,-1036.19 210.07,-1030.19 210.07,-1024.19 210.07,-1024.19 210.07,-866.7 210.07,-866.7 210.07,-860.7 216.07,-854.7 222.07,-854.7" />
+<text text-anchor="middle" x="283.07" y="-1022.59" font-family="Sans-Serif" font-size="12.00" fill="#2d3436">Abort or Switch Event</text>
+</g>
+<g id="clust8" class="cluster">
+<title>cluster_Event Scheduling</title>
+<path fill="#e5f5fd" stroke="#aeb6be" d="M87.5,-750.34C87.5,-750.34 164.5,-750.34 164.5,-750.34 170.5,-750.34 176.5,-756.34 176.5,-762.34 176.5,-762.34 176.5,-875.34 176.5,-875.34 176.5,-881.34 170.5,-887.34 164.5,-887.34 164.5,-887.34 87.5,-887.34 87.5,-887.34 81.5,-887.34 75.5,-881.34 75.5,-875.34 75.5,-875.34 75.5,-762.34 75.5,-762.34 75.5,-756.34 81.5,-750.34 87.5,-750.34" />
+<text text-anchor="middle" x="135" y="-873.74" font-family="Sans-Serif" font-size="12.00" fill="#2d3436">Event Scheduling</text>
+</g>
+<!-- cd1e03785dda4cdb8de77ea3ef6b4555 -->
+<g id="node1" class="node">
+<title>cd1e03785dda4cdb8de77ea3ef6b4555</title>
+<image xlink:href="/icons/start-end.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="0" y="-546.019" />
+<text text-anchor="middle" x="50.5" y="-430.62" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Start Outer Loop</text>
+</g>
+<!-- d92ef624bcea4fb488462e1b3abce621 -->
+<g id="node3" class="node">
+<title>d92ef624bcea4fb488462e1b3abce621</title>
+<image xlink:href="/icons/decision.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="65.0272" y="-388.885" />
+<text text-anchor="middle" x="115.53" y="-273.48" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Check Activation &amp; Start</text>
+</g>
+<!-- cd1e03785dda4cdb8de77ea3ef6b4555&#45;&gt;d92ef624bcea4fb488462e1b3abce621 -->
+<g id="edge1" class="edge">
+<title>cd1e03785dda4cdb8de77ea3ef6b4555-&gt;d92ef624bcea4fb488462e1b3abce621</title>
+<path fill="none" stroke="#7b8894" d="M79.02,-426.6C80.39,-423.28 81.78,-419.94 83.16,-416.6" />
+<polygon fill="#7b8894" stroke="#7b8894" points="86.45,-417.79 87.04,-407.22 79.99,-415.12 86.45,-417.79" />
+</g>
+<!-- 3484c1d379694015b5aa378e73ad5c4d -->
+<g id="node2" class="node">
+<title>3484c1d379694015b5aa378e73ad5c4d</title>
+<image xlink:href="/icons/start-end.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="0.563752" y="-716.331" />
+<text text-anchor="middle" x="51.06" y="-600.93" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">End Outer Loop</text>
+</g>
+<!-- 3484c1d379694015b5aa378e73ad5c4d&#45;&gt;cd1e03785dda4cdb8de77ea3ef6b4555 -->
+<g id="edge22" class="edge">
+<title>3484c1d379694015b5aa378e73ad5c4d-&gt;cd1e03785dda4cdb8de77ea3ef6b4555</title>
+<path fill="none" stroke="#7b8894" d="M50.84,-597.05C50.81,-589.62 50.79,-582.02 50.76,-574.49" />
+<polygon fill="#7b8894" stroke="#7b8894" points="54.26,-574.27 50.73,-564.28 47.26,-574.29 54.26,-574.27" />
+</g>
+<!-- 07aa96b7e50a42c7aeaf2fd13c2d3453 -->
+<g id="node4" class="node">
+<title>07aa96b7e50a42c7aeaf2fd13c2d3453</title>
+<image xlink:href="/icons/action.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="183.038" y="-267.409" />
+<text text-anchor="middle" x="233.54" y="-152.01" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Initialize &amp; Prepare Acquisition</text>
+</g>
+<!-- d92ef624bcea4fb488462e1b3abce621&#45;&gt;07aa96b7e50a42c7aeaf2fd13c2d3453 -->
+<g id="edge2" class="edge">
+<title>d92ef624bcea4fb488462e1b3abce621-&gt;07aa96b7e50a42c7aeaf2fd13c2d3453</title>
+<path fill="none" stroke="#7b8894" d="M166.26,-286.16C169.44,-282.89 172.65,-279.59 175.85,-276.29" />
+<polygon fill="#7b8894" stroke="#7b8894" points="178.39,-278.7 182.85,-269.09 173.37,-273.82 178.39,-278.7" />
+</g>
+<!-- 1786dfc694d64b158eeaac0b529ffe41 -->
+<g id="node5" class="node">
+<title>1786dfc694d64b158eeaac0b529ffe41</title>
+<image xlink:href="/icons/action.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="335.114" y="-195.642" />
+<text text-anchor="middle" x="385.61" y="-80.24" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">For Each ROI</text>
+</g>
+<!-- 07aa96b7e50a42c7aeaf2fd13c2d3453&#45;&gt;1786dfc694d64b158eeaac0b529ffe41 -->
+<g id="edge3" class="edge">
+<title>07aa96b7e50a42c7aeaf2fd13c2d3453-&gt;1786dfc694d64b158eeaac0b529ffe41</title>
+<path fill="none" stroke="#7b8894" d="M284.18,-193.01C297.45,-186.75 311.88,-179.94 325.59,-173.47" />
+<polygon fill="#7b8894" stroke="#7b8894" points="327.39,-176.49 334.94,-169.06 324.4,-170.16 327.39,-176.49" />
+</g>
+<!-- 402a8541b58843aa84669045a55c8562 -->
+<g id="node6" class="node">
+<title>402a8541b58843aa84669045a55c8562</title>
+<image xlink:href="/icons/action.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="501.472" y="-180.534" />
+<text text-anchor="middle" x="551.97" y="-65.13" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Initialize ROI &amp; Calculate Position</text>
+</g>
+<!-- 1786dfc694d64b158eeaac0b529ffe41&#45;&gt;402a8541b58843aa84669045a55c8562 -->
+<g id="edge4" class="edge">
+<title>1786dfc694d64b158eeaac0b529ffe41-&gt;402a8541b58843aa84669045a55c8562</title>
+<path fill="none" stroke="#7b8894" d="M436.43,-140.53C453.76,-138.95 473.32,-137.18 491.35,-135.54" />
+<polygon fill="#7b8894" stroke="#7b8894" points="491.82,-139.01 501.47,-134.62 491.19,-132.04 491.82,-139.01" />
+</g>
+<!-- 345e739accc94ce485ccfee3a4ac2492 -->
+<g id="node7" class="node">
+<title>345e739accc94ce485ccfee3a4ac2492</title>
+<image xlink:href="/icons/action.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="660.952" y="-231.127" />
+<text text-anchor="middle" x="711.45" y="-115.73" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Move &amp; Stabilize Stage</text>
+</g>
+<!-- 402a8541b58843aa84669045a55c8562&#45;&gt;345e739accc94ce485ccfee3a4ac2492 -->
+<g id="edge5" class="edge">
+<title>402a8541b58843aa84669045a55c8562-&gt;345e739accc94ce485ccfee3a4ac2492</title>
+<path fill="none" stroke="#7b8894" d="M602.87,-146.18C618.2,-151.04 635.16,-156.42 651.04,-161.46" />
+<polygon fill="#7b8894" stroke="#7b8894" points="650.17,-164.86 660.76,-164.55 652.29,-158.19 650.17,-164.86" />
+</g>
+<!-- e394c7515aad4a6e9b482258b2246936 -->
+<g id="node9" class="node">
+<title>e394c7515aad4a6e9b482258b2246936</title>
+<image xlink:href="/icons/action.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="815.771" y="-309.846" />
+<text text-anchor="middle" x="866.27" y="-194.45" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Set Metadata for Each Tile</text>
+</g>
+<!-- 345e739accc94ce485ccfee3a4ac2492&#45;&gt;e394c7515aad4a6e9b482258b2246936 -->
+<g id="edge6" class="edge">
+<title>345e739accc94ce485ccfee3a4ac2492-&gt;e394c7515aad4a6e9b482258b2246936</title>
+<path fill="none" stroke="#7b8894" d="M762.15,-206.4C776.39,-213.64 792,-221.58 806.71,-229.06" />
+<polygon fill="#7b8894" stroke="#7b8894" points="805.23,-232.23 815.73,-233.65 808.4,-225.99 805.23,-232.23" />
+</g>
+<!-- 08c0547cf78f48de9b0aa7e478e29827 -->
+<g id="node8" class="node">
+<title>08c0547cf78f48de9b0aa7e478e29827</title>
+<image xlink:href="/icons/action.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="863.738" y="-644.647" />
+<text text-anchor="middle" x="914.24" y="-529.25" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Finalize ROI</text>
+</g>
+<!-- 0ac1ea0bf247467799c5dd5a77a1c805 -->
+<g id="node16" class="node">
+<title>0ac1ea0bf247467799c5dd5a77a1c805</title>
+<image xlink:href="/icons/action.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="805.683" y="-801.461" />
+<text text-anchor="middle" x="856.18" y="-686.06" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Correct Lens Distortions</text>
+</g>
+<!-- 08c0547cf78f48de9b0aa7e478e29827&#45;&gt;0ac1ea0bf247467799c5dd5a77a1c805 -->
+<g id="edge15" class="edge">
+<title>08c0547cf78f48de9b0aa7e478e29827-&gt;0ac1ea0bf247467799c5dd5a77a1c805</title>
+<path fill="none" stroke="#7b8894" d="M888.77,-662.93C887.59,-666.14 886.39,-669.37 885.19,-672.6" />
+<polygon fill="#7b8894" stroke="#7b8894" points="881.8,-671.68 881.61,-682.27 888.37,-674.11 881.8,-671.68" />
+</g>
+<!-- 8dc3bfa32656408891bb55a5829bfc94 -->
+<g id="node10" class="node">
+<title>8dc3bfa32656408891bb55a5829bfc94</title>
+<image xlink:href="/icons/action.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="924.771" y="-173.739" />
+<text text-anchor="middle" x="975.27" y="-58.34" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Start Camera Exposure</text>
+</g>
+<!-- e394c7515aad4a6e9b482258b2246936&#45;&gt;8dc3bfa32656408891bb55a5829bfc94 -->
+<g id="edge7" class="edge">
+<title>e394c7515aad4a6e9b482258b2246936-&gt;8dc3bfa32656408891bb55a5829bfc94</title>
+<path fill="none" stroke="#7b8894" d="M916.94,-196.07C917.34,-195.58 917.74,-195.08 918.14,-194.58" />
+<polygon fill="#7b8894" stroke="#7b8894" points="921.11,-196.47 924.63,-186.48 915.64,-192.1 921.11,-196.47" />
+</g>
+<!-- 47fc616d549d46bb821f828c4c8ec479 -->
+<g id="node11" class="node">
+<title>47fc616d549d46bb821f828c4c8ec479</title>
+<image xlink:href="/icons/action.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1081.77" y="-119" />
+<text text-anchor="middle" x="1132.27" y="-3.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Handle Async &amp; Write Metadata</text>
+</g>
+<!-- 8dc3bfa32656408891bb55a5829bfc94&#45;&gt;47fc616d549d46bb821f828c4c8ec479 -->
+<g id="edge8" class="edge">
+<title>8dc3bfa32656408891bb55a5829bfc94-&gt;47fc616d549d46bb821f828c4c8ec479</title>
+<path fill="none" stroke="#7b8894" d="M1025.81,-105.62C1040.44,-100.52 1056.57,-94.89 1071.75,-89.6" />
+<polygon fill="#7b8894" stroke="#7b8894" points="1073.27,-92.78 1081.56,-86.18 1070.96,-86.17 1073.27,-92.78" />
+</g>
+<!-- ce84b397081e4eb0afd0171274b20774 -->
+<g id="node12" class="node">
+<title>ce84b397081e4eb0afd0171274b20774</title>
+<image xlink:href="/icons/action.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1218.97" y="-214.084" />
+<text text-anchor="middle" x="1269.47" y="-98.68" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Complete Exposure</text>
+</g>
+<!-- 47fc616d549d46bb821f828c4c8ec479&#45;&gt;ce84b397081e4eb0afd0171274b20774 -->
+<g id="edge9" class="edge">
+<title>47fc616d549d46bb821f828c4c8ec479-&gt;ce84b397081e4eb0afd0171274b20774</title>
+<path fill="none" stroke="#7b8894" d="M1182.97,-103.64C1191.85,-109.79 1201.17,-116.25 1210.26,-122.55" />
+<polygon fill="#7b8894" stroke="#7b8894" points="1208.31,-125.46 1218.52,-128.28 1212.3,-119.7 1208.31,-125.46" />
+</g>
+<!-- f44f0c7eae4d4e019d65837a1e754e5a -->
+<g id="node13" class="node">
+<title>f44f0c7eae4d4e019d65837a1e754e5a</title>
+<image xlink:href="/icons/action.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1210.14" y="-380.806" />
+<text text-anchor="middle" x="1260.64" y="-265.41" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Get Next Position</text>
+</g>
+<!-- ce84b397081e4eb0afd0171274b20774&#45;&gt;f44f0c7eae4d4e019d65837a1e754e5a -->
+<g id="edge10" class="edge">
+<title>ce84b397081e4eb0afd0171274b20774-&gt;f44f0c7eae4d4e019d65837a1e754e5a</title>
+<path fill="none" stroke="#7b8894" d="M1265.82,-232.36C1265.49,-238.72 1265.14,-245.19 1264.8,-251.63" />
+<polygon fill="#7b8894" stroke="#7b8894" points="1261.3,-251.52 1264.27,-261.69 1268.29,-251.89 1261.3,-251.52" />
+</g>
+<!-- 667d8b141d6a417fbca8eedf5a7f4b73 -->
+<g id="node14" class="node">
+<title>667d8b141d6a417fbca8eedf5a7f4b73</title>
+<image xlink:href="/icons/action.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1070.53" y="-471.08" />
+<text text-anchor="middle" x="1121.03" y="-355.68" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Stabilize Stage</text>
+</g>
+<!-- f44f0c7eae4d4e019d65837a1e754e5a&#45;&gt;667d8b141d6a417fbca8eedf5a7f4b73 -->
+<g id="edge11" class="edge">
+<title>f44f0c7eae4d4e019d65837a1e754e5a-&gt;667d8b141d6a417fbca8eedf5a7f4b73</title>
+<path fill="none" stroke="#7b8894" d="M1209.84,-363.15C1200.19,-369.39 1190.02,-375.97 1180.14,-382.36" />
+<polygon fill="#7b8894" stroke="#7b8894" points="1178.05,-379.54 1171.55,-387.91 1181.85,-385.42 1178.05,-379.54" />
+</g>
+<!-- 538f0c85ff114b41a58ad857d3cd3a64 -->
+<g id="node15" class="node">
+<title>538f0c85ff114b41a58ad857d3cd3a64</title>
+<image xlink:href="/icons/decision.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="896.223" y="-474.037" />
+<text text-anchor="middle" x="946.72" y="-358.64" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">More Tiles?</text>
+</g>
+<!-- 667d8b141d6a417fbca8eedf5a7f4b73&#45;&gt;538f0c85ff114b41a58ad857d3cd3a64 -->
+<g id="edge12" class="edge">
+<title>667d8b141d6a417fbca8eedf5a7f4b73-&gt;538f0c85ff114b41a58ad857d3cd3a64</title>
+<path fill="none" stroke="#7b8894" d="M1070.14,-421.44C1050.54,-421.78 1027.97,-422.16 1007.52,-422.51" />
+<polygon fill="#7b8894" stroke="#7b8894" points="1007.31,-419.01 997.37,-422.68 1007.43,-426.01 1007.31,-419.01" />
+</g>
+<!-- 538f0c85ff114b41a58ad857d3cd3a64&#45;&gt;08c0547cf78f48de9b0aa7e478e29827 -->
+<g id="edge14" class="edge">
+<title>538f0c85ff114b41a58ad857d3cd3a64-&gt;08c0547cf78f48de9b0aa7e478e29827</title>
+<path fill="none" stroke="#7b8894" d="M933.6,-492.44C932.16,-500.03 930.68,-507.79 929.21,-515.49" />
+<polygon fill="#7b8894" stroke="#7b8894" points="925.73,-515.06 927.3,-525.54 932.61,-516.37 925.73,-515.06" />
+</g>
+<!-- 538f0c85ff114b41a58ad857d3cd3a64&#45;&gt;e394c7515aad4a6e9b482258b2246936 -->
+<g id="edge13" class="edge">
+<title>538f0c85ff114b41a58ad857d3cd3a64-&gt;e394c7515aad4a6e9b482258b2246936</title>
+<path fill="none" stroke="#7b8894" d="M913.07,-354.86C910.22,-349.03 907.32,-343.11 904.43,-337.23" />
+<polygon fill="#7b8894" stroke="#7b8894" points="907.46,-335.46 899.92,-328.02 901.18,-338.54 907.46,-335.46" />
+</g>
+<!-- 75446808f5a1414196f71ea930e3c3c0 -->
+<g id="node17" class="node">
+<title>75446808f5a1414196f71ea930e3c3c0</title>
+<image xlink:href="/icons/predefined-process.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="692.974" y="-924.823" />
+<text text-anchor="middle" x="743.47" y="-809.42" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Finalize Metadata</text>
+</g>
+<!-- 0ac1ea0bf247467799c5dd5a77a1c805&#45;&gt;75446808f5a1414196f71ea930e3c3c0 -->
+<g id="edge16" class="edge">
+<title>0ac1ea0bf247467799c5dd5a77a1c805-&gt;75446808f5a1414196f71ea930e3c3c0</title>
+<path fill="none" stroke="#7b8894" d="M805.43,-806.51C804.03,-808.04 802.62,-809.58 801.22,-811.12" />
+<polygon fill="#7b8894" stroke="#7b8894" points="798.34,-809.08 794.18,-818.82 803.51,-813.8 798.34,-809.08" />
+</g>
+<!-- fab995b8910b43e186a9ee0a570e6600 -->
+<g id="node18" class="node">
+<title>fab995b8910b43e186a9ee0a570e6600</title>
+<image xlink:href="/icons/action.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="542.532" y="-1000.41" />
+<text text-anchor="middle" x="593.03" y="-885.01" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Create Robocopy File</text>
+</g>
+<!-- 75446808f5a1414196f71ea930e3c3c0&#45;&gt;fab995b8910b43e186a9ee0a570e6600 -->
+<g id="edge17" class="edge">
+<title>75446808f5a1414196f71ea930e3c3c0-&gt;fab995b8910b43e186a9ee0a570e6600</title>
+<path fill="none" stroke="#7b8894" d="M692.96,-899.7C680.06,-906.18 666.07,-913.21 652.76,-919.9" />
+<polygon fill="#7b8894" stroke="#7b8894" points="651.03,-916.85 643.67,-924.47 654.18,-923.11 651.03,-916.85" />
+</g>
+<!-- 50ce5796d19842dcbc507509d18601b0 -->
+<g id="node19" class="node">
+<title>50ce5796d19842dcbc507509d18601b0</title>
+<image xlink:href="/icons/decision.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="374.086" y="-1018.19" />
+<text text-anchor="middle" x="424.59" y="-902.79" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Check for Abort or Switch</text>
+</g>
+<!-- fab995b8910b43e186a9ee0a570e6600&#45;&gt;50ce5796d19842dcbc507509d18601b0 -->
+<g id="edge18" class="edge">
+<title>fab995b8910b43e186a9ee0a570e6600-&gt;50ce5796d19842dcbc507509d18601b0</title>
+<path fill="none" stroke="#7b8894" d="M542.49,-955.24C524.42,-957.15 503.87,-959.32 485.05,-961.31" />
+<polygon fill="#7b8894" stroke="#7b8894" points="484.67,-957.83 475.09,-962.36 485.4,-964.79 484.67,-957.83" />
+</g>
+<!-- 60816321f34f41aea617810f5a7d6ddd -->
+<g id="node20" class="node">
+<title>60816321f34f41aea617810f5a7d6ddd</title>
+<image xlink:href="/icons/action.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="210.067" y="-973.703" />
+<text text-anchor="middle" x="260.57" y="-858.3" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Handle Abort</text>
+</g>
+<!-- 50ce5796d19842dcbc507509d18601b0&#45;&gt;60816321f34f41aea617810f5a7d6ddd -->
+<g id="edge19" class="edge">
+<title>50ce5796d19842dcbc507509d18601b0-&gt;60816321f34f41aea617810f5a7d6ddd</title>
+<path fill="none" stroke="#7b8894" d="M374.04,-953.98C357.36,-949.46 338.63,-944.38 321.27,-939.67" />
+<polygon fill="#7b8894" stroke="#7b8894" points="321.8,-936.19 311.23,-936.95 319.97,-942.94 321.8,-936.19" />
+</g>
+<!-- 457282a7416e4645a1f1c269d84b2593 -->
+<g id="node21" class="node">
+<title>457282a7416e4645a1f1c269d84b2593</title>
+<image xlink:href="/icons/action.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="75.4982" y="-869.335" />
+<text text-anchor="middle" x="126" y="-753.94" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Schedule Events</text>
+</g>
+<!-- 60816321f34f41aea617810f5a7d6ddd&#45;&gt;457282a7416e4645a1f1c269d84b2593 -->
+<g id="edge20" class="edge">
+<title>60816321f34f41aea617810f5a7d6ddd-&gt;457282a7416e4645a1f1c269d84b2593</title>
+<path fill="none" stroke="#7b8894" d="M209.69,-883.75C201.46,-877.36 192.87,-870.7 184.48,-864.19" />
+<polygon fill="#7b8894" stroke="#7b8894" points="186.55,-861.36 176.5,-858 182.26,-866.9 186.55,-861.36" />
+</g>
+<!-- 457282a7416e4645a1f1c269d84b2593&#45;&gt;3484c1d379694015b5aa378e73ad5c4d -->
+<g id="edge21" class="edge">
+<title>457282a7416e4645a1f1c269d84b2593-&gt;3484c1d379694015b5aa378e73ad5c4d</title>
+<path fill="none" stroke="#7b8894" d="M92.26,-749.94C91.25,-747.88 90.23,-745.81 89.22,-743.74" />
+<polygon fill="#7b8894" stroke="#7b8894" points="92.32,-742.11 84.78,-734.67 86.03,-745.19 92.32,-742.11" />
+</g>
+</g>
+</svg></div>
+
+</div>
+    </div>
+</div>
+        <footer class="mdl-mega-footer">
+  <div class="mdl-mega-footer__middle-section">
+    
+  </div>
+  <div class="mdl-mega-footer__bottom-section">
+    <ul class="mdl-mega-footer__link-list">
+      
+    </ul>
+  </div>
+</footer>
+
+      </main>
+    </div>
+  </body>
+</html>
