@@ -11,7 +11,7 @@ This is an event driven system with various components running in docker contain
 Below, is a diagram showing a general overview of this system.
 
 {% diagram %}
-from diagrams.aws.database import RDSPostgresqlInstance
+from diagrams.aws.database import Database
 from diagrams.aws.storage import S3
 from diagrams.aws.compute import LambdaFunction
 from diagrams.onprem.queue import Activemq
@@ -23,7 +23,7 @@ from diagrams.onprem.vcs import Github
 from diagrams.onprem.container import Docker
 
 with Cluster("AWS", graph_attr={"bgcolor": "#FFE0B2"}):
-    db = RDSPostgresqlInstance("Postgres", pin="true", pos="0, 0.25")
+    db = Database("Database", pin="true", pos="0, 0.25")
     s3 = S3("S3 Bucket", pin="true", pos="-0.25, -0.25")
 
     tem_db = Python("TEM DB", pin="true", pos="-0.25, 0.25", href="/tem_db.html")
@@ -38,8 +38,10 @@ operator = Client("Microscope Operator", pin="true", pos="-1.25, 0.25", href="/u
 with Cluster("Docker Compose", graph_attr={"bgcolor": "#E0F2F1"}):
     event_bus = Activemq("ActiveMQ", pin="true", pos="-1, -0.25", href="/broker.html")
 
-    state_machine = Python("pyTEM", pin="true", pos="-0.75, 0.25", href="/pytem.html")
-    microscope_service = Python("Microscope\nService", pin="true", pos="-0.5, 0.5", href="/scope.html")
+    pyTEM = Python(
+        "pyTEM", pin="true", pos="-0.75, 0.25", href="/pytem.html"
+    )
+    microscope_service = Python("Microscope\nService", pin="true", pos="-0.5, 0.5")
     camera_service = Cpp("Camera\nService", pin="true", pos="-1, 0.5", href="/camera.html")
     stage_service = Python("Stage\nService", pin="true", pos="-0.75, 0.5", href="/stage.html")
     cpp_pipeline = Cpp("Image Processing\nPipeline", pin="true", pos="-0.75, 0", href="/pipeline.html")
@@ -60,14 +62,14 @@ with Cluster("", graph_attr={"bgcolor": "#ffb2b2"}):
 s3 >> ac_qc
 tem_db << Edge() >> db
 tem_db << Edge() >> ac_qc
-tem_db >> state_machine
+tem_db >> pyTEM
 client << Edge() >> ac_qc
-state_machine << Edge() >> microscope_service
-state_machine << Edge() >> camera_service
-state_machine << Edge() >> stage_service
-state_machine >> cpp_pipeline
+pyTEM << Edge() >> microscope_service
+pyTEM << Edge() >> camera_service
+pyTEM << Edge() >> stage_service
+pyTEM >> cpp_pipeline
 cpp_pipeline >> buffer >> aloha
-state_machine << Edge() >> ui_server
+pyTEM << Edge() >> ui_server
 operator << Edge() >> ui_server
 microscope << Edge() >> microscope_service
 stage << Edge() >> stage_service

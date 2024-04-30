@@ -1,6 +1,7 @@
 ---
 layout: topics
 title: Topics
+github: AllenInstitute/TEM_comms
 topics:
     tile.raw:
         description: This message is sent whenever a new tile is ready.
@@ -339,4 +340,4 @@ topics:
                 example: 120
 ---
 
-The topics are listed below.
+The topics are listed below, and implemented in the library linked above.

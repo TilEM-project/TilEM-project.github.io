@@ -2,6 +2,15 @@
 layout: raw_page
 ---
 
+{% if page.github %}
+    <div class="mdl-card__supporting-text mdl-card--border">
+        <p style="font-size: large;" class="mdl-card__subtitle-text">
+            <i style="color:black;" class="fab fa-github"></i>
+            <a href="https://github.com/{{ page.github }}">{{ page.github }}</a>
+        </p>
+    </div>
+{% endif %}
+
 {% assign topics = page.topics | sort %}
 
 <div class="mdl-card__supporting-text mdl-card--border">
