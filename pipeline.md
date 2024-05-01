@@ -17,7 +17,7 @@ github: AllenInstitute/TEM_graph
 The image processing pipeline is primarily written in C++ with some Python bindings.
 It utilizes the [Intel Thread Building Blocks](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onetbb.html) library for parallelism, and [OpenCV](https://opencv.org/) for image processing.
 
-{% diagram %}
+{% diagram layout=neato %}
 from diagrams.programming.language import Cpp, Python
 from diagrams.generic.blank import Blank
 from diagrams import Node

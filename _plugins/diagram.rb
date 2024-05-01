@@ -5,14 +5,16 @@ module Jekyll
         PYTHON_CODE = "
 from diagrams import Diagram, Cluster, Edge, setdiagram
 import sys
+import json
 
 graph_attr = {
     'fontsize': '45',
     'bgcolor': 'transparent',
-    'layout': 'neato',
     'overlap': 'scale',
     'splines': 'line',
 }
+
+graph_attr.update(json.loads('%s'))
 
 print = lambda *args: sys.stderr.write(' '.join([str(arg) for arg in args]) + '\\n')
 
@@ -62,11 +64,21 @@ exit(0)
             end
         end
         def initialize(tag_name, markup, opts)
+            @graph_attr = Hash.new
+            markup.split(" ").each do |el|
+                if el.count("=") == 1
+                    parts = el.split("=")
+                    @graph_attr[parts[0]] = parts[1]
+                else
+                    puts "Error parsing diagram options!"
+                    break
+                end
+            end
             super
         end
         def render(context)
             # Have to replace backslashes with tripple blackslashes, once so Ruby doesn't treat \n as a newline, and again so Python's exec doesn't do the same.
-            stdout, stderr, status = Open3.capture3("python", :stdin_data=>PYTHON_CODE % [super.gsub("\\", "\\\\\\")])
+            stdout, stderr, status = Open3.capture3("python", :stdin_data=>PYTHON_CODE % [JSON.generate(@graph_attr), super.gsub("\\", "\\\\\\")])
             puts stderr
             if status.success?
                 svg = Nokogiri::XML(stdout)

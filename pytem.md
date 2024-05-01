@@ -18,7 +18,7 @@ receives:
     - scope.status
 ---
 
-{% diagram %}
+{% diagram layout=neato %}
 from diagrams import Diagram, Cluster, Node, Edge
 
 with Cluster("pyTEM States"):

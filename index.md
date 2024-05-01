@@ -10,7 +10,7 @@ Welcome to the documentation for the [Allen Institute](https://alleninstitute.or
 This is an event driven system with various components running in docker containers, along with other services running on other machines.
 Below, is a diagram showing a general overview of this system.
 
-{% diagram %}
+{% diagram layout=neato %}
 from diagrams.aws.database import Database
 from diagrams.aws.storage import S3
 from diagrams.aws.compute import LambdaFunction
