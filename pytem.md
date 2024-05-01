@@ -129,7 +129,7 @@ Next the code performs the following:
     If there are still tasks (taos) left in the montage queue, it triggers the start of another attempt.
     Sets the montage state to NONE if no tasks are left.
 
-{% diagram %}
+{% diagram rankdir=LR%}
 
 from diagrams import Diagram, Cluster
 from diagrams.programming.flowchart import Action, InputOutput, Decision, StartEnd
@@ -137,22 +137,22 @@ from diagrams.programming.flowchart import Action, InputOutput, Decision, StartE
 with Cluster("Change Aperture State"):
     entry = StartEnd("Enter State")
     init_tape = Decision("Initialize tape_ranges")
-    fetch_barcode = Action("Fetch Barcode from TEM_db")
+    fetch_barcode = Action("Fetch Barcode\nfrom TEM_db")
 
-    init_logging = Action("Initialization & Logging")
-    state_check = Decision("Check if State is PAUSE")
+    init_logging = Action("Initialization\n& Logging")
+    state_check = Decision("Check if State\nis PAUSE")
     retry_later = Action("Retry after 0.2s")
 
     preparatory = Action("Preparatory Actions")
-    abort_checks = Action("Check Abort Conditions")
+    abort_checks = Action("Check Abort\nConditions")
 
-    handle_tape = Action("Handle Tape & Aperture")
-    move_correct = Action("Aperture Movement & Correction")
-    beam_adjust = Action("Lens & Beam Adjustments")
+    handle_tape = Action("Handle Tape\n& Aperture")
+    move_correct = Action("Aperture Movement\n& Correction")
+    beam_adjust = Action("Lens & Beam\nAdjustments")
     brightfield_img = Action("Brightfield Imaging")
-    lens_correction = Action("Lens Correction Montage")
+    lens_correction = Action("Lens Correction\nMontage")
 
-    finalize = Action("Finalizing & Error Handling")
+    finalize = Action("Finalizing & Error\nHandling")
     set_state_none = Action("Set State to NONE")
 
 entry >> init_tape >> fetch_barcode
@@ -220,47 +220,47 @@ If an abort signal is received or it's time to switch to another aperture, the l
 
 Schedule callbacks for events like "BACK_TO_SETUP" or "NEXT_APERTURE" based on the conditions met during the loop.
 
-{% diagram %}
+{% diagram layout=neato %}
 
 from diagrams import Cluster
 from diagrams.programming.flowchart import Action, Decision, StartEnd, PredefinedProcess
 
 with Cluster("Outer Infinite Loop"):
-    start_outer = StartEnd("Start Outer Loop")
-    end_outer = StartEnd("End Outer Loop")
+    start_outer = StartEnd("Start Outer Loop", pin="true", pos="-3, 2")
+    end_outer = StartEnd("End Outer Loop", pin="true", pos="-2, 2")
 
 with Cluster("Main Acquisition"):
-    check_activation = Decision("Check Activation & Start")
-    initialize_acquisition = Action("Initialize & Prepare Acquisition")
+    check_activation = Decision("Check Activation\n& Start", pin="true", pos="-3, 1")
+    initialize_acquisition = Action("Initialize & Prepare\nAcquisition", pin="true", pos="-2, 1")
 
 with Cluster("ROI Acquisition Process"):
-    roi_loop = Action("For Each ROI")
-    initialize_roi = Action("Initialize ROI & Calculate Position")
-    move_stage = Action("Move & Stabilize Stage")
-    roi_end = Action("Finalize ROI")
+    roi_loop = Action("For Each ROI", pin="true", pos="-2, 0")
+    initialize_roi = Action("Initialize ROI &\nCalculate Position", pin="true", pos="-2, -1")
+    move_stage = Action("Move &\nStabilize Stage", pin="true", pos="-1, -1")
+    roi_end = Action("Finalize ROI", pin="true", pos="-1, 0")
 
 with Cluster("Per-Tile"):
-    set_metadata = Action("Set Metadata for Each Tile")
-    start_exposure = Action("Start Camera Exposure")
-    handle_async = Action("Handle Async & Write Metadata")
-    complete_exposure = Action("Complete Exposure")
-    next_position = Action("Get Next Position")
-    stabilize_stage = Action("Stabilize Stage")
-    check_tile_end = Decision("More Tiles?")
+    set_metadata = Action("Set Metadata\nfor Each Tile", pin="true", pos="0, -1")
+    start_exposure = Action("Start Camera\nExposure", pin="true", pos="1, -1")
+    handle_async = Action("Handle Async &\nWrite Metadata", pin="true", pos="2, -1")
+    complete_exposure = Action("Complete\nExposure", pin="true", pos="3, -0.5")
+    next_position = Action("Get Next Position", pin="true", pos="2, 0")
+    stabilize_stage = Action("Stabilize Stage", pin="true", pos="1, 0")
+    check_tile_end = Decision("More Tiles?", pin="true", pos="0, 0")
 
-with Cluster("Lens Correction Process"):
-    lens_correction = Action("Correct Lens Distortions")
+with Cluster("Lens Correction\nProcess"):
+    lens_correction = Action("Correct Lens\nDistortions", pin="true", pos="-1, 1")
 
 with Cluster("Completion & Metadata Handling"):
-    finalize_metadata = PredefinedProcess("Finalize Metadata")
-    create_robocopy = Action("Create Robocopy File")
+    finalize_metadata = PredefinedProcess("Finalize Metadata", pin="true", pos="0, 1")
+    create_robocopy = Action("Create Robocopy\nFile", pin="true", pos="1, 1")
 
-with Cluster("Abort or Switch Event"):
-    check_abort = Decision("Check for Abort or Switch")
-    handle_abort = Action("Handle Abort")
+with Cluster("Abort or\nSwitch Event"):
+    check_abort = Decision("Check for\nAbort or Switch", pin="true", pos="1, 2")
+    handle_abort = Action("Handle Abort", pin="true", pos="0, 2")
 
 with Cluster("Event Scheduling"):
-    schedule_events = Action("Schedule Events")
+    schedule_events = Action("Schedule Events", pin="true", pos="-1, 2")
 
 start_outer >> check_activation
 check_activation >> initialize_acquisition
