@@ -16,6 +16,7 @@ receives:
     - stage.rotation.status
     - stage.motion.status
     - scope.status
+owner: Derrick
 ---
 
 {% diagram layout=neato %}

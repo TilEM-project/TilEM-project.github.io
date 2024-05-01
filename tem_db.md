@@ -1,6 +1,7 @@
 ---
 title: TEM DB
 layout: page
+owner: Derrick
 ---
 
 TEM DB is a REST API written in Python using (FastAPI) which acts as the front end for an AWS Dynamo DB.

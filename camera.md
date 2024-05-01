@@ -7,6 +7,8 @@ receives:
 sends:
     - camera.image
     - camera.status
+github: AllenInstitute/XIMEA_service
+owner: Cameron
 ---
 
 The camera service takes care of interacting with the camera using the [Ximea](https://www.ximea.com/) [xiAPI](https://www.ximea.com/support/wiki/apis/XiAPI).

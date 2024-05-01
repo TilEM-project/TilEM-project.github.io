@@ -7,6 +7,7 @@ sends:
 receives:
     - stage.motion.command
     - stage.aperture.command
+owner: Cameron
 ---
 
 The stage service abstracts the interfaces of the various hardware components related to positioning and transitioning between apertures.
