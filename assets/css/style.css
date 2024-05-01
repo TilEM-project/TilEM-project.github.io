@@ -10594,4 +10594,8 @@ nav .sublink {
   display: inline;
 }
 
+.contributor-info i {
+  color: rgba(0,0,0, 0.54);
+}
+
 /*# sourceMappingURL=style.css.map */

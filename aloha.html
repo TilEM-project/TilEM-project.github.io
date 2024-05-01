@@ -35,6 +35,8 @@
         
           <a class="mdl-navigation__link" href="/topics.html">Topics</a>
         
+          <a class="mdl-navigation__link" href="/assignments.html">Assignments</a>
+        
       </nav>
     </div>
   </header>
@@ -43,6 +45,12 @@
     <nav class="mdl-navigation">
       
         <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        
+      
+        <a class="mdl-navigation__link" href="/assignments.html">Assignments</a>
+        
+      
+        <a class="mdl-navigation__link" href="/unassigned.html">Unassigned</a>
         
       
     </nav>
@@ -58,6 +66,26 @@
             </h2>
         </div>
         
+  <div class="mdl-card__supporting-text mdl-card--border">
+    
+      <p style="font-size: large;" class="mdl-card__subtitle-text">
+        <i style="color:black;" class="fab fa-github"></i>
+        <a href="https://github.com/AllenInstitute/aloha">AllenInstitute/aloha</a>
+      </p>
+    
+    
+      
+      <p class="mdl-card__subtitle-text owner-info">
+        Assigned: Russel Torres
+        
+          <a href="https://github.com/RussTorres"><i class="fab fa-github"></i></a>
+          <a href="mailto:russelt@alleninstitute.org"><i class="fa fa-envelope"></i></a>
+          <a href="https://aianatomy.slack.com/team/U0UBNAL6S"><i class="fab fa-slack"></i></a></p>
+    
+    
+    
+  </div>
+
 <div class="mdl-card__supporting-text">
   <p>Aloha is an AWS Lambda Function which takes raw tile images uploaded from the <a href="/buffer.html">tile upload buffer</a>, and saves downsampled and compressed image to AWS S3 for use in <a href="https://github.com/google/neuroglancer">Neuroglancer</a> and other tools.
 This service performs the downsampling and compression, saves the compressed images to S3, and places the S3 URIs in <a href="/tem_db.html">TEM DB</a>.</p>
