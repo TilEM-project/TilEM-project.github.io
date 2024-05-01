@@ -1,0 +1,33 @@
+---
+layout: page
+title: Assignments
+---
+
+<div class="contributor-info">
+    {% assign contributors = site.data.contributors | sort %}
+    {% for contributor in contributors %}
+        <h3>
+            {{ contributor[1].name }}
+            {%- if contributor[1].github %}
+                <a href="https://github.com/{{ contributor[1].github }}"><i class="fab fa-github"></i></a>
+            {%- endif %}
+            {% if contributor[1].email %}
+            <a href="mailto:{{ contributor[1].email }}"><i class="fa fa-envelope"></i></a>
+            {%- endif -%}
+            {% if contributor[1].slack %}
+            <a href="https://aianatomy.slack.com/team/{{ contributor[1].slack }}"><i class="fab fa-slack"></i></a>
+            {%- endif -%}
+        </h3>
+        <ul>
+            {% for service in site.pages -%}
+                {%- if service.assigned == contributor[0] -%}
+                    <li>
+                        <a href="{{ service.url }}">
+                            {{ service.title }}
+                        </a>
+                    </li>
+                {% endif -%}
+            {%- endfor -%}
+        </ul>
+    {% endfor %}
+</div>

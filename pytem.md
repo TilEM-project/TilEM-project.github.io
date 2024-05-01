@@ -1,6 +1,7 @@
 ---
 layout: page
 title: pyTEM
+type: task
 sends:
     - tile.raw
     - camera.command
@@ -16,7 +17,7 @@ receives:
     - stage.rotation.status
     - stage.motion.status
     - scope.status
-owner: Derrick
+assigned: Derrick
 ---
 
 {% diagram layout=neato %}

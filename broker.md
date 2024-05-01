@@ -1,7 +1,8 @@
 ---
 title: Broker
 layout: page
-owner: Cameron
+type: task
+assigned: Cameron
 ---
 
 To enable messages to be passed between different services, a message broker is used.

@@ -1,6 +1,7 @@
 ---
 title: Tile Upload Buffer
 layout: page
+type: task
 receives:
     - tile.processed
 sends:

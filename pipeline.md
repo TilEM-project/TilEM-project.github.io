@@ -1,6 +1,7 @@
 ---
 title: Image Processing Pipeline
 layout: page
+type: task
 receives:
     - tile.raw
 sends:

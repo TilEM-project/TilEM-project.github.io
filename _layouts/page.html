@@ -2,7 +2,7 @@
 layout: raw_page
 ---
 
-{% if page.github or page.sends or page.receives or page.owner %}
+{% if page.github or page.sends or page.receives or page.assigned %}
   <div class="mdl-card__supporting-text mdl-card--border">
     {% if page.github %}
       <p style="font-size: large;" class="mdl-card__subtitle-text">
@@ -10,18 +10,18 @@ layout: raw_page
         <a href="https://github.com/{{ page.github }}">{{ page.github }}</a>
       </p>
     {% endif %}
-    {% if page.owner %}
-      {% assign owner = site.data.contributors[page.owner] %}
+    {% if page.assigned %}
+      {% assign contributor = site.data.contributors[page.assigned] %}
       <p class="mdl-card__subtitle-text owner-info">
-        Owner: {{ owner.name }}
-        {% if owner.github %}
-          <a href="https://github.com/{{ owner.github }}"><i class="fab fa-github"></i></a>
+        Assigned: {{ contributor.name }}
+        {% if contributor.github %}
+          <a href="https://github.com/{{ contributor.github }}"><i class="fab fa-github"></i></a>
         {%- endif -%}
-        {% if owner.email %}
-          <a href="mailto:{{ owner.email }}"><i class="fa fa-envelope"></i></a>
+        {% if contributor.email %}
+          <a href="mailto:{{ contributor.email }}"><i class="fa fa-envelope"></i></a>
         {%- endif -%}
-        {% if owner.slack %}
-          <a href="https://aianatomy.slack.com/team/{{ owner.slack }}"><i class="fab fa-slack"></i></a>
+        {% if contributor.slack %}
+          <a href="https://aianatomy.slack.com/team/{{ contributor.slack }}"><i class="fab fa-slack"></i></a>
         {%- endif -%}
       </p>
     {% endif %}

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Camera Service
+type: task
 receives:
     - camera.settings
     - camera.command
@@ -8,7 +9,7 @@ sends:
     - camera.image
     - camera.status
 github: AllenInstitute/XIMEA_service
-owner: Cameron
+assigned: Cameron
 ---
 
 The camera service takes care of interacting with the camera using the [Ximea](https://www.ximea.com/) [xiAPI](https://www.ximea.com/support/wiki/apis/XiAPI).

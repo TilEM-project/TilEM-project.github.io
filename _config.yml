@@ -4,6 +4,12 @@ header:
   navigation:
     - name: Topics
       href: /topics.html
+    - name: Assignments
+      href: /assignments.html
   drawer:
     - name: Topics
       href: /topics.html
+    - name: Assignments
+      href: /assignments.html
+    - name: Unassigned
+      href: /unassigned.html

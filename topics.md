@@ -1,8 +1,9 @@
 ---
 layout: topics
 title: Topics
+type: task
 github: AllenInstitute/TEM_comms
-owner: Cameron
+assigned: Cameron
 topics:
     tile.raw:
         description: This message is sent whenever a new tile is ready.

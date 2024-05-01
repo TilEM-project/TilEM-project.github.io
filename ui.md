@@ -1,6 +1,7 @@
 ---
 layout: page
 title: User Interface
+type: task
 receives:
     - camera.status
     - stage.aperture.status

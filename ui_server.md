@@ -1,6 +1,7 @@
 ---
 layout: page
 title: UI Server
+type: task
 receives:
     - tile.jpeg
     - tile.minimap
