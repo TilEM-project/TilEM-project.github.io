@@ -12,13 +12,20 @@ sends:
     - buffer.status
 ---
 
-The purpose of the upload buffer service is to allow the microscope to continue imaging when the internet connection is insufficient for real-time tile upload.
-A functional internet connection is still required for [pyTEM](/pytem.html) to run.
-The buffer service has four primary responsibilities:
+Tile images and metdata must be stored during montaging, then uploaded after montaging is complete.
+If the montage is aborted, this data should then be discarded.
+Upoads should happen asynchronously such that the microscope can continue imaging when the internet connection is insufficient for real-time tile upload.
+An internet connection is still required for [pyTEM](/pytem.html) to function.
 
-1. Upload each tile with appropriate metadata to the [aloha](/aloha.html) lambda function.
-1. Check that aloha successfully processed the tile.
-1. Delete the tile (and intermediate files) from the SSD.
+The buffer service is responsibe for the following tasks:
 
-This process should be triggered whenever a tile is finished processing by the [image processing pipeline](/pipeline.html), via a message through the [broker](/broker.md).
+1. Store tile metadata during montaging.
+1. After montaging:
+    1. Upload metadata to [TEM DB](/tem_db.html).
+    1. Upload each tile to the [aloha](/aloha.html) service.
+    1. Check that aloha successfully processed the tile.
+    1. Delete the tile (and intermediate files) from the SSD.
+1. If montaging is aborted: delete all tiles (and intermediate files).
+
+Processed tiles and metadata should be recieved from the [image processing pipeline](/pipeline.html) via a multitude of topics listed above via the [broker](/broker.md).
 Additionally, messages should be regularly published on the [`buffer.status`](/topics.html#buffer-status) topic about the state of the buffer.
