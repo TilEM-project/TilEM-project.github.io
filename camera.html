@@ -28,14 +28,14 @@
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">
-        <a href="/">TEM Architecture</a>
+        <a href="/TEM_architecture/">TEM Architecture</a>
       </span>
       <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         
-          <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+          <a class="mdl-navigation__link" href="/TEM_architecture/topics.html">Topics</a>
         
-          <a class="mdl-navigation__link" href="/assignments.html">Assignments</a>
+          <a class="mdl-navigation__link" href="/TEM_architecture/assignments.html">Assignments</a>
         
       </nav>
     </div>
@@ -44,13 +44,13 @@
     <span class="mdl-layout-title">TEM Architecture</span>
     <nav class="mdl-navigation">
       
-        <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        <a class="mdl-navigation__link" href="/TEM_architecture/topics.html">Topics</a>
         
       
-        <a class="mdl-navigation__link" href="/assignments.html">Assignments</a>
+        <a class="mdl-navigation__link" href="/TEM_architecture/assignments.html">Assignments</a>
         
       
-        <a class="mdl-navigation__link" href="/unassigned.html">Unassigned</a>
+        <a class="mdl-navigation__link" href="/TEM_architecture/unassigned.html">Unassigned</a>
         
       
     </nav>
@@ -87,9 +87,9 @@
       <ul>
         
         
-          <li><a href="/topics.html#camera-image">camera.image</a></li>
+          <li><a href="/TEM_architecture/topics.html#camera-image">camera.image</a></li>
         
-          <li><a href="/topics.html#camera-status">camera.status</a></li>
+          <li><a href="/TEM_architecture/topics.html#camera-status">camera.status</a></li>
         
       </ul>
     
@@ -98,9 +98,9 @@
       <ul>
         
         
-          <li><a href="/topics.html#camera-command">camera.command</a></li>
+          <li><a href="/TEM_architecture/topics.html#camera-command">camera.command</a></li>
         
-          <li><a href="/topics.html#camera-settings">camera.settings</a></li>
+          <li><a href="/TEM_architecture/topics.html#camera-settings">camera.settings</a></li>
         
       </ul>
     
@@ -108,10 +108,10 @@
 
 <div class="mdl-card__supporting-text">
   <p>The camera service takes care of interacting with the camera using the <a href="https://www.ximea.com/">XIMEA</a> <a href="https://www.ximea.com/support/wiki/apis/XiAPI">xiAPI</a>.
-This service accepts messages from two topics, <a href="/topics.html#camera-settings"><code class="language-plaintext highlighter-rouge">camera.settings</code></a> and <a href="/topics.html#camera-command"><code class="language-plaintext highlighter-rouge">camera.command</code></a>.
-The <code class="language-plaintext highlighter-rouge">camera.settings</code> topic is used for changing settings on the camera such as exposure or resolution, while the <code class="language-plaintext highlighter-rouge">camera.command</code> topic is used to signal the camera to get an image which is then saved to disk and the path sent on the <a href="/topics.html#camera-image"><code class="language-plaintext highlighter-rouge">camera.image</code></a> topic.
+This service accepts messages from two topics, <a href="/TEM_architecture/topics.html#camera-settings"><code class="language-plaintext highlighter-rouge">camera.settings</code></a> and <a href="/TEM_architecture/topics.html#camera-command"><code class="language-plaintext highlighter-rouge">camera.command</code></a>.
+The <code class="language-plaintext highlighter-rouge">camera.settings</code> topic is used for changing settings on the camera such as exposure or resolution, while the <code class="language-plaintext highlighter-rouge">camera.command</code> topic is used to signal the camera to get an image which is then saved to disk and the path sent on the <a href="/TEM_architecture/topics.html#camera-image"><code class="language-plaintext highlighter-rouge">camera.image</code></a> topic.
 The <code class="language-plaintext highlighter-rouge">camera.command</code> message includes the tile ID, and the image should be saved to disk, using this ID is the filename.
-A message should be sent on the <a href="/topics.html#camera-status"><code class="language-plaintext highlighter-rouge">camera.status</code></a> topic at a rate of no less than 1 Hz.</p>
+A message should be sent on the <a href="/TEM_architecture/topics.html#camera-status"><code class="language-plaintext highlighter-rouge">camera.status</code></a> topic at a rate of no less than 1 Hz.</p>
 
 </div>
     </div>

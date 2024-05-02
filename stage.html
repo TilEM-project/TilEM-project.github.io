@@ -28,14 +28,14 @@
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">
-        <a href="/">TEM Architecture</a>
+        <a href="/TEM_architecture/">TEM Architecture</a>
       </span>
       <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         
-          <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+          <a class="mdl-navigation__link" href="/TEM_architecture/topics.html">Topics</a>
         
-          <a class="mdl-navigation__link" href="/assignments.html">Assignments</a>
+          <a class="mdl-navigation__link" href="/TEM_architecture/assignments.html">Assignments</a>
         
       </nav>
     </div>
@@ -44,13 +44,13 @@
     <span class="mdl-layout-title">TEM Architecture</span>
     <nav class="mdl-navigation">
       
-        <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        <a class="mdl-navigation__link" href="/TEM_architecture/topics.html">Topics</a>
         
       
-        <a class="mdl-navigation__link" href="/assignments.html">Assignments</a>
+        <a class="mdl-navigation__link" href="/TEM_architecture/assignments.html">Assignments</a>
         
       
-        <a class="mdl-navigation__link" href="/unassigned.html">Unassigned</a>
+        <a class="mdl-navigation__link" href="/TEM_architecture/unassigned.html">Unassigned</a>
         
       
     </nav>
@@ -82,9 +82,9 @@
       <ul>
         
         
-          <li><a href="/topics.html#stage-aperture-status">stage.aperture.status</a></li>
+          <li><a href="/TEM_architecture/topics.html#stage-aperture-status">stage.aperture.status</a></li>
         
-          <li><a href="/topics.html#stage-motion-status">stage.motion.status</a></li>
+          <li><a href="/TEM_architecture/topics.html#stage-motion-status">stage.motion.status</a></li>
         
       </ul>
     
@@ -93,9 +93,9 @@
       <ul>
         
         
-          <li><a href="/topics.html#stage-aperture-command">stage.aperture.command</a></li>
+          <li><a href="/TEM_architecture/topics.html#stage-aperture-command">stage.aperture.command</a></li>
         
-          <li><a href="/topics.html#stage-motion-command">stage.motion.command</a></li>
+          <li><a href="/TEM_architecture/topics.html#stage-motion-command">stage.motion.command</a></li>
         
       </ul>
     
@@ -105,12 +105,12 @@
   <p>The stage service abstracts the interfaces of the various hardware components related to positioning and transitioning between apertures.
 This service can be split into three components, moving between apertures, rotating samples, and positioning samples.</p>
 
-<p>For changing between apertures, two topics are used, <a href="/topics.html#stage-aperture-command"><code class="language-plaintext highlighter-rouge">stage.aperture.command</code></a> and <a href="/topics.html#stage-aperture-status"><code class="language-plaintext highlighter-rouge">stage.aperture.status</code></a>.
+<p>For changing between apertures, two topics are used, <a href="/TEM_architecture/topics.html#stage-aperture-command"><code class="language-plaintext highlighter-rouge">stage.aperture.command</code></a> and <a href="/TEM_architecture/topics.html#stage-aperture-status"><code class="language-plaintext highlighter-rouge">stage.aperture.status</code></a>.
 The <code class="language-plaintext highlighter-rouge">stage.aperture.command</code> topic is used to send commands to the hardware to change the aperture, and/or optionally calibrate the hardware.
 The <code class="language-plaintext highlighter-rouge">stage.aperture.status</code> topic normally has a message published at a frequency of no less than 1 Hz, at a frequency of no less than 20 Hz when in motion, and immediately once any motion is complete.
 This message contains the status of the hardware including the ID of the current aperture, if the hardware is calibrated, along with any errors.</p>
 
-<p>For moving the stages, two topics are used, <a href="/topics.html#stage-motion-command"><code class="language-plaintext highlighter-rouge">stage.motion.command</code></a> and <a href="/topics.html#stage-motion-status"><code class="language-plaintext highlighter-rouge">stage.motion.status</code></a>.
+<p>For moving the stages, two topics are used, <a href="/TEM_architecture/topics.html#stage-motion-command"><code class="language-plaintext highlighter-rouge">stage.motion.command</code></a> and <a href="/TEM_architecture/topics.html#stage-motion-status"><code class="language-plaintext highlighter-rouge">stage.motion.status</code></a>.
 The <code class="language-plaintext highlighter-rouge">stage.motion.command</code> topic is used to send commands to the stages.
 The <code class="language-plaintext highlighter-rouge">stage.motion.status</code> topic normally has a message published at a frequency of no less than 1 Hz, at a frequency of no less the 50 Hz when in motion, and immediately once motion is complete.
 This message contains the status of the hardware including the current locations of the stages, along with other information.</p>

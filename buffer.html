@@ -28,14 +28,14 @@
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">
-        <a href="/">TEM Architecture</a>
+        <a href="/TEM_architecture/">TEM Architecture</a>
       </span>
       <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         
-          <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+          <a class="mdl-navigation__link" href="/TEM_architecture/topics.html">Topics</a>
         
-          <a class="mdl-navigation__link" href="/assignments.html">Assignments</a>
+          <a class="mdl-navigation__link" href="/TEM_architecture/assignments.html">Assignments</a>
         
       </nav>
     </div>
@@ -44,13 +44,13 @@
     <span class="mdl-layout-title">TEM Architecture</span>
     <nav class="mdl-navigation">
       
-        <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        <a class="mdl-navigation__link" href="/TEM_architecture/topics.html">Topics</a>
         
       
-        <a class="mdl-navigation__link" href="/assignments.html">Assignments</a>
+        <a class="mdl-navigation__link" href="/TEM_architecture/assignments.html">Assignments</a>
         
       
-        <a class="mdl-navigation__link" href="/unassigned.html">Unassigned</a>
+        <a class="mdl-navigation__link" href="/TEM_architecture/unassigned.html">Unassigned</a>
         
       
     </nav>
@@ -74,7 +74,7 @@
       <ul>
         
         
-          <li><a href="/topics.html#buffer-status">buffer.status</a></li>
+          <li><a href="/TEM_architecture/topics.html#buffer-status">buffer.status</a></li>
         
       </ul>
     
@@ -83,15 +83,15 @@
       <ul>
         
         
-          <li><a href="/topics.html#tile-processed">tile.processed</a></li>
+          <li><a href="/TEM_architecture/topics.html#tile-processed">tile.processed</a></li>
         
-          <li><a href="/topics.html#tile-statistics-focus">tile.statistics.focus</a></li>
+          <li><a href="/TEM_architecture/topics.html#tile-statistics-focus">tile.statistics.focus</a></li>
         
-          <li><a href="/topics.html#tile-statistics-histogram">tile.statistics.histogram</a></li>
+          <li><a href="/TEM_architecture/topics.html#tile-statistics-histogram">tile.statistics.histogram</a></li>
         
-          <li><a href="/topics.html#tile-statistics-min_max_mean">tile.statistics.min_max_mean</a></li>
+          <li><a href="/TEM_architecture/topics.html#tile-statistics-min_max_mean">tile.statistics.min_max_mean</a></li>
         
-          <li><a href="/topics.html#tile-transform">tile.transform</a></li>
+          <li><a href="/TEM_architecture/topics.html#tile-transform">tile.transform</a></li>
         
       </ul>
     
@@ -101,7 +101,7 @@
   <p>Tile images and metadata must be stored during montaging, then uploaded after montaging is complete.
 If the montage is aborted, this data should then be discarded.
 Uploads should happen asynchronously such that the microscope can continue imaging when the internet connection is insufficient for real-time tile upload.
-An internet connection is still required for <a href="/pytem.html">pyTEM</a> to function.</p>
+An internet connection is still required for <a href="/TEM_architecture/pytem.html">pyTEM</a> to function.</p>
 
 <p>The buffer service is responsible for the following tasks:</p>
 
@@ -109,8 +109,8 @@ An internet connection is still required for <a href="/pytem.html">pyTEM</a> to 
   <li>Store tile metadata during montaging.</li>
   <li>After montaging:
     <ol>
-      <li>Upload metadata to <a href="/tem_db.html">TEM DB</a>.</li>
-      <li>Upload each tile to the <a href="/aloha.html">aloha</a> service.</li>
+      <li>Upload metadata to <a href="/TEM_architecture/tem_db.html">TEM DB</a>.</li>
+      <li>Upload each tile to the <a href="/TEM_architecture/aloha.html">aloha</a> service.</li>
       <li>Check that aloha successfully processed the tile.</li>
       <li>Delete the tile (and intermediate files) from the SSD.</li>
     </ol>
@@ -118,8 +118,8 @@ An internet connection is still required for <a href="/pytem.html">pyTEM</a> to 
   <li>If montaging is aborted: delete all tiles (and intermediate files).</li>
 </ol>
 
-<p>Processed tiles and metadata should be received from the <a href="/pipeline.html">image processing pipeline</a> via a multitude of topics listed above via the <a href="/broker.md">broker</a>.
-Additionally, messages should be regularly published on the <a href="/topics.html#buffer-status"><code class="language-plaintext highlighter-rouge">buffer.status</code></a> topic about the state of the buffer.</p>
+<p>Processed tiles and metadata should be received from the <a href="/TEM_architecture/pipeline.html">image processing pipeline</a> via a multitude of topics listed above via the <a href="/broker.md">broker</a>.
+Additionally, messages should be regularly published on the <a href="/TEM_architecture/topics.html#buffer-status"><code class="language-plaintext highlighter-rouge">buffer.status</code></a> topic about the state of the buffer.</p>
 
 </div>
     </div>

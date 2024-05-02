@@ -28,14 +28,14 @@
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">
-        <a href="/">TEM Architecture</a>
+        <a href="/TEM_architecture/">TEM Architecture</a>
       </span>
       <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         
-          <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+          <a class="mdl-navigation__link" href="/TEM_architecture/topics.html">Topics</a>
         
-          <a class="mdl-navigation__link" href="/assignments.html">Assignments</a>
+          <a class="mdl-navigation__link" href="/TEM_architecture/assignments.html">Assignments</a>
         
       </nav>
     </div>
@@ -44,13 +44,13 @@
     <span class="mdl-layout-title">TEM Architecture</span>
     <nav class="mdl-navigation">
       
-        <a class="mdl-navigation__link" href="/topics.html">Topics</a>
+        <a class="mdl-navigation__link" href="/TEM_architecture/topics.html">Topics</a>
         
       
-        <a class="mdl-navigation__link" href="/assignments.html">Assignments</a>
+        <a class="mdl-navigation__link" href="/TEM_architecture/assignments.html">Assignments</a>
         
       
-        <a class="mdl-navigation__link" href="/unassigned.html">Unassigned</a>
+        <a class="mdl-navigation__link" href="/TEM_architecture/unassigned.html">Unassigned</a>
         
       
     </nav>
@@ -75,11 +75,11 @@
       <ul>
         
         
-          <li><a href="/topics.html#tile-jpeg">tile.jpeg</a></li>
+          <li><a href="/TEM_architecture/topics.html#tile-jpeg">tile.jpeg</a></li>
         
-          <li><a href="/topics.html#tile-minimap">tile.minimap</a></li>
+          <li><a href="/TEM_architecture/topics.html#tile-minimap">tile.minimap</a></li>
         
-          <li><a href="/topics.html#tile-statistics-histogram">tile.statistics.histogram</a></li>
+          <li><a href="/TEM_architecture/topics.html#tile-statistics-histogram">tile.statistics.histogram</a></li>
         
       </ul>
     
@@ -88,10 +88,10 @@
 <div class="mdl-card__supporting-text">
   <p>The UI Server is a service which provides a web based user interface for the microscope.
 It primarily serves HTML and JavaScript files to the client.
-Additionally, the down-sampled JPEG tiles and minimap received on the <a href="/topics.html#tile-jpeg"><code class="language-plaintext highlighter-rouge">tile.jpeg</code></a> and <a href="/topics.html#tile-minimap"><code class="language-plaintext highlighter-rouge">tile.minimap</code></a> topics are sent to the <a href="/ui.html">client</a> via a websocket.</p>
+Additionally, the down-sampled JPEG tiles and minimap received on the <a href="/topics.html#tile-jpeg"><code class="language-plaintext highlighter-rouge">tile.jpeg</code></a> and <a href="/topics.html#tile-minimap"><code class="language-plaintext highlighter-rouge">tile.minimap</code></a> topics are sent to the <a href="/TEM_architecture/ui.html">client</a> via a websocket.</p>
 
 <p>The JavaScript code running in the client’s browser is written using <a href="https://vuejs.org/">Vue.js</a> and uses <a href="https://github.com/stomp-js/stompjs">STOMP.js</a> to communicate with the <a href="/broker.html">message broker</a>.
-Further documentation on the UI is available <a href="/ui.html">here</a>.</p>
+Further documentation on the UI is available <a href="/TEM_architecture/ui.html">here</a>.</p>
 
 </div>
     </div>
