@@ -12,7 +12,7 @@ layout: raw_page
     {% endif %}
     {% if page.assigned %}
       {% assign contributor = site.data.contributors[page.assigned] %}
-      <p class="mdl-card__subtitle-text owner-info">
+      <p class="mdl-card__subtitle-text contributor-info">
         Assigned: {{ contributor.name }}
         {% if contributor.github %}
           <a href="https://github.com/{{ contributor.github }}"><i class="fab fa-github"></i></a>
