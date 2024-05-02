@@ -9,4 +9,4 @@ receives:
 assigned: Cameron
 ---
 
-The microscope service interacts with the microscope, sending status information on the [`scope.status`](/topics.html#scope-status) topic, and accepting commands on the [`scope.command`](/topics.html#scope-command) topic.
+The microscope service interacts with the microscope, sending status information on the [`scope.status`]({{ '/topics.html#scope-status' | relative_url }}) topic, and accepting commands on the [`scope.command`]({{ '/topics.html#scope-command' | relative_url }}) topic.

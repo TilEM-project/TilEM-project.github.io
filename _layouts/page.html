@@ -30,7 +30,7 @@ layout: raw_page
       <ul>
         {% assign topics = page.sends | sort %}
         {% for topic in topics %}
-          <li><a href="/topics.html#{{ topic | replace: '.', '-' }}">{{ topic }}</a></li>
+          <li><a href="{{ '/topics.html' | relative_url }}#{{ topic | replace: '.', '-' }}">{{ topic }}</a></li>
         {% endfor %}
       </ul>
     {% endif %}
@@ -39,7 +39,7 @@ layout: raw_page
       <ul>
         {% assign topics = page.receives | sort %}
         {% for topic in topics %}
-          <li><a href="/topics.html#{{ topic | replace: '.', '-' }}">{{ topic }}</a></li>
+          <li><a href="{{ '/topics.html' | relative_url }}#{{ topic | replace: '.', '-' }}">{{ topic }}</a></li>
         {% endfor %}
       </ul>
     {% endif %}

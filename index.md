@@ -27,34 +27,34 @@ with Cluster("AWS", graph_attr={"bgcolor": "#FFE0B2"}):
 
     ac_qc = Python("AC/QC", pin="true", pos="0, -0.25")
 
-    aloha = LambdaFunction("Aloha", pin="true", pos="-0.25, 0", href="/aloha.html")
+    aloha = LambdaFunction("Aloha", pin="true", pos="-0.25, 0", href="{{ '/aloha.html' | relative_url }}")
 
 client = Client("AC/QC user", pin="true", pos="0.25, -0.25")
-operator = Client("Microscope Operator", pin="true", pos="-1.25, 0.125", href="/ui.html")
+operator = Client("Microscope Operator", pin="true", pos="-1.25, 0.125", href="{{ '/ui.html' | relative_url }}")
 
 with Cluster("Docker Compose", graph_attr={"bgcolor": "#E0F2F1"}):
-    event_bus = Activemq("ActiveMQ", pin="true", pos="-1, -0.25", href="/broker.html")
+    event_bus = Activemq("ActiveMQ", pin="true", pos="-1, -0.25", href="{{ '/broker.html' | relative_url }}")
 
     pyTEM = Python(
-        "pyTEM", pin="true", pos="-0.75, 0.25", href="/pytem.html"
+        "pyTEM", pin="true", pos="-0.75, 0.25", href="{{ '/pytem.html' | relative_url }}"
     )
-    microscope_service = Python("Microscope\nService", pin="true", pos="-0.5, 0.5")
-    camera_service = Python("Camera\nService", pin="true", pos="-1, 0.5", href="/camera.html")
-    stage_service = Python("Stage\nService", pin="true", pos="-0.75, 0.5", href="/stage.html")
-    cpp_pipeline = Cpp("Image Processing\nPipeline", pin="true", pos="-0.75, 0", href="/pipeline.html")
-    buffer = Python("Buffer\nService", pin="true", pos="-0.5, 0", href="/buffer.html")
-    ui_server = Python("UI Server", pin="true", pos="-1, 0.125", href="/ui_server.html")
+    microscope_service = Python("Microscope\nService", pin="true", pos="-0.5, 0.5", href="{{ '/scope.html' | relative_url }}")
+    camera_service = Python("Camera\nService", pin="true", pos="-1, 0.5", href="{{ '/camera.html' | relative_url }}")
+    stage_service = Python("Stage\nService", pin="true", pos="-0.75, 0.5", href="{{ '/stage.html' | relative_url }}")
+    cpp_pipeline = Cpp("Image Processing\nPipeline", pin="true", pos="-0.75, 0", href="{{ '/pipeline.html' | relative_url }}")
+    buffer = Python("Buffer\nService", pin="true", pos="-0.5, 0", href="{{ '/buffer.html' | relative_url }}")
+    ui_server = Python("UI Server", pin="true", pos="-1, 0.125", href="{{ '/ui_server.html' | relative_url }}")
 
 microscope = Custom("Microscope", "_my_icons/TEM.png", pin="true", pos="-0.5, 0.75")
 stage = Custom("Stage", "_my_icons/stage.png", pin="true", pos="-0.75, 0.75")
 camera = Custom("Camera", "_my_icons/camera.png", pin="true", pos="-1, 0.75")
 
 with Cluster("Platform9", graph_attr={"bgcolor": "#b2ffc7"}):
-    log = Loki("Log Server", pin="true", pos="-0.25, 0.5", href="/log.html")
+    log = Loki("Log Server", pin="true", pos="-0.25, 0.5", href="{{ '/log.html' | relative_url }}")
 
 with Cluster("Lab Server", graph_attr={"bgcolor": "#ffb2b2"}):
-    registry = Docker("Container Registry", pin="true", pos="0, 0.5", href="/registry.html")
-    runner = Github("GitHub Actions\nRunner", pin="true", pos="0.25, 0.5", href="/runner.html")
+    registry = Docker("Container Registry", pin="true", pos="0, 0.5", href="{{ '/registry.html' | relative_url }}")
+    runner = Github("GitHub Actions\nRunner", pin="true", pos="0.25, 0.5", href="{{ '/runner.html' | relative_url }}")
 
 s3 >> ac_qc
 tem_db << Edge() >> db

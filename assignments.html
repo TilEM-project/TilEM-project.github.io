@@ -22,7 +22,7 @@ title: Assignments
             {% for service in site.pages -%}
                 {%- if service.assigned == contributor[0] -%}
                     <li>
-                        <a href="{{ service.url }}">
+                        <a href="{{ service.url | relative_url }}">
                             {{ service.title }}
                         </a>
                     </li>

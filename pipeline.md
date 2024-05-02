@@ -61,19 +61,19 @@ lens_correction >> matcher >> minimap_from_gpu >> save_minimap >> output_minimap
 matcher >> output_transform
 clahe >> downsample >> from_gpu_jpeg >> save_jpeg >> output_jpeg
 
-input << Edge(label="tile.raw", href="/topics.html#tileraw") << Blank(pin="true", pos="-0.375, 0")
-output_min_max_mean >> Edge(headlabel="tile.statistics.min_max_mean", href="/topics.html#tilestatisticsmin_max_mean") >> Blank(pin="true", pos="2.625, 0.625")
-output_focus >> Edge(headlabel="tile.statistics.focus", href="/topics.html#tilestatisticsfocus") >> Blank(pin="true", pos="2.625, 0.375")
-output_jpeg >> Edge(headlabel="tile.jpeg", href="/topics.html#tilejpeg") >> Blank(pin="true", pos="2.625, 0.125")
-output_hist >> Edge(headlabel="tile.statistics.histogram", href="/topics.html#tilestatisticshistogram") >> Blank(pin="true", pos="2.625, -0.125")
-output >> Edge(headlabel="tile.processed", href="/topics.html#tileprocessed") >> Blank(pin="true", pos="2.625, -0.375")
-output_minimap >> Edge(headlabel="tile.minimap", href="/topics.html#tileminimap") >> Blank(pin="true", pos="2.625, -0.625")
-output_transform >> Edge(headlabel="tile.transform", href="/topics.html#tiletransform") >> Blank(pin="true", pos="2.625, -0.875")
+input << Edge(label="tile.raw", href="{{ '/topics.html#tileraw' | relative_url }}") << Blank(pin="true", pos="-0.375, 0")
+output_min_max_mean >> Edge(headlabel="tile.statistics.min_max_mean", href="{{ '/topics.html#tilestatisticsmin_max_mean' | relative_url }}") >> Blank(pin="true", pos="2.625, 0.625")
+output_focus >> Edge(headlabel="tile.statistics.focus", href="{{ '/topics.html#tilestatisticsfocus' | relative_url }}") >> Blank(pin="true", pos="2.625, 0.375")
+output_jpeg >> Edge(headlabel="tile.jpeg", href="{{ '/topics.html#tilejpeg' | relative_url }}") >> Blank(pin="true", pos="2.625, 0.125")
+output_hist >> Edge(headlabel="tile.statistics.histogram", href="{{ '/topics.html#tilestatisticshistogram' | relative_url }}") >> Blank(pin="true", pos="2.625, -0.125")
+output >> Edge(headlabel="tile.processed", href="{{ '/topics.html#tileprocessed' | relative_url }}") >> Blank(pin="true", pos="2.625, -0.375")
+output_minimap >> Edge(headlabel="tile.minimap", href="{{ '/topics.html#tileminimap' | relative_url }}") >> Blank(pin="true", pos="2.625, -0.625")
+output_transform >> Edge(headlabel="tile.transform", href="{{ '/topics.html#tiletransform' | relative_url }}") >> Blank(pin="true", pos="2.625, -0.875")
 {% enddiagram %}
 
 ### Receive Tile Filepath
 
-This node receives the metadata for a tile to process from the [message broker](/broker.html), and passes the filename to the load image node.
+This node receives the metadata for a tile to process from the [message broker]({{ '/broker.html' | relative_url }}), and passes the filename to the load image node.
 
 ### Load Tile
 
@@ -112,7 +112,7 @@ The processed tile can now be saved to disk.
 
 ### Send Tile Filepath
 
-The filepath of the processed tile can now be sent via the [broker](/broker.html) to other services.
+The filepath of the processed tile can now be sent via the [broker]({{ '/broker.html' | relative_url }}) to other services.
 
 ### Min, Max, Mean
 
@@ -120,7 +120,7 @@ This node calculates the minimum, maximum, and mean pixel values.
 
 ### Send Min, Max, Mean
 
-This node sends the minimum, maximum, and mean pixel values to other services via the [broker](/broker.html).
+This node sends the minimum, maximum, and mean pixel values to other services via the [broker]({{ '/broker.html' | relative_url }}).
 
 ### FFT
 
@@ -132,7 +132,7 @@ This node uses the FFT data to create a metric for the quality of the focus.
 
 ### Send Focus Score
 
-This node sends the focus score to other services via the [broker](/broker.html)
+This node sends the focus score to other services via the [broker]({{ '/broker.html' | relative_url }})
 
 ### Calculate Histogram
 
@@ -144,4 +144,4 @@ This node saves the histogram to SSD storage.
 
 ### Send Histogram
 
-This node sends the filepath to the histogram to other services using the [broker](/broker.html).
+This node sends the filepath to the histogram to other services using the [broker]({{ '/broker.html' | relative_url }}).
