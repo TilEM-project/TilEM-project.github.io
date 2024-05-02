@@ -91,7 +91,7 @@ exit(0)
                 end
                 svg.search("//svg:image", NAMESPACES).each do |img|
                     add_icon(context, img["xlink:href"])
-                    img["xlink:href"] = site.baseurl + "/icons/" + File.basename(img["xlink:href"]) 
+                    img["xlink:href"] = context.registers[:site].baseurl + "/icons/" + File.basename(img["xlink:href"]) 
                 end
                 return '<div class="diagram">%s</div>' % [svg.to_s.split("\n").drop(1).join("\n")]
             else
