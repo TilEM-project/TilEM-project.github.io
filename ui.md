@@ -16,4 +16,4 @@ receives:
 The microscope user interface is a webpage available from the [UI server](/ui_server.html).
 This webpage include JavaScript code running in the browser.
 This code uses the [Vue.js](https://vuejs.org/) framework, and [STOMP.js](https://github.com/stomp-js/stompjs) for communication with the rest of the system via the [message broker](/broker.html).
-It also recieves image data from the [UI server](/ui_server.html) using websockets.
+It also receives image data from the [UI server](/ui_server.html) using websockets.

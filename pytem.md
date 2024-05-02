@@ -25,7 +25,7 @@ from diagrams import Diagram, Cluster, Node, Edge
 
 with Cluster("pyTEM States"):
     preview_mode = Node("Preview/Setup State", shape="rectangle", style="rounded", labelloc="c", width="3", height="0.5", pin="true", pos="0,4",  href="#preview-state")
-    change_aperture = Node("Change Aperture State", shape="rectangle", style="rounded", labelloc="c", width="3", height="0.5", pin="true", pos="-2,2.5",  href="#change-aperture-state")
+    change_aperture = Node("ROI Initialization State", shape="rectangle", style="rounded", labelloc="c", width="3", height="0.5", pin="true", pos="-2,2.5",  href="#change-aperture-state")
     acquisition = Node("Acquisition State", shape="rectangle", style="rounded", labelloc="c", width="3", height="0.5",pin="true", pos="0,0",  href="#acquisition-state")
     error = Node("Error State", shape="diamond", style="solid", labelloc="c", width="2", height="0.75", pin="true", pos="3,2.5",  href="#error-state")
 
@@ -76,11 +76,11 @@ send_pybind >> encode >> publish >> web_ui
 check_state >> Edge(xlabel="Repeat", minlen="2") >> check_state >> get_image
 {% enddiagram %}
 
-## Change Aperture State
+## ROI Initialization State
 
-The Change Aperture State represents a state for moving to an aperture on a grid tape or stick16.
+The ROI Initialization State represents a state for moving to an aperture on a grid tape or stick16.
 
-### Change Aperture State Logic
+### ROI Initialization State Logic
 
 Upon entering this state it handles the entry logic for the state and initializes tape_ranges if it is None. It tries to fetch barcode values from TEM_db (if using tape); otherwise, it sets default values.
 
@@ -118,7 +118,7 @@ Next the code performs the following:
 7. Lens and Beam Adjustments:
     Adjusts the beam's brightness and attempts to find a centroid for the aperture if needed.
     Conducts a quality check on the beam's brightness and might abort if the beam mean value is too low.
-    Manages autocentering of the beam if necessary.
+    Manages auto-centering of the beam if necessary.
 
 8. Brightfield Imaging:
     Handles brightfield imaging conditions and might abort based on the quality of consecutive brightfield images.
@@ -136,7 +136,7 @@ Next the code performs the following:
 from diagrams import Diagram, Cluster
 from diagrams.programming.flowchart import Action, InputOutput, Decision, StartEnd
 
-with Cluster("Change Aperture State"):
+with Cluster("ROI Initialization State"):
     entry = StartEnd("Enter State")
     init_tape = Decision("Initialize tape_ranges")
     fetch_barcode = Action("Fetch Barcode\nfrom TEM_db")

@@ -85,7 +85,7 @@ topics:
                 description: The path where the processed tile is stored.
                 example: /storage/processed/69005602-15b0-4407-bf5b-4bddd6629141.tiff
     tile.jpeg:
-        description: This message contains the path to a downsampled and JPEG compressed tile primarily for UI use.
+        description: This message contains the path to a down-sampled and JPEG compressed tile primarily for UI use.
         payload:
             tile_id:
                 type: string
@@ -184,7 +184,7 @@ topics:
             device_name:
                 type: string
                 description: The camera device name.
-                example: Ximea Camera
+                example: XIMEA Camera
             device_model_id:
                 type: int
                 description: The model ID of the camera.
@@ -211,7 +211,7 @@ topics:
                 type: int
                 description: The ID of the current aperture.
                 example: 000007
-            callibrated:
+            calibrated:
                 type: bool
                 description: A flag to denote if the hardware is calibrated.
                 example: true

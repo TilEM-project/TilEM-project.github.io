@@ -24,7 +24,7 @@ from diagrams.generic.blank import Blank
 from diagrams import Node
 
 with Cluster("Intel TBB", graph_attr={"bgcolor": "#FFE0B2"}):
-    input = Python("Receive Tile Filepath", pin="true", pos="0, 0", href="#receive-tile-filepath")
+    input = Python("Receive Tile File-path", pin="true", pos="0, 0", href="#receive-tile-filepath")
     load = Cpp("Load Tile", pin="true", pos="0.25, 0", href="#load-tile")
     to_gpu = Cpp("Transfer to GPU", pin="true", pos="0.5, 0", href="#transfer-to-gpu")
     flip = Cpp("Horizontal Flip", pin="true", pos="0.75, 0", href="#flip")
@@ -38,8 +38,8 @@ with Cluster("Intel TBB", graph_attr={"bgcolor": "#FFE0B2"}):
     from_gpu_hist = Cpp("Transfer to CPU Memory", pin="true", pos="1.5, -0.125")
     hist = Cpp("Calculate Histogram", pin="true", pos="1.75, -0.125", href="#calculate-histogram")
     save_hist = Cpp("Save Histogram", pin="true", pos="2, -0.125", href="#save-histogram")
-    output_hist = Python("Send Histogram Filepath", pin="true", pos="2.25, -0.125", href="#send-histogram-filepath")
-    downsample = Cpp("Downsample", pin="true", pos="1.5, 0.125")
+    output_hist = Python("Send Histogram File-path", pin="true", pos="2.25, -0.125", href="#send-histogram-filepath")
+    downsample = Cpp("Down-sample", pin="true", pos="1.5, 0.125")
     from_gpu_jpeg = Cpp("Transfer to CPU Memory", pin="true", pos="1.75, 0.125")
     save_jpeg = Cpp("Save JPEG", pin="true", pos="2, 0.125")
     output_jpeg = Python("Send JPEG", pin="true", pos="2.25, 0.125")
@@ -77,11 +77,11 @@ This node receives the metadata for a tile to process from the [message broker](
 
 ### Load Tile
 
-This node receives the metadata and filename, and uses openCV to load a tile into CPU memory from SSD based storage.
+This node receives the metadata and filename, and uses OpenCV to load a tile into CPU memory from SSD based storage.
 
 ### Transfer to GPU
 
-After the tile is loaded into CPU memory, it is transfered into GPU memory for more efficient processing.
+After the tile is loaded into CPU memory, it is transferred into GPU memory for more efficient processing.
 
 ### Flip
 
@@ -94,7 +94,7 @@ The brightfield and darkfield file modification times are checked during each ex
 
 ### CLAHE
 
-The Contrast Limited Adaptive Histogram Equilization algorithm is applied to the tile.
+The Contrast Limited Adaptive Histogram Equalization algorithm is applied to the tile.
 The resulting image is sent to multiple functions for further analysis, including an [FFT](#fft) for calculating the [focus score](#focus-score), calculating the [minimum, maximum, and mean](#min-max-mean) pixel values, and [histogram](#calculate-histogram).
 
 ### Lens Correction
@@ -128,7 +128,7 @@ This node crops out the center of the tile and computes the Fast Fourier Transfo
 
 ### Focus Score
 
-This ndoe uses the FFT data to create a metric for the quality of the focus.
+This node uses the FFT data to create a metric for the quality of the focus.
 
 ### Send Focus Score
 
