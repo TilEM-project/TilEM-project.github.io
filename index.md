@@ -30,7 +30,7 @@ with Cluster("AWS", graph_attr={"bgcolor": "#FFE0B2"}):
     aloha = LambdaFunction("Aloha", pin="true", pos="-0.25, 0", href="/aloha.html")
 
 client = Client("AC/QC user", pin="true", pos="0.25, -0.25")
-operator = Client("Microscope Operator", pin="true", pos="-1.25, 0.25", href="/ui.html")
+operator = Client("Microscope Operator", pin="true", pos="-1.25, 0.125", href="/ui.html")
 
 with Cluster("Docker Compose", graph_attr={"bgcolor": "#E0F2F1"}):
     event_bus = Activemq("ActiveMQ", pin="true", pos="-1, -0.25", href="/broker.html")
@@ -39,11 +39,11 @@ with Cluster("Docker Compose", graph_attr={"bgcolor": "#E0F2F1"}):
         "pyTEM", pin="true", pos="-0.75, 0.25", href="/pytem.html"
     )
     microscope_service = Python("Microscope\nService", pin="true", pos="-0.5, 0.5")
-    camera_service = Cpp("Camera\nService", pin="true", pos="-1, 0.5", href="/camera.html")
+    camera_service = Python("Camera\nService", pin="true", pos="-1, 0.5", href="/camera.html")
     stage_service = Python("Stage\nService", pin="true", pos="-0.75, 0.5", href="/stage.html")
     cpp_pipeline = Cpp("Image Processing\nPipeline", pin="true", pos="-0.75, 0", href="/pipeline.html")
     buffer = Python("Buffer\nService", pin="true", pos="-0.5, 0", href="/buffer.html")
-    ui_server = Python("UI Server", pin="true", pos="-1, 0.25", href="/ui_server.html")
+    ui_server = Python("UI Server", pin="true", pos="-1, 0.125", href="/ui_server.html")
 
 microscope = Custom("Microscope", "_my_icons/TEM.png", pin="true", pos="-0.5, 0.75")
 stage = Custom("Stage", "_my_icons/stage.png", pin="true", pos="-0.75, 0.75")
@@ -52,7 +52,7 @@ camera = Custom("Camera", "_my_icons/camera.png", pin="true", pos="-1, 0.75")
 with Cluster("Platform9", graph_attr={"bgcolor": "#b2ffc7"}):
     log = Loki("Log Server", pin="true", pos="-0.25, 0.5", href="/log.html")
 
-with Cluster("", graph_attr={"bgcolor": "#ffb2b2"}):
+with Cluster("Lab Server", graph_attr={"bgcolor": "#ffb2b2"}):
     registry = Docker("Container Registry", pin="true", pos="0, 0.5", href="/registry.html")
     runner = Github("GitHub Actions\nRunner", pin="true", pos="0.25, 0.5", href="/runner.html")
 
@@ -73,6 +73,7 @@ stage << Edge() >> stage_service
 camera << Edge() >> camera_service
 s3 << aloha >> tem_db
 cpp_pipeline >> ui_server
+buffer >> tem_db
 {% enddiagram %}
 
 Most of the nodes in this diagram are hyperlinks to further documentation on this system.

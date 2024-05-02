@@ -4,6 +4,10 @@ layout: page
 type: task
 receives:
     - tile.processed
+    - tile.statistics.focus
+    - tile.statistics.histogram
+    - tile.statistics.min_max_mean
+    - tile.transform
 sends:
     - buffer.status
 ---

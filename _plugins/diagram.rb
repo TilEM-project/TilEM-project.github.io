@@ -8,9 +8,7 @@ import sys
 import json
 
 graph_attr = {
-    'fontsize': '45',
     'bgcolor': 'transparent',
-    'overlap': 'scale',
     'splines': 'line',
 }
 
