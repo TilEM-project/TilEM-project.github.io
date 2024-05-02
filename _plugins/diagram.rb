@@ -10,6 +10,7 @@ import json
 graph_attr = {
     'bgcolor': 'transparent',
     'splines': 'line',
+    'overlap': 'scale',
 }
 
 graph_attr.update(json.loads('%s'))
