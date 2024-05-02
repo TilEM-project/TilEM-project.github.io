@@ -98,12 +98,12 @@
   </div>
 
 <div class="mdl-card__supporting-text">
-  <p>Tile images and metdata must be stored during montaging, then uploaded after montaging is complete.
+  <p>Tile images and metadata must be stored during montaging, then uploaded after montaging is complete.
 If the montage is aborted, this data should then be discarded.
-Upoads should happen asynchronously such that the microscope can continue imaging when the internet connection is insufficient for real-time tile upload.
+Uploads should happen asynchronously such that the microscope can continue imaging when the internet connection is insufficient for real-time tile upload.
 An internet connection is still required for <a href="/pytem.html">pyTEM</a> to function.</p>
 
-<p>The buffer service is responsibe for the following tasks:</p>
+<p>The buffer service is responsible for the following tasks:</p>
 
 <ol>
   <li>Store tile metadata during montaging.</li>
@@ -118,7 +118,7 @@ An internet connection is still required for <a href="/pytem.html">pyTEM</a> to 
   <li>If montaging is aborted: delete all tiles (and intermediate files).</li>
 </ol>
 
-<p>Processed tiles and metadata should be recieved from the <a href="/pipeline.html">image processing pipeline</a> via a multitude of topics listed above via the <a href="/broker.md">broker</a>.
+<p>Processed tiles and metadata should be received from the <a href="/pipeline.html">image processing pipeline</a> via a multitude of topics listed above via the <a href="/broker.md">broker</a>.
 Additionally, messages should be regularly published on the <a href="/topics.html#buffer-status"><code class="language-plaintext highlighter-rouge">buffer.status</code></a> topic about the state of the buffer.</p>
 
 </div>
