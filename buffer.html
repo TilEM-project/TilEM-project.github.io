@@ -98,17 +98,27 @@
   </div>
 
 <div class="mdl-card__supporting-text">
-  <p>The purpose of the upload buffer service is to allow the microscope to continue imaging when the internet connection is insufficient for real-time tile upload.
-A functional internet connection is still required for <a href="/pytem.html">pyTEM</a> to run.
-The buffer service has four primary responsibilities:</p>
+  <p>Tile images and metdata must be stored during montaging, then uploaded after montaging is complete.
+If the montage is aborted, this data should then be discarded.
+Upoads should happen asynchronously such that the microscope can continue imaging when the internet connection is insufficient for real-time tile upload.
+An internet connection is still required for <a href="/pytem.html">pyTEM</a> to function.</p>
+
+<p>The buffer service is responsibe for the following tasks:</p>
 
 <ol>
-  <li>Upload each tile with appropriate metadata to the <a href="/aloha.html">aloha</a> lambda function.</li>
-  <li>Check that aloha successfully processed the tile.</li>
-  <li>Delete the tile (and intermediate files) from the SSD.</li>
+  <li>Store tile metadata during montaging.</li>
+  <li>After montaging:
+    <ol>
+      <li>Upload metadata to <a href="/tem_db.html">TEM DB</a>.</li>
+      <li>Upload each tile to the <a href="/aloha.html">aloha</a> service.</li>
+      <li>Check that aloha successfully processed the tile.</li>
+      <li>Delete the tile (and intermediate files) from the SSD.</li>
+    </ol>
+  </li>
+  <li>If montaging is aborted: delete all tiles (and intermediate files).</li>
 </ol>
 
-<p>This process should be triggered whenever a tile is finished processing by the <a href="/pipeline.html">image processing pipeline</a>, via a message through the <a href="/broker.md">broker</a>.
+<p>Processed tiles and metadata should be recieved from the <a href="/pipeline.html">image processing pipeline</a> via a multitude of topics listed above via the <a href="/broker.md">broker</a>.
 Additionally, messages should be regularly published on the <a href="/topics.html#buffer-status"><code class="language-plaintext highlighter-rouge">buffer.status</code></a> topic about the state of the buffer.</p>
 
 </div>
