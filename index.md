@@ -23,7 +23,7 @@ with Cluster("AWS", graph_attr={"bgcolor": "#FFE0B2"}):
     db = Database("Database", pin="true", pos="0, 0.25")
     s3 = S3("S3 Bucket", pin="true", pos="-0.25, -0.25")
 
-    tem_db = Python("TEM DB", pin="true", pos="-0.25, 0.25", href="/tem_db.html")
+    tem_db = Python("TEM DB", pin="true", pos="-0.25, 0.25", href="{{ '/tem_db.html' | relative_url }}")
 
     ac_qc = Python("AC/QC", pin="true", pos="0, -0.25")
 

@@ -13,3 +13,5 @@ header:
       href: /assignments.html
     - name: Unassigned
       href: /unassigned.html
+
+baseurl: /TEM_architecture/
