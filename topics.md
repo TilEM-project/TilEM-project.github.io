@@ -309,10 +309,6 @@ topics:
                 type: int or null
                 description: The desired focus value, or `null` to keep current focus.
                 example: 19385
-            aperture:
-                type: string or null
-                description: The desired state. Must be either `"lowmag"`, `"highmag"`, or `null` to keep current aperture.
-                example: 3
             mag_mode:
                 type: string or null
                 description: The desired magnification mode. Must be either `"LM"`, `"MAG1"`, `"MAG2"`, or `null` to keep the current mode. Must be provided if `mag` is not `null`.
