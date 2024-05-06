@@ -310,12 +310,16 @@ topics:
                 description: The desired focus value, or `null` to keep current focus.
                 example: 19385
             aperture:
-                type: int or null
-                description: The desired aperture, or `null` to keep current aperture.
+                type: string or null
+                description: The desired state. Must be either `"lowmag"`, `"highmag"`, or `null` to keep current aperture.
                 example: 3
+            mag_mode:
+                type: string or null
+                description: The desired magnification mode. Must be either `"LM"`, `"MAG1"`, `"MAG2"`, or `null` to keep the current mode. Must be provided if `mag` is not `null`.
+                example: MAG1
             mag:
                 type: int or null
-                description: The desired magnification level, or `null` to keep current magnification.
+                description: The desired magnification level, or `null` to keep current magnification. Must be provided if `mag_mode` is not `null`.
                 example: 3000
     scope.status:
         description: This message contains status information about the microscope.
@@ -325,17 +329,16 @@ topics:
                 description: The current focus value.
                 example: 17493
             aperture:
-                type: int
-                description: The current aperture.
+                type: str or null
+                description: The current aperture state, or `null` if unknown.
                 example: 2
+            mag_mode:
+                type: str
+                description
             mag:
                 type: int
                 description: The current magnification level.
                 example: 5000
-            vacuum:
-                type: float
-                description: The current vacuum level in Torr.
-                example: 1.27e-6
             tank_voltage:
                 type: int
                 description: The current HV tank voltage in kilovolts.
