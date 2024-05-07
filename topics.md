@@ -329,8 +329,9 @@ topics:
                 description: The current aperture state, or `null` if unknown.
                 example: 2
             mag_mode:
-                type: str
-                description
+                type: string
+                description: The current magnification mode.
+                example: MAG1
             mag:
                 type: int
                 description: The current magnification level.
