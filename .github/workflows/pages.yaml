@@ -18,8 +18,7 @@ jobs:
         run: |
           export GEM_HOME="$HOME/gems"
           export PATH="$HOME/gems/bin:$PATH"
-          gem install bundle jekyll nokogiri
-          bundle install
+          gem install bundle jekyll nokogiri i18n
           pip install diagrams
           sudo apt-get install -y graphviz
           jekyll build
