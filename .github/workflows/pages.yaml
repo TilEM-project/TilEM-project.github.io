@@ -20,7 +20,7 @@ jobs:
           export PATH="$HOME/gems/bin:$PATH"
           gem install bundler
           echo $PATH
-          find / -type f -name bundle 2>/dev/null
+          file $HOME/gems/bin/bundle
           $HOME/gems/bin/bundle install
           pip install diagrams
           sudo apt-get install -y graphviz
