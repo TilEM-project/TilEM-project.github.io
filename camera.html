@@ -107,6 +107,7 @@
   </div>
 
 <div class="mdl-card__supporting-text">
+  
   <p>The camera service takes care of interacting with the camera using the <a href="https://www.ximea.com/">XIMEA</a> <a href="https://www.ximea.com/support/wiki/apis/XiAPI">xiAPI</a>.
 This service accepts messages from two topics, <a href="/TEM_architecture/topics.html#camera-settings"><code class="language-plaintext highlighter-rouge">camera.settings</code></a> and <a href="/TEM_architecture/topics.html#camera-command"><code class="language-plaintext highlighter-rouge">camera.command</code></a>.
 The <code class="language-plaintext highlighter-rouge">camera.settings</code> topic is used for changing settings on the camera such as exposure or resolution, while the <code class="language-plaintext highlighter-rouge">camera.command</code> topic is used to signal the camera to get an image which is then saved to disk and the path sent on the <a href="/TEM_architecture/topics.html#camera-image"><code class="language-plaintext highlighter-rouge">camera.image</code></a> topic.

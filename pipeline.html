@@ -107,625 +107,1659 @@
   </div>
 
 <div class="mdl-card__supporting-text">
-  <p>The image processing pipeline is primarily written in C++ with some Python bindings.
-It utilizes the <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onetbb.html">Intel Thread Building Blocks</a> library for parallelism, and <a href="https://opencv.org/">OpenCV</a> for image processing.</p>
+  
+    <h3>Table of Contents</h3>
+  
+  <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h3"><a href="#introduction">Introduction</a></li>
+<li class="toc-entry toc-h3"><a href="#functionality">Functionality</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#receive-tile-filepath">Receive Tile Filepath</a></li>
+<li class="toc-entry toc-h4"><a href="#load-tile">Load Tile</a></li>
+<li class="toc-entry toc-h4"><a href="#transfer-to-gpu">Transfer to GPU</a></li>
+<li class="toc-entry toc-h4"><a href="#flip">Flip</a></li>
+<li class="toc-entry toc-h4"><a href="#flat-field-correction">Flat-Field Correction</a></li>
+<li class="toc-entry toc-h4"><a href="#clahe">CLAHE</a></li>
+<li class="toc-entry toc-h4"><a href="#lens-correction">Lens Correction</a></li>
+<li class="toc-entry toc-h4"><a href="#transfer-to-cpu-memory">Transfer to CPU Memory</a></li>
+<li class="toc-entry toc-h4"><a href="#save-tile">Save Tile</a></li>
+<li class="toc-entry toc-h4"><a href="#send-tile-filepath">Send Tile Filepath</a></li>
+<li class="toc-entry toc-h4"><a href="#tile-matcher">Tile Matcher</a></li>
+<li class="toc-entry toc-h4"><a href="#send-transform">Send Transform</a></li>
+<li class="toc-entry toc-h4"><a href="#minimap-to-cpu-memory">Minimap to CPU Memory</a></li>
+<li class="toc-entry toc-h4"><a href="#save-minimap">Save Minimap</a></li>
+<li class="toc-entry toc-h4"><a href="#send-minimap">Send Minimap</a></li>
+<li class="toc-entry toc-h4"><a href="#min-max-mean">Min, Max, Mean</a></li>
+<li class="toc-entry toc-h4"><a href="#send-min-max-mean">Send Min, Max, Mean</a></li>
+<li class="toc-entry toc-h4"><a href="#fft">FFT</a></li>
+<li class="toc-entry toc-h4"><a href="#focus-score">Focus Score</a></li>
+<li class="toc-entry toc-h4"><a href="#send-focus-score">Send Focus Score</a></li>
+<li class="toc-entry toc-h4"><a href="#clone">Clone</a></li>
+<li class="toc-entry toc-h4"><a href="#down-sample">Down-sample</a></li>
+<li class="toc-entry toc-h4"><a href="#down-sampled-image-to-cpu-memory">Down-sampled Image to CPU Memory</a></li>
+<li class="toc-entry toc-h4"><a href="#save-jpeg">Save JPEG</a></li>
+<li class="toc-entry toc-h4"><a href="#send-jpeg-filepath">Send JPEG Filepath</a></li>
+<li class="toc-entry toc-h4"><a href="#histogram-transfer-to-cpu-memory">Histogram Transfer to CPU Memory</a></li>
+<li class="toc-entry toc-h4"><a href="#calculate-histogram">Calculate Histogram</a></li>
+<li class="toc-entry toc-h4"><a href="#save-histogram">Save Histogram</a></li>
+<li class="toc-entry toc-h4"><a href="#send-histogram">Send Histogram</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#nodes">Nodes</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#imreadnode">IMReadNode</a></li>
+<li class="toc-entry toc-h4"><a href="#imwritenode">IMWriteNode</a></li>
+<li class="toc-entry toc-h4"><a href="#togpunode">ToGPUNode</a></li>
+<li class="toc-entry toc-h4"><a href="#fromgpunode">FromGPUNode</a></li>
+<li class="toc-entry toc-h4"><a href="#clonenode">CloneNode</a></li>
+<li class="toc-entry toc-h4"><a href="#clonenodegpu">CloneNodeGPU</a></li>
+<li class="toc-entry toc-h4"><a href="#flipnode">FlipNode</a></li>
+<li class="toc-entry toc-h4"><a href="#flipnodegpu">FlipNodeGPU</a></li>
+<li class="toc-entry toc-h4"><a href="#downsamplenode">DownsampleNode</a></li>
+<li class="toc-entry toc-h4"><a href="#downsamplenodegpu">DownsampleNodeGPU</a></li>
+<li class="toc-entry toc-h4"><a href="#flatfieldnode">FlatFieldNode</a></li>
+<li class="toc-entry toc-h4"><a href="#flatfieldnodegpu">FlatFieldNodeGPU</a></li>
+<li class="toc-entry toc-h4"><a href="#clahenode">CLAHENode</a></li>
+<li class="toc-entry toc-h4"><a href="#clahenodegpu">CLAHENodeGPU</a></li>
+<li class="toc-entry toc-h4"><a href="#matchernode">MatcherNode</a></li>
+<li class="toc-entry toc-h4"><a href="#matchernodegpu">MatcherNodeGPU</a></li>
+<li class="toc-entry toc-h4"><a href="#minmaxmeannode">MinMaxMeanNode</a></li>
+<li class="toc-entry toc-h4"><a href="#minmaxmeannodegpu">MinMaxMeanNodeGPU</a></li>
+<li class="toc-entry toc-h4"><a href="#fftnode">FFTNode</a></li>
+<li class="toc-entry toc-h4"><a href="#fftnodegpu">FFTNodeGPU</a></li>
+<li class="toc-entry toc-h4"><a href="#focusnode">FocusNode</a></li>
+<li class="toc-entry toc-h4"><a href="#focusnodegpu">FocusNodeGPU</a></li>
+<li class="toc-entry toc-h4"><a href="#histogramnode">HistogramNode</a></li>
+<li class="toc-entry toc-h4"><a href="#temcommsinputnode">TEMCommsInputNode</a></li>
+<li class="toc-entry toc-h4"><a href="#publishfilenode">PublishFileNode</a></li>
+<li class="toc-entry toc-h4"><a href="#publishfocusnode">PublishFocusNode</a></li>
+<li class="toc-entry toc-h4"><a href="#publishminmaxmeannode">PublishMinMaxMeanNode</a></li>
+<li class="toc-entry toc-h4"><a href="#publishtransformnode">PublishTransformNode</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#message-types">Message Types</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#str_message">str_message</a></li>
+<li class="toc-entry toc-h4"><a href="#mat_message">mat_message</a></li>
+<li class="toc-entry toc-h4"><a href="#gpu_mat_message">gpu_mat_message</a></li>
+<li class="toc-entry toc-h4"><a href="#float_message">float_message</a></li>
+<li class="toc-entry toc-h4"><a href="#int_vec_message">int_vec_message</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#python-api">Python API</a></li>
+<li class="toc-entry toc-h3"><a href="#config-file">Config File</a></li>
+<li class="toc-entry toc-h3"><a href="#launch-script">Launch Script</a></li>
+</ul><h3 id="introduction">
+<a class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h3>
 
-<div class="diagram"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0.00 0.00 2129.00 1295.00">
+<p>The image processing pipeline is primarily written in C++ with some Python bindings and nodes.
+It utilizes the <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onetbb.html">Intel Thread Building Blocks</a> library for parallelism, and <a href="https://opencv.org/">OpenCV</a> for image processing.
+The overall data-flow is shown in the diagram below.</p>
+
+<div class="diagram"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0.00 0.00 2274.00 1295.00">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(144 1151)">
 <title>%3</title>
 <g id="clust1" class="cluster">
 <title>cluster_Intel TBB</title>
-<path fill="#ffe0b2" stroke="#aeb6be" d="M229.5,0C229.5,0 1611.5,0 1611.5,0 1617.5,0 1623.5,-6 1623.5,-12 1623.5,-12 1623.5,-995 1623.5,-995 1623.5,-1001 1617.5,-1007 1611.5,-1007 1611.5,-1007 229.5,-1007 229.5,-1007 223.5,-1007 217.5,-1001 217.5,-995 217.5,-995 217.5,-12 217.5,-12 217.5,-6 223.5,0 229.5,0" />
+<path fill="#ffe0b2" stroke="#aeb6be" d="M229.5,0C229.5,0 1756.5,0 1756.5,0 1762.5,0 1768.5,-6 1768.5,-12 1768.5,-12 1768.5,-995 1768.5,-995 1768.5,-1001 1762.5,-1007 1756.5,-1007 1756.5,-1007 229.5,-1007 229.5,-1007 223.5,-1007 217.5,-1001 217.5,-995 217.5,-995 217.5,-12 217.5,-12 217.5,-6 223.5,0 229.5,0"></path>
 <text text-anchor="middle" x="253" y="-993.4" font-family="Sans-Serif" font-size="12.00" fill="#2d3436">Intel TBB</text>
 </g>
-<!-- 3238622c9ebe4bc0a703146aef67ad22 -->
+<!-- 8faf09399a3c40869b566c1d757d3936 -->
 <g id="node1" class="node">
-<title>3238622c9ebe4bc0a703146aef67ad22</title>
+<title>8faf09399a3c40869b566c1d757d3936</title>
 <g id="a_node1"><a xlink:href="#receive-tile-filepath" xlink:title="Receive Tile File-path">
-<image xlink:href="/TEM_architecture//icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="217.5" y="-626.5" />
+<image xlink:href="/TEM_architecture/icons/python.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="217.5" y="-626.5"></image>
 <text text-anchor="middle" x="268" y="-511.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Receive Tile File-path</text>
 </a>
 </g>
 </g>
-<!-- e6403ffa5b334dcd9ba042bd1b56478c -->
+<!-- 055875a9edc74ff9a1aeb5267f3cb858 -->
 <g id="node2" class="node">
-<title>e6403ffa5b334dcd9ba042bd1b56478c</title>
+<title>055875a9edc74ff9a1aeb5267f3cb858</title>
 <g id="a_node2"><a xlink:href="#load-tile" xlink:title="Load Tile">
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="362.5" y="-632.813" />
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="362.5" y="-632.813"></image>
 <text text-anchor="middle" x="413" y="-511.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Load Tile</text>
 </a>
 </g>
 </g>
-<!-- 3238622c9ebe4bc0a703146aef67ad22&#45;&gt;e6403ffa5b334dcd9ba042bd1b56478c -->
+<!-- 8faf09399a3c40869b566c1d757d3936&#45;&gt;055875a9edc74ff9a1aeb5267f3cb858 -->
 <g id="edge1" class="edge">
-<title>3238622c9ebe4bc0a703146aef67ad22-&gt;e6403ffa5b334dcd9ba042bd1b56478c</title>
-<path fill="none" stroke="#7b8894" d="M318.71,-576C329.47,-576 340.93,-576 352.02,-576" />
-<polygon fill="#7b8894" stroke="#7b8894" points="352.07,-579.5 362.07,-576 352.07,-572.5 352.07,-579.5" />
+<title>8faf09399a3c40869b566c1d757d3936-&gt;055875a9edc74ff9a1aeb5267f3cb858</title>
+<path fill="none" stroke="#7b8894" d="M318.71,-576C329.47,-576 340.93,-576 352.02,-576"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="352.07,-579.5 362.07,-576 352.07,-572.5 352.07,-579.5"></polygon>
 </g>
-<!-- 3cd8debab79b40f1a2a9134eff672d4d -->
-<g id="node29" class="node">
-<title>3cd8debab79b40f1a2a9134eff672d4d</title>
-<image xlink:href="/TEM_architecture//icons/blank.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="0" y="-626.5" />
+<!-- f817a30521c44ca980336401e1c21e94 -->
+<g id="node30" class="node">
+<title>f817a30521c44ca980336401e1c21e94</title>
+<image xlink:href="/TEM_architecture/icons/blank.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="0" y="-626.5"></image>
 </g>
-<!-- 3238622c9ebe4bc0a703146aef67ad22&#45;&gt;3cd8debab79b40f1a2a9134eff672d4d -->
-<g id="edge28" class="edge">
-<title>3238622c9ebe4bc0a703146aef67ad22-&gt;3cd8debab79b40f1a2a9134eff672d4d</title>
-<g id="a_edge28"><a xlink:href="/TEM_architecture/topics.html#tileraw" xlink:title="tile.raw">
-<path fill="none" stroke="#7b8894" d="M207.19,-576C173.83,-576 132.94,-576 101.3,-576" />
-<polygon fill="#7b8894" stroke="#7b8894" points="207.28,-579.5 217.28,-576 207.28,-572.5 207.28,-579.5" />
+<!-- 8faf09399a3c40869b566c1d757d3936&#45;&gt;f817a30521c44ca980336401e1c21e94 -->
+<g id="edge29" class="edge">
+<title>8faf09399a3c40869b566c1d757d3936-&gt;f817a30521c44ca980336401e1c21e94</title>
+<g id="a_edge29"><a xlink:href="/TEM_architecture/topics.html#tile-raw" xlink:title="tile.raw">
+<path fill="none" stroke="#7b8894" d="M207.19,-576C173.83,-576 132.94,-576 101.3,-576"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="207.28,-579.5 217.28,-576 207.28,-572.5 207.28,-579.5"></polygon>
 </a>
 </g>
-<g id="a_edge28-label"><a xlink:href="/TEM_architecture/topics.html#tileraw" xlink:title="tile.raw">
+<g id="a_edge29-label"><a xlink:href="/TEM_architecture/topics.html#tile-raw" xlink:title="tile.raw">
 <text text-anchor="middle" x="129.24" y="-579.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">tile.raw</text>
 </a>
 </g>
 </g>
-<!-- 5be33bb64d7640fdbd7f2cd0517af5cb -->
+<!-- 843b5b30f3894c4498ecd544b5e5a756 -->
 <g id="node3" class="node">
-<title>5be33bb64d7640fdbd7f2cd0517af5cb</title>
+<title>843b5b30f3894c4498ecd544b5e5a756</title>
 <g id="a_node3"><a xlink:href="#transfer-to-gpu" xlink:title="Transfer to GPU">
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="507.5" y="-632.813" />
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="507.5" y="-632.813"></image>
 <text text-anchor="middle" x="558" y="-511.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Transfer to GPU</text>
 </a>
 </g>
 </g>
-<!-- e6403ffa5b334dcd9ba042bd1b56478c&#45;&gt;5be33bb64d7640fdbd7f2cd0517af5cb -->
+<!-- 055875a9edc74ff9a1aeb5267f3cb858&#45;&gt;843b5b30f3894c4498ecd544b5e5a756 -->
 <g id="edge2" class="edge">
-<title>e6403ffa5b334dcd9ba042bd1b56478c-&gt;5be33bb64d7640fdbd7f2cd0517af5cb</title>
-<path fill="none" stroke="#7b8894" d="M463.71,-576C474.47,-576 485.93,-576 497.02,-576" />
-<polygon fill="#7b8894" stroke="#7b8894" points="497.07,-579.5 507.07,-576 497.07,-572.5 497.07,-579.5" />
+<title>055875a9edc74ff9a1aeb5267f3cb858-&gt;843b5b30f3894c4498ecd544b5e5a756</title>
+<path fill="none" stroke="#7b8894" d="M463.71,-576C474.47,-576 485.93,-576 497.02,-576"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="497.07,-579.5 507.07,-576 497.07,-572.5 497.07,-579.5"></polygon>
 </g>
-<!-- f7115abf6acc400f8024b402a0709955 -->
+<!-- af3b6ec05bc34e9990b16bc01d2b45d4 -->
 <g id="node4" class="node">
-<title>f7115abf6acc400f8024b402a0709955</title>
+<title>af3b6ec05bc34e9990b16bc01d2b45d4</title>
 <g id="a_node4"><a xlink:href="#flip" xlink:title="Horizontal Flip">
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="652.5" y="-632.813" />
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="652.5" y="-632.813"></image>
 <text text-anchor="middle" x="703" y="-511.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Horizontal Flip</text>
 </a>
 </g>
 </g>
-<!-- 5be33bb64d7640fdbd7f2cd0517af5cb&#45;&gt;f7115abf6acc400f8024b402a0709955 -->
+<!-- 843b5b30f3894c4498ecd544b5e5a756&#45;&gt;af3b6ec05bc34e9990b16bc01d2b45d4 -->
 <g id="edge3" class="edge">
-<title>5be33bb64d7640fdbd7f2cd0517af5cb-&gt;f7115abf6acc400f8024b402a0709955</title>
-<path fill="none" stroke="#7b8894" d="M608.71,-576C619.47,-576 630.93,-576 642.02,-576" />
-<polygon fill="#7b8894" stroke="#7b8894" points="642.07,-579.5 652.07,-576 642.07,-572.5 642.07,-579.5" />
+<title>843b5b30f3894c4498ecd544b5e5a756-&gt;af3b6ec05bc34e9990b16bc01d2b45d4</title>
+<path fill="none" stroke="#7b8894" d="M608.71,-576C619.47,-576 630.93,-576 642.02,-576"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="642.07,-579.5 652.07,-576 642.07,-572.5 642.07,-579.5"></polygon>
 </g>
-<!-- 8951afd27f104a04ade39537fd741dab -->
+<!-- 696ebde768ed48f0b95a51b754580f15 -->
 <g id="node5" class="node">
-<title>8951afd27f104a04ade39537fd741dab</title>
+<title>696ebde768ed48f0b95a51b754580f15</title>
 <g id="a_node5"><a xlink:href="#flat-field-correction" xlink:title="Flat-Field Correction">
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="797.5" y="-632.813" />
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="797.5" y="-632.813"></image>
 <text text-anchor="middle" x="848" y="-511.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Flat-Field Correction</text>
 </a>
 </g>
 </g>
-<!-- f7115abf6acc400f8024b402a0709955&#45;&gt;8951afd27f104a04ade39537fd741dab -->
+<!-- af3b6ec05bc34e9990b16bc01d2b45d4&#45;&gt;696ebde768ed48f0b95a51b754580f15 -->
 <g id="edge4" class="edge">
-<title>f7115abf6acc400f8024b402a0709955-&gt;8951afd27f104a04ade39537fd741dab</title>
-<path fill="none" stroke="#7b8894" d="M753.71,-576C764.47,-576 775.93,-576 787.02,-576" />
-<polygon fill="#7b8894" stroke="#7b8894" points="787.07,-579.5 797.07,-576 787.07,-572.5 787.07,-579.5" />
+<title>af3b6ec05bc34e9990b16bc01d2b45d4-&gt;696ebde768ed48f0b95a51b754580f15</title>
+<path fill="none" stroke="#7b8894" d="M753.71,-576C764.47,-576 775.93,-576 787.02,-576"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="787.07,-579.5 797.07,-576 787.07,-572.5 787.07,-579.5"></polygon>
 </g>
-<!-- 5b6836f0b70f44a3af1dd52abafd6319 -->
+<!-- ae5d4e3171424f419c3b44dcc01c4dea -->
 <g id="node6" class="node">
-<title>5b6836f0b70f44a3af1dd52abafd6319</title>
+<title>ae5d4e3171424f419c3b44dcc01c4dea</title>
 <g id="a_node6"><a xlink:href="#clahe" xlink:title="CLAHE">
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="942.5" y="-632.813" />
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="942.5" y="-632.813"></image>
 <text text-anchor="middle" x="993" y="-511.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">CLAHE</text>
 </a>
 </g>
 </g>
-<!-- 8951afd27f104a04ade39537fd741dab&#45;&gt;5b6836f0b70f44a3af1dd52abafd6319 -->
+<!-- 696ebde768ed48f0b95a51b754580f15&#45;&gt;ae5d4e3171424f419c3b44dcc01c4dea -->
 <g id="edge5" class="edge">
-<title>8951afd27f104a04ade39537fd741dab-&gt;5b6836f0b70f44a3af1dd52abafd6319</title>
-<path fill="none" stroke="#7b8894" d="M898.71,-576C909.47,-576 920.93,-576 932.02,-576" />
-<polygon fill="#7b8894" stroke="#7b8894" points="932.07,-579.5 942.07,-576 932.07,-572.5 932.07,-579.5" />
+<title>696ebde768ed48f0b95a51b754580f15-&gt;ae5d4e3171424f419c3b44dcc01c4dea</title>
+<path fill="none" stroke="#7b8894" d="M898.71,-576C909.47,-576 920.93,-576 932.02,-576"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="932.07,-579.5 942.07,-576 932.07,-572.5 932.07,-579.5"></polygon>
 </g>
-<!-- 6501d9a7ded44daebca8a3f349acc9d3 -->
+<!-- 37e7c57708d1491788b0158b6674ea04 -->
 <g id="node7" class="node">
-<title>6501d9a7ded44daebca8a3f349acc9d3</title>
+<title>37e7c57708d1491788b0158b6674ea04</title>
 <g id="a_node7"><a xlink:href="#min-max-mean" xlink:title="Min, Max, Mean">
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="1087.5" y="-995.313" />
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1087.5" y="-995.313"></image>
 <text text-anchor="middle" x="1138" y="-873.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Min, Max, Mean</text>
 </a>
 </g>
 </g>
-<!-- 5b6836f0b70f44a3af1dd52abafd6319&#45;&gt;6501d9a7ded44daebca8a3f349acc9d3 -->
+<!-- ae5d4e3171424f419c3b44dcc01c4dea&#45;&gt;37e7c57708d1491788b0158b6674ea04 -->
 <g id="edge10" class="edge">
-<title>5b6836f0b70f44a3af1dd52abafd6319-&gt;6501d9a7ded44daebca8a3f349acc9d3</title>
-<path fill="none" stroke="#7b8894" d="M1020.44,-644.61C1045,-706.01 1080.99,-795.99 1106.67,-860.19" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1103.58,-861.88 1110.55,-869.86 1110.08,-859.28 1103.58,-861.88" />
+<title>ae5d4e3171424f419c3b44dcc01c4dea-&gt;37e7c57708d1491788b0158b6674ea04</title>
+<path fill="none" stroke="#7b8894" d="M1020.44,-644.61C1045,-706.01 1081,-795.99 1106.67,-860.19"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1103.58,-861.88 1110.55,-869.86 1110.08,-859.28 1103.58,-861.88"></polygon>
 </g>
-<!-- ec65ba1b81694d71a28d322fc0d81f98 -->
+<!-- 7f644075a21d4633ac2155869186b661 -->
 <g id="node9" class="node">
-<title>ec65ba1b81694d71a28d322fc0d81f98</title>
+<title>7f644075a21d4633ac2155869186b661</title>
 <g id="a_node9"><a xlink:href="#fft" xlink:title="FFT">
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="1087.5" y="-850.313" />
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1087.5" y="-850.313"></image>
 <text text-anchor="middle" x="1138" y="-728.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">FFT</text>
 </a>
 </g>
 </g>
-<!-- 5b6836f0b70f44a3af1dd52abafd6319&#45;&gt;ec65ba1b81694d71a28d322fc0d81f98 -->
+<!-- ae5d4e3171424f419c3b44dcc01c4dea&#45;&gt;7f644075a21d4633ac2155869186b661 -->
 <g id="edge12" class="edge">
-<title>5b6836f0b70f44a3af1dd52abafd6319-&gt;ec65ba1b81694d71a28d322fc0d81f98</title>
-<path fill="none" stroke="#7b8894" d="M1038.68,-644.52C1053.91,-667.37 1070.98,-692.97 1086.61,-716.42" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1083.84,-718.57 1092.3,-724.95 1089.67,-714.69 1083.84,-718.57" />
+<title>ae5d4e3171424f419c3b44dcc01c4dea-&gt;7f644075a21d4633ac2155869186b661</title>
+<path fill="none" stroke="#7b8894" d="M1038.68,-644.52C1053.91,-667.37 1070.98,-692.97 1086.61,-716.42"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1083.84,-718.57 1092.3,-724.95 1089.67,-714.69 1083.84,-718.57"></polygon>
 </g>
-<!-- 84897e28673c40c393938478ec51f20c -->
+<!-- 3c10836edded4aa489c518a592cffc3f -->
 <g id="node12" class="node">
-<title>84897e28673c40c393938478ec51f20c</title>
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="1087.5" y="-560.313" />
+<title>3c10836edded4aa489c518a592cffc3f</title>
+<g id="a_node12"><a xlink:href="#histogram-transfer-to-cpu-memory" xlink:title="Transfer to CPU Memory">
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1087.5" y="-560.313"></image>
 <text text-anchor="middle" x="1138" y="-438.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Transfer to CPU Memory</text>
+</a>
 </g>
-<!-- 5b6836f0b70f44a3af1dd52abafd6319&#45;&gt;84897e28673c40c393938478ec51f20c -->
+</g>
+<!-- ae5d4e3171424f419c3b44dcc01c4dea&#45;&gt;3c10836edded4aa489c518a592cffc3f -->
 <g id="edge15" class="edge">
-<title>5b6836f0b70f44a3af1dd52abafd6319-&gt;84897e28673c40c393938478ec51f20c</title>
-<path fill="none" stroke="#7b8894" d="M1043.71,-550.64C1054.8,-545.1 1066.63,-539.18 1078.04,-533.48" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1079.69,-536.57 1087.07,-528.97 1076.56,-530.31 1079.69,-536.57" />
+<title>ae5d4e3171424f419c3b44dcc01c4dea-&gt;3c10836edded4aa489c518a592cffc3f</title>
+<path fill="none" stroke="#7b8894" d="M1043.71,-550.64C1054.8,-545.1 1066.63,-539.18 1078.04,-533.48"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1079.69,-536.57 1087.07,-528.97 1076.56,-530.31 1079.69,-536.57"></polygon>
 </g>
-<!-- 8359cb9f5dbc4468bb6cef50d46a2975 -->
+<!-- 310f10d6fb9d4fde9a1b0cf4eb297d12 -->
 <g id="node16" class="node">
-<title>8359cb9f5dbc4468bb6cef50d46a2975</title>
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="1087.5" y="-705.313" />
-<text text-anchor="middle" x="1138" y="-583.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Down-sample</text>
+<title>310f10d6fb9d4fde9a1b0cf4eb297d12</title>
+<g id="a_node16"><a xlink:href="#clone" xlink:title="Clone">
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1087.5" y="-705.313"></image>
+<text text-anchor="middle" x="1138" y="-583.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Clone</text>
+</a>
 </g>
-<!-- 5b6836f0b70f44a3af1dd52abafd6319&#45;&gt;8359cb9f5dbc4468bb6cef50d46a2975 -->
+</g>
+<!-- ae5d4e3171424f419c3b44dcc01c4dea&#45;&gt;310f10d6fb9d4fde9a1b0cf4eb297d12 -->
 <g id="edge24" class="edge">
-<title>5b6836f0b70f44a3af1dd52abafd6319-&gt;8359cb9f5dbc4468bb6cef50d46a2975</title>
-<path fill="none" stroke="#7b8894" d="M1043.71,-601.36C1054.8,-606.9 1066.63,-612.82 1078.04,-618.52" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1076.56,-621.69 1087.07,-623.03 1079.69,-615.43 1076.56,-621.69" />
+<title>ae5d4e3171424f419c3b44dcc01c4dea-&gt;310f10d6fb9d4fde9a1b0cf4eb297d12</title>
+<path fill="none" stroke="#7b8894" d="M1043.71,-601.36C1054.8,-606.9 1066.63,-612.82 1078.04,-618.52"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1076.56,-621.69 1087.07,-623.03 1079.69,-615.43 1076.56,-621.69"></polygon>
 </g>
-<!-- 9af2c8a5f66d412ca68fb5da2d23ac86 -->
-<g id="node20" class="node">
-<title>9af2c8a5f66d412ca68fb5da2d23ac86</title>
-<g id="a_node20"><a xlink:href="#lens-correction" xlink:title="Lens Correction">
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="1087.5" y="-415.313" />
+<!-- d35ec9efbf754d26a35ac99f477e48b4 -->
+<g id="node21" class="node">
+<title>d35ec9efbf754d26a35ac99f477e48b4</title>
+<g id="a_node21"><a xlink:href="#lens-correction" xlink:title="Lens Correction">
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1087.5" y="-415.313"></image>
 <text text-anchor="middle" x="1138" y="-293.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Lens Correction</text>
 </a>
 </g>
 </g>
-<!-- 5b6836f0b70f44a3af1dd52abafd6319&#45;&gt;9af2c8a5f66d412ca68fb5da2d23ac86 -->
+<!-- ae5d4e3171424f419c3b44dcc01c4dea&#45;&gt;d35ec9efbf754d26a35ac99f477e48b4 -->
 <g id="edge6" class="edge">
-<title>5b6836f0b70f44a3af1dd52abafd6319-&gt;9af2c8a5f66d412ca68fb5da2d23ac86</title>
-<path fill="none" stroke="#7b8894" d="M1038.68,-507.48C1053.91,-484.63 1070.98,-459.03 1086.61,-435.58" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1089.67,-437.31 1092.3,-427.05 1083.84,-433.43 1089.67,-437.31" />
+<title>ae5d4e3171424f419c3b44dcc01c4dea-&gt;d35ec9efbf754d26a35ac99f477e48b4</title>
+<path fill="none" stroke="#7b8894" d="M1038.68,-507.48C1053.91,-484.63 1070.98,-459.03 1086.61,-435.58"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1089.67,-437.31 1092.3,-427.05 1083.84,-433.43 1089.67,-437.31"></polygon>
 </g>
-<!-- a3b95b4bf6964baf86d7e4505e3527e0 -->
+<!-- 1241a84d124e45e0b08a71e0dc3d6bd8 -->
 <g id="node8" class="node">
-<title>a3b95b4bf6964baf86d7e4505e3527e0</title>
+<title>1241a84d124e45e0b08a71e0dc3d6bd8</title>
 <g id="a_node8"><a xlink:href="#send-min-max-mean" xlink:title="Send Min, Max, Mean">
-<image xlink:href="/TEM_architecture//icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1232.5" y="-989" />
+<image xlink:href="/TEM_architecture/icons/python.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="1232.5" y="-989"></image>
 <text text-anchor="middle" x="1283" y="-873.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Send Min, Max, Mean</text>
 </a>
 </g>
 </g>
-<!-- 6501d9a7ded44daebca8a3f349acc9d3&#45;&gt;a3b95b4bf6964baf86d7e4505e3527e0 -->
+<!-- 37e7c57708d1491788b0158b6674ea04&#45;&gt;1241a84d124e45e0b08a71e0dc3d6bd8 -->
 <g id="edge11" class="edge">
-<title>6501d9a7ded44daebca8a3f349acc9d3-&gt;a3b95b4bf6964baf86d7e4505e3527e0</title>
-<path fill="none" stroke="#7b8894" d="M1188.71,-938.5C1199.47,-938.5 1210.93,-938.5 1222.02,-938.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1222.07,-942 1232.07,-938.5 1222.07,-935 1222.07,-942" />
+<title>37e7c57708d1491788b0158b6674ea04-&gt;1241a84d124e45e0b08a71e0dc3d6bd8</title>
+<path fill="none" stroke="#7b8894" d="M1188.71,-938.5C1199.47,-938.5 1210.93,-938.5 1222.02,-938.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1222.07,-942 1232.07,-938.5 1222.07,-935 1222.07,-942"></polygon>
 </g>
-<!-- 061a8ef4f20c4513b5a06e5b341ff2ed -->
-<g id="node30" class="node">
-<title>061a8ef4f20c4513b5a06e5b341ff2ed</title>
-<image xlink:href="/TEM_architecture//icons/blank.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1740" y="-989" />
+<!-- 60cb8479418d42bba134a5b9f8cb0181 -->
+<g id="node31" class="node">
+<title>60cb8479418d42bba134a5b9f8cb0181</title>
+<image xlink:href="/TEM_architecture/icons/blank.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="1885" y="-989"></image>
 </g>
-<!-- a3b95b4bf6964baf86d7e4505e3527e0&#45;&gt;061a8ef4f20c4513b5a06e5b341ff2ed -->
-<g id="edge29" class="edge">
-<title>a3b95b4bf6964baf86d7e4505e3527e0-&gt;061a8ef4f20c4513b5a06e5b341ff2ed</title>
-<g id="a_edge29"><a xlink:href="/TEM_architecture/topics.html#tilestatisticsmin_max_mean">
-<path fill="none" stroke="#7b8894" d="M1333.52,-938.5C1427.44,-938.5 1628.58,-938.5 1729.75,-938.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1729.81,-942 1739.81,-938.5 1729.81,-935 1729.81,-942" />
+<!-- 1241a84d124e45e0b08a71e0dc3d6bd8&#45;&gt;60cb8479418d42bba134a5b9f8cb0181 -->
+<g id="edge30" class="edge">
+<title>1241a84d124e45e0b08a71e0dc3d6bd8-&gt;60cb8479418d42bba134a5b9f8cb0181</title>
+<g id="a_edge30"><a xlink:href="/TEM_architecture/topics.html#tile-statistics-min_max_mean">
+<path fill="none" stroke="#7b8894" d="M1333.66,-938.5C1452.17,-938.5 1747.09,-938.5 1874.87,-938.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1874.87,-942 1884.87,-938.5 1874.87,-935 1874.87,-942"></polygon>
 </a>
 </g>
-<g id="a_edge29-headlabel"><a xlink:href="/TEM_architecture/topics.html#tilestatisticsmin_max_mean" xlink:title="tile.statistics.min_max_mean">
-<text text-anchor="middle" x="1642.81" y="-942.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">tile.statistics.min_max_mean</text>
+<g id="a_edge30-headlabel"><a xlink:href="/TEM_architecture/topics.html#tile-statistics-min_max_mean" xlink:title="tile.statistics.min_max_mean">
+<text text-anchor="middle" x="1787.87" y="-942.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">tile.statistics.min_max_mean</text>
 </a>
 </g>
 </g>
-<!-- 0be17070b28c4a54939de619b312d066 -->
+<!-- 2c13925e72e649fe8e4f776211c836a4 -->
 <g id="node10" class="node">
-<title>0be17070b28c4a54939de619b312d066</title>
+<title>2c13925e72e649fe8e4f776211c836a4</title>
 <g id="a_node10"><a xlink:href="#focus-score" xlink:title="Compute Focus Score">
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="1232.5" y="-850.313" />
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1232.5" y="-850.313"></image>
 <text text-anchor="middle" x="1283" y="-728.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Compute Focus Score</text>
 </a>
 </g>
 </g>
-<!-- ec65ba1b81694d71a28d322fc0d81f98&#45;&gt;0be17070b28c4a54939de619b312d066 -->
+<!-- 7f644075a21d4633ac2155869186b661&#45;&gt;2c13925e72e649fe8e4f776211c836a4 -->
 <g id="edge13" class="edge">
-<title>ec65ba1b81694d71a28d322fc0d81f98-&gt;0be17070b28c4a54939de619b312d066</title>
-<path fill="none" stroke="#7b8894" d="M1188.71,-793.5C1199.47,-793.5 1210.93,-793.5 1222.02,-793.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1222.07,-797 1232.07,-793.5 1222.07,-790 1222.07,-797" />
+<title>7f644075a21d4633ac2155869186b661-&gt;2c13925e72e649fe8e4f776211c836a4</title>
+<path fill="none" stroke="#7b8894" d="M1188.71,-793.5C1199.47,-793.5 1210.93,-793.5 1222.02,-793.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1222.07,-797 1232.07,-793.5 1222.07,-790 1222.07,-797"></polygon>
 </g>
-<!-- cc3a0c1c1574455e888faf1d6e0cd9f1 -->
+<!-- 40c14326682c497495023d6cea559160 -->
 <g id="node11" class="node">
-<title>cc3a0c1c1574455e888faf1d6e0cd9f1</title>
+<title>40c14326682c497495023d6cea559160</title>
 <g id="a_node11"><a xlink:href="#send-focus-score" xlink:title="Send Focus Score">
-<image xlink:href="/TEM_architecture//icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1377.5" y="-844" />
+<image xlink:href="/TEM_architecture/icons/python.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="1377.5" y="-844"></image>
 <text text-anchor="middle" x="1428" y="-728.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Send Focus Score</text>
 </a>
 </g>
 </g>
-<!-- 0be17070b28c4a54939de619b312d066&#45;&gt;cc3a0c1c1574455e888faf1d6e0cd9f1 -->
+<!-- 2c13925e72e649fe8e4f776211c836a4&#45;&gt;40c14326682c497495023d6cea559160 -->
 <g id="edge14" class="edge">
-<title>0be17070b28c4a54939de619b312d066-&gt;cc3a0c1c1574455e888faf1d6e0cd9f1</title>
-<path fill="none" stroke="#7b8894" d="M1333.71,-793.5C1344.47,-793.5 1355.93,-793.5 1367.02,-793.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1367.07,-797 1377.07,-793.5 1367.07,-790 1367.07,-797" />
+<title>2c13925e72e649fe8e4f776211c836a4-&gt;40c14326682c497495023d6cea559160</title>
+<path fill="none" stroke="#7b8894" d="M1333.71,-793.5C1344.47,-793.5 1355.93,-793.5 1367.02,-793.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1367.07,-797 1377.07,-793.5 1367.07,-790 1367.07,-797"></polygon>
 </g>
-<!-- 94bcf103d7d240849607ef6fecf7a6ed -->
-<g id="node31" class="node">
-<title>94bcf103d7d240849607ef6fecf7a6ed</title>
-<image xlink:href="/TEM_architecture//icons/blank.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1740" y="-844" />
+<!-- 5912133a278849b69b7331bc6a2344ae -->
+<g id="node32" class="node">
+<title>5912133a278849b69b7331bc6a2344ae</title>
+<image xlink:href="/TEM_architecture/icons/blank.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="1885" y="-844"></image>
 </g>
-<!-- cc3a0c1c1574455e888faf1d6e0cd9f1&#45;&gt;94bcf103d7d240849607ef6fecf7a6ed -->
-<g id="edge30" class="edge">
-<title>cc3a0c1c1574455e888faf1d6e0cd9f1-&gt;94bcf103d7d240849607ef6fecf7a6ed</title>
-<g id="a_edge30"><a xlink:href="/TEM_architecture/topics.html#tilestatisticsfocus">
-<path fill="none" stroke="#7b8894" d="M1478.79,-793.5C1544.62,-793.5 1659.32,-793.5 1729.71,-793.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1729.77,-797 1739.77,-793.5 1729.77,-790 1729.77,-797" />
+<!-- 40c14326682c497495023d6cea559160&#45;&gt;5912133a278849b69b7331bc6a2344ae -->
+<g id="edge31" class="edge">
+<title>40c14326682c497495023d6cea559160-&gt;5912133a278849b69b7331bc6a2344ae</title>
+<g id="a_edge31"><a xlink:href="/TEM_architecture/topics.html#tile-statistics-focus">
+<path fill="none" stroke="#7b8894" d="M1478.52,-793.5C1572.44,-793.5 1773.58,-793.5 1874.75,-793.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1874.81,-797 1884.81,-793.5 1874.81,-790 1874.81,-797"></polygon>
 </a>
 </g>
-<g id="a_edge30-headlabel"><a xlink:href="/TEM_architecture/topics.html#tilestatisticsfocus" xlink:title="tile.statistics.focus">
-<text text-anchor="middle" x="1677.27" y="-797.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">tile.statistics.focus</text>
+<g id="a_edge31-headlabel"><a xlink:href="/TEM_architecture/topics.html#tile-statistics-focus" xlink:title="tile.statistics.focus">
+<text text-anchor="middle" x="1822.31" y="-797.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">tile.statistics.focus</text>
 </a>
 </g>
 </g>
-<!-- 654dac91cbc74aacac043f312ed3fa22 -->
+<!-- cf0002975d2f4a04ba8d542fb4d022a7 -->
 <g id="node13" class="node">
-<title>654dac91cbc74aacac043f312ed3fa22</title>
+<title>cf0002975d2f4a04ba8d542fb4d022a7</title>
 <g id="a_node13"><a xlink:href="#calculate-histogram" xlink:title="Calculate Histogram">
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="1232.5" y="-560.313" />
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1232.5" y="-560.313"></image>
 <text text-anchor="middle" x="1283" y="-438.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Calculate Histogram</text>
 </a>
 </g>
 </g>
-<!-- 84897e28673c40c393938478ec51f20c&#45;&gt;654dac91cbc74aacac043f312ed3fa22 -->
+<!-- 3c10836edded4aa489c518a592cffc3f&#45;&gt;cf0002975d2f4a04ba8d542fb4d022a7 -->
 <g id="edge16" class="edge">
-<title>84897e28673c40c393938478ec51f20c-&gt;654dac91cbc74aacac043f312ed3fa22</title>
-<path fill="none" stroke="#7b8894" d="M1188.71,-503.5C1199.47,-503.5 1210.93,-503.5 1222.02,-503.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1222.07,-507 1232.07,-503.5 1222.07,-500 1222.07,-507" />
+<title>3c10836edded4aa489c518a592cffc3f-&gt;cf0002975d2f4a04ba8d542fb4d022a7</title>
+<path fill="none" stroke="#7b8894" d="M1188.71,-503.5C1199.47,-503.5 1210.93,-503.5 1222.02,-503.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1222.07,-507 1232.07,-503.5 1222.07,-500 1222.07,-507"></polygon>
 </g>
-<!-- 8a8d598072484daf9bac7307a79fe832 -->
+<!-- aec5a43160b84167af9e7d8e3847e4b1 -->
 <g id="node14" class="node">
-<title>8a8d598072484daf9bac7307a79fe832</title>
+<title>aec5a43160b84167af9e7d8e3847e4b1</title>
 <g id="a_node14"><a xlink:href="#save-histogram" xlink:title="Save Histogram">
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="1377.5" y="-560.313" />
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1377.5" y="-560.313"></image>
 <text text-anchor="middle" x="1428" y="-438.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Save Histogram</text>
 </a>
 </g>
 </g>
-<!-- 654dac91cbc74aacac043f312ed3fa22&#45;&gt;8a8d598072484daf9bac7307a79fe832 -->
+<!-- cf0002975d2f4a04ba8d542fb4d022a7&#45;&gt;aec5a43160b84167af9e7d8e3847e4b1 -->
 <g id="edge17" class="edge">
-<title>654dac91cbc74aacac043f312ed3fa22-&gt;8a8d598072484daf9bac7307a79fe832</title>
-<path fill="none" stroke="#7b8894" d="M1333.71,-503.5C1344.47,-503.5 1355.93,-503.5 1367.02,-503.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1367.07,-507 1377.07,-503.5 1367.07,-500 1367.07,-507" />
+<title>cf0002975d2f4a04ba8d542fb4d022a7-&gt;aec5a43160b84167af9e7d8e3847e4b1</title>
+<path fill="none" stroke="#7b8894" d="M1333.71,-503.5C1344.47,-503.5 1355.93,-503.5 1367.02,-503.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1367.07,-507 1377.07,-503.5 1367.07,-500 1367.07,-507"></polygon>
 </g>
-<!-- 82cda2f4a1234e599e9e2409560a0f3d -->
+<!-- 2c4a1f870d484f4f9b90629925dee6bd -->
 <g id="node15" class="node">
-<title>82cda2f4a1234e599e9e2409560a0f3d</title>
-<g id="a_node15"><a xlink:href="#send-histogram-filepath" xlink:title="Send Histogram File-path">
-<image xlink:href="/TEM_architecture//icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1522.5" y="-554" />
+<title>2c4a1f870d484f4f9b90629925dee6bd</title>
+<g id="a_node15"><a xlink:href="#send-histogram" xlink:title="Send Histogram File-path">
+<image xlink:href="/TEM_architecture/icons/python.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="1522.5" y="-554"></image>
 <text text-anchor="middle" x="1573" y="-438.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Send Histogram File-path</text>
 </a>
 </g>
 </g>
-<!-- 8a8d598072484daf9bac7307a79fe832&#45;&gt;82cda2f4a1234e599e9e2409560a0f3d -->
+<!-- aec5a43160b84167af9e7d8e3847e4b1&#45;&gt;2c4a1f870d484f4f9b90629925dee6bd -->
 <g id="edge18" class="edge">
-<title>8a8d598072484daf9bac7307a79fe832-&gt;82cda2f4a1234e599e9e2409560a0f3d</title>
-<path fill="none" stroke="#7b8894" d="M1478.71,-503.5C1489.47,-503.5 1500.93,-503.5 1512.02,-503.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1512.07,-507 1522.07,-503.5 1512.07,-500 1512.07,-507" />
+<title>aec5a43160b84167af9e7d8e3847e4b1-&gt;2c4a1f870d484f4f9b90629925dee6bd</title>
+<path fill="none" stroke="#7b8894" d="M1478.71,-503.5C1489.47,-503.5 1500.93,-503.5 1512.02,-503.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1512.07,-507 1522.07,-503.5 1512.07,-500 1512.07,-507"></polygon>
 </g>
-<!-- 945418364f6347bb9a4376de36ccb235 -->
-<g id="node33" class="node">
-<title>945418364f6347bb9a4376de36ccb235</title>
-<image xlink:href="/TEM_architecture//icons/blank.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1740" y="-554" />
+<!-- 187c9ba1582540fd93b98030efc6c4cc -->
+<g id="node34" class="node">
+<title>187c9ba1582540fd93b98030efc6c4cc</title>
+<image xlink:href="/TEM_architecture/icons/blank.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="1885" y="-554"></image>
 </g>
-<!-- 82cda2f4a1234e599e9e2409560a0f3d&#45;&gt;945418364f6347bb9a4376de36ccb235 -->
-<g id="edge32" class="edge">
-<title>82cda2f4a1234e599e9e2409560a0f3d-&gt;945418364f6347bb9a4376de36ccb235</title>
-<g id="a_edge32"><a xlink:href="/TEM_architecture/topics.html#tilestatisticshistogram">
-<path fill="none" stroke="#7b8894" d="M1623.72,-503.5C1655.34,-503.5 1696.23,-503.5 1729.6,-503.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1729.7,-507 1739.7,-503.5 1729.7,-500 1729.7,-507" />
+<!-- 2c4a1f870d484f4f9b90629925dee6bd&#45;&gt;187c9ba1582540fd93b98030efc6c4cc -->
+<g id="edge33" class="edge">
+<title>2c4a1f870d484f4f9b90629925dee6bd-&gt;187c9ba1582540fd93b98030efc6c4cc</title>
+<g id="a_edge33"><a xlink:href="/TEM_architecture/topics.html#tile-statistics-histogram">
+<path fill="none" stroke="#7b8894" d="M1623.79,-503.5C1689.62,-503.5 1804.32,-503.5 1874.71,-503.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1874.77,-507 1884.77,-503.5 1874.77,-500 1874.77,-507"></polygon>
 </a>
 </g>
-<g id="a_edge32-headlabel"><a xlink:href="/TEM_architecture/topics.html#tilestatisticshistogram" xlink:title="tile.statistics.histogram">
-<text text-anchor="middle" x="1661.2" y="-507.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">tile.statistics.histogram</text>
+<g id="a_edge33-headlabel"><a xlink:href="/TEM_architecture/topics.html#tile-statistics-histogram" xlink:title="tile.statistics.histogram">
+<text text-anchor="middle" x="1806.27" y="-507.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">tile.statistics.histogram</text>
 </a>
 </g>
 </g>
-<!-- 1fcb4009a4bd476199ee4770d985435a -->
+<!-- 167b99204e0d4f0788a6523549fc88ff -->
 <g id="node17" class="node">
-<title>1fcb4009a4bd476199ee4770d985435a</title>
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="1232.5" y="-705.313" />
-<text text-anchor="middle" x="1283" y="-583.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Transfer to CPU Memory</text>
+<title>167b99204e0d4f0788a6523549fc88ff</title>
+<g id="a_node17"><a xlink:href="#down-sample" xlink:title="Down-sample">
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1232.5" y="-705.313"></image>
+<text text-anchor="middle" x="1283" y="-583.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Down-sample</text>
+</a>
 </g>
-<!-- 8359cb9f5dbc4468bb6cef50d46a2975&#45;&gt;1fcb4009a4bd476199ee4770d985435a -->
+</g>
+<!-- 310f10d6fb9d4fde9a1b0cf4eb297d12&#45;&gt;167b99204e0d4f0788a6523549fc88ff -->
 <g id="edge25" class="edge">
-<title>8359cb9f5dbc4468bb6cef50d46a2975-&gt;1fcb4009a4bd476199ee4770d985435a</title>
-<path fill="none" stroke="#7b8894" d="M1188.71,-648.5C1199.47,-648.5 1210.93,-648.5 1222.02,-648.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1222.07,-652 1232.07,-648.5 1222.07,-645 1222.07,-652" />
+<title>310f10d6fb9d4fde9a1b0cf4eb297d12-&gt;167b99204e0d4f0788a6523549fc88ff</title>
+<path fill="none" stroke="#7b8894" d="M1188.71,-648.5C1199.47,-648.5 1210.93,-648.5 1222.02,-648.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1222.07,-652 1232.07,-648.5 1222.07,-645 1222.07,-652"></polygon>
 </g>
-<!-- ea10a678b1e24a7980a0ad88b244e3cb -->
+<!-- 7277b94ced9b4a689979a80b53a0297b -->
 <g id="node18" class="node">
-<title>ea10a678b1e24a7980a0ad88b244e3cb</title>
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="1377.5" y="-705.313" />
-<text text-anchor="middle" x="1428" y="-583.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Save JPEG</text>
+<title>7277b94ced9b4a689979a80b53a0297b</title>
+<g id="a_node18"><a xlink:href="#down-sampled-image-to-cpu-memory" xlink:title="Transfer to CPU Memory">
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1377.5" y="-705.313"></image>
+<text text-anchor="middle" x="1428" y="-583.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Transfer to CPU Memory</text>
+</a>
 </g>
-<!-- 1fcb4009a4bd476199ee4770d985435a&#45;&gt;ea10a678b1e24a7980a0ad88b244e3cb -->
+</g>
+<!-- 167b99204e0d4f0788a6523549fc88ff&#45;&gt;7277b94ced9b4a689979a80b53a0297b -->
 <g id="edge26" class="edge">
-<title>1fcb4009a4bd476199ee4770d985435a-&gt;ea10a678b1e24a7980a0ad88b244e3cb</title>
-<path fill="none" stroke="#7b8894" d="M1333.71,-648.5C1344.47,-648.5 1355.93,-648.5 1367.02,-648.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1367.07,-652 1377.07,-648.5 1367.07,-645 1367.07,-652" />
+<title>167b99204e0d4f0788a6523549fc88ff-&gt;7277b94ced9b4a689979a80b53a0297b</title>
+<path fill="none" stroke="#7b8894" d="M1333.71,-648.5C1344.47,-648.5 1355.93,-648.5 1367.02,-648.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1367.07,-652 1377.07,-648.5 1367.07,-645 1367.07,-652"></polygon>
 </g>
-<!-- 4855010d472e465b92d7af08edebd511 -->
+<!-- 8d651ebc5526437292cb10b1441d825b -->
 <g id="node19" class="node">
-<title>4855010d472e465b92d7af08edebd511</title>
-<image xlink:href="/TEM_architecture//icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1522.5" y="-699" />
-<text text-anchor="middle" x="1573" y="-583.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Send JPEG</text>
+<title>8d651ebc5526437292cb10b1441d825b</title>
+<g id="a_node19"><a xlink:href="#save-jpeg" xlink:title="Save JPEG">
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1522.5" y="-705.313"></image>
+<text text-anchor="middle" x="1573" y="-583.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Save JPEG</text>
+</a>
 </g>
-<!-- ea10a678b1e24a7980a0ad88b244e3cb&#45;&gt;4855010d472e465b92d7af08edebd511 -->
+</g>
+<!-- 7277b94ced9b4a689979a80b53a0297b&#45;&gt;8d651ebc5526437292cb10b1441d825b -->
 <g id="edge27" class="edge">
-<title>ea10a678b1e24a7980a0ad88b244e3cb-&gt;4855010d472e465b92d7af08edebd511</title>
-<path fill="none" stroke="#7b8894" d="M1478.71,-648.5C1489.47,-648.5 1500.93,-648.5 1512.02,-648.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1512.07,-652 1522.07,-648.5 1512.07,-645 1512.07,-652" />
+<title>7277b94ced9b4a689979a80b53a0297b-&gt;8d651ebc5526437292cb10b1441d825b</title>
+<path fill="none" stroke="#7b8894" d="M1478.71,-648.5C1489.47,-648.5 1500.93,-648.5 1512.02,-648.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1512.07,-652 1522.07,-648.5 1512.07,-645 1512.07,-652"></polygon>
 </g>
-<!-- 37ce29cd00fa412b87dfedac5804f4ee -->
-<g id="node32" class="node">
-<title>37ce29cd00fa412b87dfedac5804f4ee</title>
-<image xlink:href="/TEM_architecture//icons/blank.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1740" y="-699" />
-</g>
-<!-- 4855010d472e465b92d7af08edebd511&#45;&gt;37ce29cd00fa412b87dfedac5804f4ee -->
-<g id="edge31" class="edge">
-<title>4855010d472e465b92d7af08edebd511-&gt;37ce29cd00fa412b87dfedac5804f4ee</title>
-<g id="a_edge31"><a xlink:href="/TEM_architecture/topics.html#tilejpeg">
-<path fill="none" stroke="#7b8894" d="M1623.72,-648.5C1655.34,-648.5 1696.23,-648.5 1729.6,-648.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1729.7,-652 1739.7,-648.5 1729.7,-645 1729.7,-652" />
-</a>
-</g>
-<g id="a_edge31-headlabel"><a xlink:href="/TEM_architecture/topics.html#tilejpeg" xlink:title="tile.jpeg">
-<text text-anchor="middle" x="1712.2" y="-652.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">tile.jpeg</text>
+<!-- c09aa2e0bd51444cb332f51cc3df7ffb -->
+<g id="node20" class="node">
+<title>c09aa2e0bd51444cb332f51cc3df7ffb</title>
+<g id="a_node20"><a xlink:href="#send-jpeg-filepath" xlink:title="Send JPEG">
+<image xlink:href="/TEM_architecture/icons/python.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="1667.5" y="-699"></image>
+<text text-anchor="middle" x="1718" y="-583.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Send JPEG</text>
 </a>
 </g>
 </g>
-<!-- 1020ce2b2dae4c5e9ba3d007bcd1d744 -->
-<g id="node21" class="node">
-<title>1020ce2b2dae4c5e9ba3d007bcd1d744</title>
-<g id="a_node21"><a xlink:href="#transfer-to-cpu-memory" xlink:title="Transfer to CPU Memory">
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="1232.5" y="-415.313" />
+<!-- 8d651ebc5526437292cb10b1441d825b&#45;&gt;c09aa2e0bd51444cb332f51cc3df7ffb -->
+<g id="edge28" class="edge">
+<title>8d651ebc5526437292cb10b1441d825b-&gt;c09aa2e0bd51444cb332f51cc3df7ffb</title>
+<path fill="none" stroke="#7b8894" d="M1623.71,-648.5C1634.47,-648.5 1645.93,-648.5 1657.02,-648.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1657.07,-652 1667.07,-648.5 1657.07,-645 1657.07,-652"></polygon>
+</g>
+<!-- 86c0590b30b34eb6999ee7842b8cae7e -->
+<g id="node33" class="node">
+<title>86c0590b30b34eb6999ee7842b8cae7e</title>
+<image xlink:href="/TEM_architecture/icons/blank.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="1885" y="-699"></image>
+</g>
+<!-- c09aa2e0bd51444cb332f51cc3df7ffb&#45;&gt;86c0590b30b34eb6999ee7842b8cae7e -->
+<g id="edge32" class="edge">
+<title>c09aa2e0bd51444cb332f51cc3df7ffb-&gt;86c0590b30b34eb6999ee7842b8cae7e</title>
+<g id="a_edge32"><a xlink:href="/TEM_architecture/topics.html#tile-jpeg">
+<path fill="none" stroke="#7b8894" d="M1768.72,-648.5C1800.34,-648.5 1841.23,-648.5 1874.6,-648.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1874.7,-652 1884.7,-648.5 1874.7,-645 1874.7,-652"></polygon>
+</a>
+</g>
+<g id="a_edge32-headlabel"><a xlink:href="/TEM_architecture/topics.html#tile-jpeg" xlink:title="tile.jpeg">
+<text text-anchor="middle" x="1857.2" y="-652.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">tile.jpeg</text>
+</a>
+</g>
+</g>
+<!-- 6b534f72b4684ac2a429fac7083c858d -->
+<g id="node22" class="node">
+<title>6b534f72b4684ac2a429fac7083c858d</title>
+<g id="a_node22"><a xlink:href="#transfer-to-cpu-memory" xlink:title="Transfer to CPU Memory">
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1232.5" y="-415.313"></image>
 <text text-anchor="middle" x="1283" y="-293.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Transfer to CPU Memory</text>
 </a>
 </g>
 </g>
-<!-- 9af2c8a5f66d412ca68fb5da2d23ac86&#45;&gt;1020ce2b2dae4c5e9ba3d007bcd1d744 -->
+<!-- d35ec9efbf754d26a35ac99f477e48b4&#45;&gt;6b534f72b4684ac2a429fac7083c858d -->
 <g id="edge7" class="edge">
-<title>9af2c8a5f66d412ca68fb5da2d23ac86-&gt;1020ce2b2dae4c5e9ba3d007bcd1d744</title>
-<path fill="none" stroke="#7b8894" d="M1188.71,-358.5C1199.47,-358.5 1210.93,-358.5 1222.02,-358.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1222.07,-362 1232.07,-358.5 1222.07,-355 1222.07,-362" />
+<title>d35ec9efbf754d26a35ac99f477e48b4-&gt;6b534f72b4684ac2a429fac7083c858d</title>
+<path fill="none" stroke="#7b8894" d="M1188.71,-358.5C1199.47,-358.5 1210.93,-358.5 1222.02,-358.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1222.07,-362 1232.07,-358.5 1222.07,-355 1222.07,-362"></polygon>
 </g>
-<!-- 8fe851b576da442d80e633bfdb32011f -->
-<g id="node24" class="node">
-<title>8fe851b576da442d80e633bfdb32011f</title>
-<g id="a_node24"><a xlink:href="#tile-matcher" xlink:title="Tile Matcher">
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="1087.5" y="-270.313" />
+<!-- 5852b90ca7274bfc8184fdeec4ffcf06 -->
+<g id="node25" class="node">
+<title>5852b90ca7274bfc8184fdeec4ffcf06</title>
+<g id="a_node25"><a xlink:href="#tile-matcher" xlink:title="Tile Matcher">
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1087.5" y="-270.313"></image>
 <text text-anchor="middle" x="1138" y="-148.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Tile Matcher</text>
 </a>
 </g>
 </g>
-<!-- 9af2c8a5f66d412ca68fb5da2d23ac86&#45;&gt;8fe851b576da442d80e633bfdb32011f -->
+<!-- d35ec9efbf754d26a35ac99f477e48b4&#45;&gt;5852b90ca7274bfc8184fdeec4ffcf06 -->
 <g id="edge19" class="edge">
-<title>9af2c8a5f66d412ca68fb5da2d23ac86-&gt;8fe851b576da442d80e633bfdb32011f</title>
-<path fill="none" stroke="#7b8894" d="M1138,-289.82C1138,-289.67 1138,-289.51 1138,-289.35" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1141.5,-292.35 1138,-282.35 1134.5,-292.35 1141.5,-292.35" />
+<title>d35ec9efbf754d26a35ac99f477e48b4-&gt;5852b90ca7274bfc8184fdeec4ffcf06</title>
+<path fill="none" stroke="#7b8894" d="M1138,-289.82C1138,-289.67 1138,-289.51 1138,-289.35"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1141.5,-292.35 1138,-282.35 1134.5,-292.35 1141.5,-292.35"></polygon>
 </g>
-<!-- 50468e39595e4208a1bb9310b5191047 -->
-<g id="node22" class="node">
-<title>50468e39595e4208a1bb9310b5191047</title>
-<g id="a_node22"><a xlink:href="#save-tile" xlink:title="Save Tile">
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="1377.5" y="-415.313" />
+<!-- 42d2e1282d4d467b933fd0271bad8b04 -->
+<g id="node23" class="node">
+<title>42d2e1282d4d467b933fd0271bad8b04</title>
+<g id="a_node23"><a xlink:href="#save-tile" xlink:title="Save Tile">
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1377.5" y="-415.313"></image>
 <text text-anchor="middle" x="1428" y="-293.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Save Tile</text>
 </a>
 </g>
 </g>
-<!-- 1020ce2b2dae4c5e9ba3d007bcd1d744&#45;&gt;50468e39595e4208a1bb9310b5191047 -->
+<!-- 6b534f72b4684ac2a429fac7083c858d&#45;&gt;42d2e1282d4d467b933fd0271bad8b04 -->
 <g id="edge8" class="edge">
-<title>1020ce2b2dae4c5e9ba3d007bcd1d744-&gt;50468e39595e4208a1bb9310b5191047</title>
-<path fill="none" stroke="#7b8894" d="M1333.71,-358.5C1344.47,-358.5 1355.93,-358.5 1367.02,-358.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1367.07,-362 1377.07,-358.5 1367.07,-355 1367.07,-362" />
+<title>6b534f72b4684ac2a429fac7083c858d-&gt;42d2e1282d4d467b933fd0271bad8b04</title>
+<path fill="none" stroke="#7b8894" d="M1333.71,-358.5C1344.47,-358.5 1355.93,-358.5 1367.02,-358.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1367.07,-362 1377.07,-358.5 1367.07,-355 1367.07,-362"></polygon>
 </g>
-<!-- ec35ef1aee194d8880bfb526d3ea4242 -->
-<g id="node23" class="node">
-<title>ec35ef1aee194d8880bfb526d3ea4242</title>
-<g id="a_node23"><a xlink:href="#send-tile-filepath" xlink:title="Send Processed Tile Filepath">
-<image xlink:href="/TEM_architecture//icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1522.5" y="-409" />
+<!-- 1c0f2de702a244e18b27a8f353b044bf -->
+<g id="node24" class="node">
+<title>1c0f2de702a244e18b27a8f353b044bf</title>
+<g id="a_node24"><a xlink:href="#send-tile-filepath" xlink:title="Send Processed Tile Filepath">
+<image xlink:href="/TEM_architecture/icons/python.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="1522.5" y="-409"></image>
 <text text-anchor="middle" x="1573" y="-293.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Send Processed Tile Filepath</text>
 </a>
 </g>
 </g>
-<!-- 50468e39595e4208a1bb9310b5191047&#45;&gt;ec35ef1aee194d8880bfb526d3ea4242 -->
+<!-- 42d2e1282d4d467b933fd0271bad8b04&#45;&gt;1c0f2de702a244e18b27a8f353b044bf -->
 <g id="edge9" class="edge">
-<title>50468e39595e4208a1bb9310b5191047-&gt;ec35ef1aee194d8880bfb526d3ea4242</title>
-<path fill="none" stroke="#7b8894" d="M1478.71,-358.5C1489.47,-358.5 1500.93,-358.5 1512.02,-358.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1512.07,-362 1522.07,-358.5 1512.07,-355 1512.07,-362" />
+<title>42d2e1282d4d467b933fd0271bad8b04-&gt;1c0f2de702a244e18b27a8f353b044bf</title>
+<path fill="none" stroke="#7b8894" d="M1478.71,-358.5C1489.47,-358.5 1500.93,-358.5 1512.02,-358.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1512.07,-362 1522.07,-358.5 1512.07,-355 1512.07,-362"></polygon>
 </g>
-<!-- 04d92684847141db95530b5fee4d969d -->
-<g id="node34" class="node">
-<title>04d92684847141db95530b5fee4d969d</title>
-<image xlink:href="/TEM_architecture//icons/blank.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1740" y="-409" />
-</g>
-<!-- ec35ef1aee194d8880bfb526d3ea4242&#45;&gt;04d92684847141db95530b5fee4d969d -->
-<g id="edge33" class="edge">
-<title>ec35ef1aee194d8880bfb526d3ea4242-&gt;04d92684847141db95530b5fee4d969d</title>
-<g id="a_edge33"><a xlink:href="/TEM_architecture/topics.html#tileprocessed">
-<path fill="none" stroke="#7b8894" d="M1623.72,-358.5C1655.34,-358.5 1696.23,-358.5 1729.6,-358.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1729.7,-362 1739.7,-358.5 1729.7,-355 1729.7,-362" />
-</a>
-</g>
-<g id="a_edge33-headlabel"><a xlink:href="/TEM_architecture/topics.html#tileprocessed" xlink:title="tile.processed">
-<text text-anchor="middle" x="1692.7" y="-362.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">tile.processed</text>
-</a>
-</g>
-</g>
-<!-- a6ba087c2ccc4f87bda7a7ebed936b90 -->
-<g id="node25" class="node">
-<title>a6ba087c2ccc4f87bda7a7ebed936b90</title>
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="1232.5" y="-270.313" />
-<text text-anchor="middle" x="1283" y="-148.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Transfer to CPU Memory</text>
-</g>
-<!-- 8fe851b576da442d80e633bfdb32011f&#45;&gt;a6ba087c2ccc4f87bda7a7ebed936b90 -->
-<g id="edge20" class="edge">
-<title>8fe851b576da442d80e633bfdb32011f-&gt;a6ba087c2ccc4f87bda7a7ebed936b90</title>
-<path fill="none" stroke="#7b8894" d="M1188.71,-213.5C1199.47,-213.5 1210.93,-213.5 1222.02,-213.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1222.07,-217 1232.07,-213.5 1222.07,-210 1222.07,-217" />
-</g>
-<!-- 7531fe8feb8b433081a4726ead09fde4 -->
-<g id="node28" class="node">
-<title>7531fe8feb8b433081a4726ead09fde4</title>
-<image xlink:href="/TEM_architecture//icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1087.5" y="-119" />
-<text text-anchor="middle" x="1138" y="-3.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Send Transform</text>
-</g>
-<!-- 8fe851b576da442d80e633bfdb32011f&#45;&gt;7531fe8feb8b433081a4726ead09fde4 -->
-<g id="edge23" class="edge">
-<title>8fe851b576da442d80e633bfdb32011f-&gt;7531fe8feb8b433081a4726ead09fde4</title>
-<path fill="none" stroke="#7b8894" d="M1138,-144.82C1138,-144.67 1138,-144.51 1138,-144.35" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1141.5,-147.35 1138,-137.35 1134.5,-147.35 1141.5,-147.35" />
-</g>
-<!-- 331d126727c2487cb13113031c07e229 -->
-<g id="node26" class="node">
-<title>331d126727c2487cb13113031c07e229</title>
-<image xlink:href="/TEM_architecture//icons/cpp.png" width="101px" height="113.625px" preserveAspectRatio="xMinYMin meet" x="1377.5" y="-270.313" />
-<text text-anchor="middle" x="1428" y="-148.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Save Mini-Map</text>
-</g>
-<!-- a6ba087c2ccc4f87bda7a7ebed936b90&#45;&gt;331d126727c2487cb13113031c07e229 -->
-<g id="edge21" class="edge">
-<title>a6ba087c2ccc4f87bda7a7ebed936b90-&gt;331d126727c2487cb13113031c07e229</title>
-<path fill="none" stroke="#7b8894" d="M1333.71,-213.5C1344.47,-213.5 1355.93,-213.5 1367.02,-213.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1367.07,-217 1377.07,-213.5 1367.07,-210 1367.07,-217" />
-</g>
-<!-- 8f3c98fce1cd4d4a97a5537ea0cd34a3 -->
-<g id="node27" class="node">
-<title>8f3c98fce1cd4d4a97a5537ea0cd34a3</title>
-<image xlink:href="/TEM_architecture//icons/python.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1522.5" y="-264" />
-<text text-anchor="middle" x="1573" y="-148.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Send Mini-Map</text>
-</g>
-<!-- 331d126727c2487cb13113031c07e229&#45;&gt;8f3c98fce1cd4d4a97a5537ea0cd34a3 -->
-<g id="edge22" class="edge">
-<title>331d126727c2487cb13113031c07e229-&gt;8f3c98fce1cd4d4a97a5537ea0cd34a3</title>
-<path fill="none" stroke="#7b8894" d="M1478.71,-213.5C1489.47,-213.5 1500.93,-213.5 1512.02,-213.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1512.07,-217 1522.07,-213.5 1512.07,-210 1512.07,-217" />
-</g>
-<!-- 64fdbfe43ce64e6c807dbef87918815f -->
+<!-- 9c7faae98d464eafabad7bbe1cae6b78 -->
 <g id="node35" class="node">
-<title>64fdbfe43ce64e6c807dbef87918815f</title>
-<image xlink:href="/TEM_architecture//icons/blank.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1740" y="-264" />
+<title>9c7faae98d464eafabad7bbe1cae6b78</title>
+<image xlink:href="/TEM_architecture/icons/blank.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="1885" y="-409"></image>
 </g>
-<!-- 8f3c98fce1cd4d4a97a5537ea0cd34a3&#45;&gt;64fdbfe43ce64e6c807dbef87918815f -->
+<!-- 1c0f2de702a244e18b27a8f353b044bf&#45;&gt;9c7faae98d464eafabad7bbe1cae6b78 -->
 <g id="edge34" class="edge">
-<title>8f3c98fce1cd4d4a97a5537ea0cd34a3-&gt;64fdbfe43ce64e6c807dbef87918815f</title>
-<g id="a_edge34"><a xlink:href="/TEM_architecture/topics.html#tileminimap">
-<path fill="none" stroke="#7b8894" d="M1623.72,-213.5C1655.34,-213.5 1696.23,-213.5 1729.6,-213.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1729.7,-217 1739.7,-213.5 1729.7,-210 1729.7,-217" />
+<title>1c0f2de702a244e18b27a8f353b044bf-&gt;9c7faae98d464eafabad7bbe1cae6b78</title>
+<g id="a_edge34"><a xlink:href="/TEM_architecture/topics.html#tile-processed">
+<path fill="none" stroke="#7b8894" d="M1623.79,-358.5C1689.62,-358.5 1804.32,-358.5 1874.71,-358.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1874.77,-362 1884.77,-358.5 1874.77,-355 1874.77,-362"></polygon>
 </a>
 </g>
-<g id="a_edge34-headlabel"><a xlink:href="/TEM_architecture/topics.html#tileminimap" xlink:title="tile.minimap">
-<text text-anchor="middle" x="1697.7" y="-217.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">tile.minimap</text>
+<g id="a_edge34-headlabel"><a xlink:href="/TEM_architecture/topics.html#tile-processed" xlink:title="tile.processed">
+<text text-anchor="middle" x="1837.77" y="-362.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">tile.processed</text>
 </a>
 </g>
 </g>
-<!-- da89b70106844782914f333108db6d7b -->
+<!-- 60d416af0b0646499c1fc236f9261ae6 -->
+<g id="node26" class="node">
+<title>60d416af0b0646499c1fc236f9261ae6</title>
+<g id="a_node26"><a xlink:href="#minimap-to-cpu-memory" xlink:title="Transfer to CPU Memory">
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1232.5" y="-270.313"></image>
+<text text-anchor="middle" x="1283" y="-148.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Transfer to CPU Memory</text>
+</a>
+</g>
+</g>
+<!-- 5852b90ca7274bfc8184fdeec4ffcf06&#45;&gt;60d416af0b0646499c1fc236f9261ae6 -->
+<g id="edge20" class="edge">
+<title>5852b90ca7274bfc8184fdeec4ffcf06-&gt;60d416af0b0646499c1fc236f9261ae6</title>
+<path fill="none" stroke="#7b8894" d="M1188.71,-213.5C1199.47,-213.5 1210.93,-213.5 1222.02,-213.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1222.07,-217 1232.07,-213.5 1222.07,-210 1222.07,-217"></polygon>
+</g>
+<!-- 4da973736dd44587b5a577fab651eacc -->
+<g id="node29" class="node">
+<title>4da973736dd44587b5a577fab651eacc</title>
+<g id="a_node29"><a xlink:href="#send-transform" xlink:title="Send Transform">
+<image xlink:href="/TEM_architecture/icons/python.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="1087.5" y="-119"></image>
+<text text-anchor="middle" x="1138" y="-3.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Send Transform</text>
+</a>
+</g>
+</g>
+<!-- 5852b90ca7274bfc8184fdeec4ffcf06&#45;&gt;4da973736dd44587b5a577fab651eacc -->
+<g id="edge23" class="edge">
+<title>5852b90ca7274bfc8184fdeec4ffcf06-&gt;4da973736dd44587b5a577fab651eacc</title>
+<path fill="none" stroke="#7b8894" d="M1138,-144.82C1138,-144.67 1138,-144.51 1138,-144.35"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1141.5,-147.35 1138,-137.35 1134.5,-147.35 1141.5,-147.35"></polygon>
+</g>
+<!-- 83fc2284028140f3b1cd1f64857c6a1b -->
+<g id="node27" class="node">
+<title>83fc2284028140f3b1cd1f64857c6a1b</title>
+<g id="a_node27"><a xlink:href="#save-minimap" xlink:title="Save Mini-Map">
+<image xlink:href="/TEM_architecture/icons/cpp.png" width="101px" height="113.625px" preserveaspectratio="xMinYMin meet" x="1377.5" y="-270.313"></image>
+<text text-anchor="middle" x="1428" y="-148.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Save Mini-Map</text>
+</a>
+</g>
+</g>
+<!-- 60d416af0b0646499c1fc236f9261ae6&#45;&gt;83fc2284028140f3b1cd1f64857c6a1b -->
+<g id="edge21" class="edge">
+<title>60d416af0b0646499c1fc236f9261ae6-&gt;83fc2284028140f3b1cd1f64857c6a1b</title>
+<path fill="none" stroke="#7b8894" d="M1333.71,-213.5C1344.47,-213.5 1355.93,-213.5 1367.02,-213.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1367.07,-217 1377.07,-213.5 1367.07,-210 1367.07,-217"></polygon>
+</g>
+<!-- 2d060ee83c774b59bbb66613c5bf80dd -->
+<g id="node28" class="node">
+<title>2d060ee83c774b59bbb66613c5bf80dd</title>
+<g id="a_node28"><a xlink:href="#send-minimap" xlink:title="Send Mini-Map">
+<image xlink:href="/TEM_architecture/icons/python.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="1522.5" y="-264"></image>
+<text text-anchor="middle" x="1573" y="-148.6" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">Send Mini-Map</text>
+</a>
+</g>
+</g>
+<!-- 83fc2284028140f3b1cd1f64857c6a1b&#45;&gt;2d060ee83c774b59bbb66613c5bf80dd -->
+<g id="edge22" class="edge">
+<title>83fc2284028140f3b1cd1f64857c6a1b-&gt;2d060ee83c774b59bbb66613c5bf80dd</title>
+<path fill="none" stroke="#7b8894" d="M1478.71,-213.5C1489.47,-213.5 1500.93,-213.5 1512.02,-213.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1512.07,-217 1522.07,-213.5 1512.07,-210 1512.07,-217"></polygon>
+</g>
+<!-- 325a3ff6272b414db9f878a0c693d2f5 -->
 <g id="node36" class="node">
-<title>da89b70106844782914f333108db6d7b</title>
-<image xlink:href="/TEM_architecture//icons/blank.png" width="101px" height="101px" preserveAspectRatio="xMinYMin meet" x="1740" y="-119" />
+<title>325a3ff6272b414db9f878a0c693d2f5</title>
+<image xlink:href="/TEM_architecture/icons/blank.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="1885" y="-264"></image>
 </g>
-<!-- 7531fe8feb8b433081a4726ead09fde4&#45;&gt;da89b70106844782914f333108db6d7b -->
+<!-- 2d060ee83c774b59bbb66613c5bf80dd&#45;&gt;325a3ff6272b414db9f878a0c693d2f5 -->
 <g id="edge35" class="edge">
-<title>7531fe8feb8b433081a4726ead09fde4-&gt;da89b70106844782914f333108db6d7b</title>
-<g id="a_edge35"><a xlink:href="/TEM_architecture/topics.html#tiletransform">
-<path fill="none" stroke="#7b8894" d="M1188.66,-68.5C1307.17,-68.5 1602.09,-68.5 1729.87,-68.5" />
-<polygon fill="#7b8894" stroke="#7b8894" points="1729.87,-72 1739.87,-68.5 1729.87,-65 1729.87,-72" />
+<title>2d060ee83c774b59bbb66613c5bf80dd-&gt;325a3ff6272b414db9f878a0c693d2f5</title>
+<g id="a_edge35"><a xlink:href="/TEM_architecture/topics.html#tile-minimap">
+<path fill="none" stroke="#7b8894" d="M1623.79,-213.5C1689.62,-213.5 1804.32,-213.5 1874.71,-213.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1874.77,-217 1884.77,-213.5 1874.77,-210 1874.77,-217"></polygon>
 </a>
 </g>
-<g id="a_edge35-headlabel"><a xlink:href="/TEM_architecture/topics.html#tiletransform" xlink:title="tile.transform">
-<text text-anchor="middle" x="1694.37" y="-72.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">tile.transform</text>
+<g id="a_edge35-headlabel"><a xlink:href="/TEM_architecture/topics.html#tile-minimap" xlink:title="tile.minimap">
+<text text-anchor="middle" x="1842.77" y="-217.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">tile.minimap</text>
+</a>
+</g>
+</g>
+<!-- 71c04d54d9254de787187093cafbd204 -->
+<g id="node37" class="node">
+<title>71c04d54d9254de787187093cafbd204</title>
+<image xlink:href="/TEM_architecture/icons/blank.png" width="101px" height="101px" preserveaspectratio="xMinYMin meet" x="1885" y="-119"></image>
+</g>
+<!-- 4da973736dd44587b5a577fab651eacc&#45;&gt;71c04d54d9254de787187093cafbd204 -->
+<g id="edge36" class="edge">
+<title>4da973736dd44587b5a577fab651eacc-&gt;71c04d54d9254de787187093cafbd204</title>
+<g id="a_edge36"><a xlink:href="/TEM_architecture/topics.html#tile-transform">
+<path fill="none" stroke="#7b8894" d="M1188.8,-68.5C1329.32,-68.5 1722.88,-68.5 1874.69,-68.5"></path>
+<polygon fill="#7b8894" stroke="#7b8894" points="1874.77,-72 1884.77,-68.5 1874.77,-65 1874.77,-72"></polygon>
+</a>
+</g>
+<g id="a_edge36-headlabel"><a xlink:href="/TEM_architecture/topics.html#tile-transform" xlink:title="tile.transform">
+<text text-anchor="middle" x="1839.27" y="-72.1" font-family="Sans-Serif" font-size="13.00" fill="#2d3436">tile.transform</text>
 </a>
 </g>
 </g>
 </g>
 </svg></div>
 
-<h3 id="receive-tile-filepath">Receive Tile Filepath</h3>
+<h3 id="functionality">
+<a class="anchor" href="#functionality" aria-hidden="true"><span class="octicon octicon-link"></span></a>Functionality</h3>
 
-<p>This node receives the metadata for a tile to process from the <a href="/TEM_architecture/broker.html">message broker</a>, and passes the filename to the load image node.</p>
+<h4 id="receive-tile-filepath">
+<a class="anchor" href="#receive-tile-filepath" aria-hidden="true"><span class="octicon octicon-link"></span></a>Receive Tile Filepath</h4>
 
-<h3 id="load-tile">Load Tile</h3>
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#temcommsinput">TEMCommsInput</a></dd>
+</dl>
+
+<p>This node receives the metadata and the path to a raw tile to process from the <a href="/TEM_architecture/broker.html">message broker</a> on the <a href="">tile.raw</a> topic, and passes the filename to the load tile node.</p>
+
+<h4 id="load-tile">
+<a class="anchor" href="#load-tile" aria-hidden="true"><span class="octicon octicon-link"></span></a>Load Tile</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#imreadnode">IMReadNode</a></dd>
+</dl>
 
 <p>This node receives the metadata and filename, and uses OpenCV to load a tile into CPU memory from SSD based storage.</p>
 
-<h3 id="transfer-to-gpu">Transfer to GPU</h3>
+<h4 id="transfer-to-gpu">
+<a class="anchor" href="#transfer-to-gpu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transfer to GPU</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#togpunode">ToGPUNode</a></dd>
+</dl>
 
 <p>After the tile is loaded into CPU memory, it is transferred into GPU memory for more efficient processing.</p>
 
-<h3 id="flip">Flip</h3>
+<h4 id="flip">
+<a class="anchor" href="#flip" aria-hidden="true"><span class="octicon octicon-link"></span></a>Flip</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#flipnodegpu">FlipNodeGPU</a></dd>
+</dl>
 
 <p>On the GPU, the tile is horizontally flipped.</p>
 
-<h3 id="flat-field-correction">Flat-Field Correction</h3>
+<h4 id="flat-field-correction">
+<a class="anchor" href="#flat-field-correction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Flat-Field Correction</h4>
+
+<dl>
+  <dt>Uses:</dt>
+  <dd><a href="#flatfieldnodegpu">FlatFieldNodeGPU</a></dd>
+</dl>
 
 <p>The flat-field correction is applied to the tile using brightfield and darkfield images stored on the SSD.
 The brightfield and darkfield file modification times are checked during each execution to check if they need to be reloaded.</p>
 
-<h3 id="clahe">CLAHE</h3>
+<h4 id="clahe">
+<a class="anchor" href="#clahe" aria-hidden="true"><span class="octicon octicon-link"></span></a>CLAHE</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#clahenodegpu">CLAHENodeGPU</a></dd>
+</dl>
 
 <p>The Contrast Limited Adaptive Histogram Equalization algorithm is applied to the tile.
-The resulting image is sent to multiple functions for further analysis, including an <a href="#fft">FFT</a> for calculating the <a href="#focus-score">focus score</a>, calculating the <a href="#min-max-mean">minimum, maximum, and mean</a> pixel values, and <a href="#calculate-histogram">histogram</a>.</p>
+The resulting image is sent to multiple functions for further analysis, including an <a href="#fft">FFT</a> for calculating the <a href="#focus-score">focus score</a>, calculating the <a href="#min-max-mean">minimum, maximum, and mean</a> pixel values, <a href="#calculate-histogram">histogram</a>, <a href="#clone">clone</a> for <a href="/TEM_architecture/ui.html">UI</a> display, and further processing, starting with the <a href="#lens-correction">lens correction</a>.</p>
 
-<h3 id="lens-correction">Lens Correction</h3>
+<h4 id="lens-correction">
+<a class="anchor" href="#lens-correction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lens Correction</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#lenscorrectionnodegpu">LensCorrectionNodeGPU</a></dd>
+</dl>
 
 <p>To remove distortion, a lens correction is applied.
-This is performed using two images stored on the SSD and reloaded whenever the file modification times are newer than the images stored in memory.</p>
+This is performed using two images stored on the SSD and reloaded whenever the file modification times are newer than the images stored in memory.
+The output is send to the <a href="#tile-matcher">tile matcher</a> and a <a href="#transfer-to-cpu-memory">to cpu</a> node for saving to disk.</p>
 
-<h3 id="transfer-to-cpu-memory">Transfer to CPU Memory</h3>
+<h4 id="transfer-to-cpu-memory">
+<a class="anchor" href="#transfer-to-cpu-memory" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transfer to CPU Memory</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#fromgpunode">FromGPUNode</a></dd>
+</dl>
 
 <p>In order to save the tile, it must first be transferred to CPU memory.</p>
 
-<h3 id="save-tile">Save Tile</h3>
+<h4 id="save-tile">
+<a class="anchor" href="#save-tile" aria-hidden="true"><span class="octicon octicon-link"></span></a>Save Tile</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#imwritenode">IMWriteNode</a></dd>
+</dl>
 
 <p>The processed tile can now be saved to disk.</p>
 
-<h3 id="send-tile-filepath">Send Tile Filepath</h3>
+<h4 id="send-tile-filepath">
+<a class="anchor" href="#send-tile-filepath" aria-hidden="true"><span class="octicon octicon-link"></span></a>Send Tile Filepath</h4>
 
-<p>The filepath of the processed tile can now be sent via the <a href="/TEM_architecture/broker.html">broker</a> to other services.</p>
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#publishfilenode">PublishFileNode</a></dd>
+</dl>
 
-<h3 id="min-max-mean">Min, Max, Mean</h3>
+<p>The filepath of the processed tile can now be sent via the <a href="/TEM_architecture/broker.html">broker</a> to other services on the <a href="/TEM_architecture/topics.html#tile-processed">tile.processed</a> topic.</p>
+
+<h4 id="tile-matcher">
+<a class="anchor" href="#tile-matcher" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tile Matcher</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#matchernodegpu">MatcherNodeGPU</a></dd>
+</dl>
+
+<p>This node performs template matching of each tile with its neighbors. It outputs both a minimap image (a down-sampled overview of the entire montage) and the metadata from the matching itself.</p>
+
+<h4 id="send-transform">
+<a class="anchor" href="#send-transform" aria-hidden="true"><span class="octicon octicon-link"></span></a>Send Transform</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#publishtransformnode">PublishTransformNode</a></dd>
+</dl>
+
+<p>This node sends the transform of the matched tile along with other metadata to the <a href="/TEM_architecture/topics.html#tile-transform">tile.transform</a> topic via the <a href="/TEM_architecture/broker.html">broker</a>.</p>
+
+<h4 id="minimap-to-cpu-memory">
+<a class="anchor" href="#minimap-to-cpu-memory" aria-hidden="true"><span class="octicon octicon-link"></span></a>Minimap to CPU Memory</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#fromgpunode">FromGPUNode</a></dd>
+</dl>
+
+<p>Before it can be saved, the minimap must be moved to CPU memory.</p>
+
+<h4 id="save-minimap">
+<a class="anchor" href="#save-minimap" aria-hidden="true"><span class="octicon octicon-link"></span></a>Save Minimap</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#imwritenode">IMWriteNode</a></dd>
+</dl>
+
+<p>The minimap can is saved to disk.</p>
+
+<h4 id="send-minimap">
+<a class="anchor" href="#send-minimap" aria-hidden="true"><span class="octicon octicon-link"></span></a>Send Minimap</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#publishfilenode">PublishFileNode</a></dd>
+</dl>
+
+<p>The path to the minimap can now be sent via the <a href="/TEM_architecture/broker.html">broker</a> on the <a href="/TEM_architecture/topics.html#tile-minimap">tile.minimap</a> topic.</p>
+
+<h4 id="min-max-mean">
+<a class="anchor" href="#min-max-mean" aria-hidden="true"><span class="octicon octicon-link"></span></a>Min, Max, Mean</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#minmaxmeannode">MinMaxMeanNodeGPU</a></dd>
+</dl>
 
 <p>This node calculates the minimum, maximum, and mean pixel values.</p>
 
-<h3 id="send-min-max-mean">Send Min, Max, Mean</h3>
+<h4 id="send-min-max-mean">
+<a class="anchor" href="#send-min-max-mean" aria-hidden="true"><span class="octicon octicon-link"></span></a>Send Min, Max, Mean</h4>
 
-<p>This node sends the minimum, maximum, and mean pixel values to other services via the <a href="/TEM_architecture/broker.html">broker</a>.</p>
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#publishminmaxmeannode">PublishMinMaxMeanNode</a></dd>
+</dl>
 
-<h3 id="fft">FFT</h3>
+<p>This node sends the minimum, maximum, and mean pixel values to other services via the <a href="/TEM_architecture/broker.html">broker</a> on the <a href="/TEM_architecture/topics.html#tile-statistics-min_max_mean">tile.statistics.min_max_mean</a> topic.</p>
+
+<h4 id="fft">
+<a class="anchor" href="#fft" aria-hidden="true"><span class="octicon octicon-link"></span></a>FFT</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#fftnodegpu">FFTNodeGPU</a></dd>
+</dl>
 
 <p>This node crops out the center of the tile and computes the Fast Fourier Transform.</p>
 
-<h3 id="focus-score">Focus Score</h3>
+<h4 id="focus-score">
+<a class="anchor" href="#focus-score" aria-hidden="true"><span class="octicon octicon-link"></span></a>Focus Score</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#focusnodegpu">FocusNodeGPU</a></dd>
+</dl>
 
 <p>This node uses the FFT data to create a metric for the quality of the focus.</p>
 
-<h3 id="send-focus-score">Send Focus Score</h3>
+<h4 id="send-focus-score">
+<a class="anchor" href="#send-focus-score" aria-hidden="true"><span class="octicon octicon-link"></span></a>Send Focus Score</h4>
 
-<p>This node sends the focus score to other services via the <a href="/TEM_architecture/broker.html">broker</a></p>
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#publishfocusnode">PublishFocusNode</a></dd>
+</dl>
 
-<h3 id="calculate-histogram">Calculate Histogram</h3>
+<p>This node sends the focus score to other services via the <a href="/TEM_architecture/broker.html">broker</a> on the <a href="/TEM_architecture/topics.html#tile-statistics-focus">tile.statistics.focus</a> topic.</p>
+
+<h4 id="clone">
+<a class="anchor" href="#clone" aria-hidden="true"><span class="octicon octicon-link"></span></a>Clone</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#clonenodegpu">CloneNodeGPU</a></dd>
+</dl>
+
+<p>This node copies the image data, since the following node modifies it in-place.</p>
+
+<h4 id="down-sample">
+<a class="anchor" href="#down-sample" aria-hidden="true"><span class="octicon octicon-link"></span></a>Down-sample</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#downsamplenodegpu">DownsampleNodeGPU</a></dd>
+</dl>
+
+<p>This node down-samples the partially processed tile for <a href="/TEM_architecture/ui.html">UI</a> display.</p>
+
+<h4 id="down-sampled-image-to-cpu-memory">
+<a class="anchor" href="#down-sampled-image-to-cpu-memory" aria-hidden="true"><span class="octicon octicon-link"></span></a>Down-sampled Image to CPU Memory</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#fromgpunode">FromGPUNode</a></dd>
+</dl>
+
+<p>The down-sampled image must be moved to CPU memory before it can be saved to disk.</p>
+
+<h4 id="save-jpeg">
+<a class="anchor" href="#save-jpeg" aria-hidden="true"><span class="octicon octicon-link"></span></a>Save JPEG</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#imwritenode">IMWriteNode</a></dd>
+</dl>
+
+<p>The down-sampled image should be saved using JPEG compression for the <a href="/TEM_architecture/ui.html">UI</a>.</p>
+
+<h4 id="send-jpeg-filepath">
+<a class="anchor" href="#send-jpeg-filepath" aria-hidden="true"><span class="octicon octicon-link"></span></a>Send JPEG Filepath</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#publishfilenode">PublishFileNode</a></dd>
+</dl>
+
+<p>The path to the JPEG compressed image can be published via the <a href="/TEM_architecture/broker.html">broker</a> on the <a href="/TEM_architecture/topics.html#tile-jpeg">tile.jpeg</a> topic.</p>
+
+<h4 id="histogram-transfer-to-cpu-memory">
+<a class="anchor" href="#histogram-transfer-to-cpu-memory" aria-hidden="true"><span class="octicon octicon-link"></span></a>Histogram Transfer to CPU Memory</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#fromgpunode">FromGPUNode</a></dd>
+</dl>
+
+<p>Transfer the image to CPU memory before computing the histogram.</p>
+
+<h4 id="calculate-histogram">
+<a class="anchor" href="#calculate-histogram" aria-hidden="true"><span class="octicon octicon-link"></span></a>Calculate Histogram</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#histogramnode">HistogramNode</a></dd>
+</dl>
 
 <p>A small histogram image is created using this node.</p>
 
-<h3 id="save-histogram">Save Histogram</h3>
+<h4 id="save-histogram">
+<a class="anchor" href="#save-histogram" aria-hidden="true"><span class="octicon octicon-link"></span></a>Save Histogram</h4>
+
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#imwritenode">IMWriteNode</a></dd>
+</dl>
 
 <p>This node saves the histogram to SSD storage.</p>
 
-<h3 id="send-histogram">Send Histogram</h3>
+<h4 id="send-histogram">
+<a class="anchor" href="#send-histogram" aria-hidden="true"><span class="octicon octicon-link"></span></a>Send Histogram</h4>
 
-<p>This node sends the filepath to the histogram to other services using the <a href="/TEM_architecture/broker.html">broker</a>.</p>
+<dl>
+  <dt>Uses</dt>
+  <dd><a href="#publishfilenode">PublishFileNode</a></dd>
+</dl>
+
+<p>This node sends the filepath to the histogram to other services using the <a href="/TEM_architecture/broker.html">broker</a> on the <a href="/TEM_architecture/topics.html#tile-statistics-histogram">tile.statistics.histogram</a> topic.</p>
+
+<h3 id="nodes">
+<a class="anchor" href="#nodes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Nodes</h3>
+
+<p>Each node can be provided keyword arguments as described below.
+Many non-input nodes accept a <code class="language-plaintext highlighter-rouge">concurrency</code> argument controlling how many copies of that node may be crated.
+Two predefined values are available in the <code class="language-plaintext highlighter-rouge">TEM_graph.consts</code> module, <code class="language-plaintext highlighter-rouge">serial</code>, and <code class="language-plaintext highlighter-rouge">unlimited</code>.
+All nodes should also allow their name to be set using the <code class="language-plaintext highlighter-rouge">name</code> keyword argument.</p>
+
+<h4 id="imreadnode">
+<a class="anchor" href="#imreadnode" aria-hidden="true"><span class="octicon octicon-link"></span></a>IMReadNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#str_message">str_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = IMReadNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">flags (int) = IMREAD_GRAYSCALE</code>: OpenCV flags for configuring the underlying OpenCV IMRead function.</dd>
+</dl>
+
+<p>This node uses OpenCV to read an image from disk.
+The path to the image must be provided in the input message and the output message contains the image data.
+Two flags are provided in the <code class="language-plaintext highlighter-rouge">TEM_graph.consts</code> module, <code class="language-plaintext highlighter-rouge">IMREAD_GRAYSCALE</code>, and <code class="language-plaintext highlighter-rouge">IMREAD_ANYDEPTH</code>.</p>
+
+<h4 id="imwritenode">
+<a class="anchor" href="#imwritenode" aria-hidden="true"><span class="octicon octicon-link"></span></a>IMWriteNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#str_message">str_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = IMWriteNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">output_dir (string) = .</code>: The directory to save images to.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">extension (string) = .tiff</code>: The file extension to use when saving images.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">params (int vector) = [IMWRITE_TIFF_COMPRESSION, 1]</code>: The parameters to pass to the underlying OpenCV IMWrite function.</dd>
+</dl>
+
+<p>This node uses OpenCV to write an image to disk.
+The input message contains the image data, and the output message will contain the path where the image was written.
+The image will be saved in the <code class="language-plaintext highlighter-rouge">output_dir</code> directory with the tile ID from the metadata as the filename and with the extension supplied in the arguments.
+The <code class="language-plaintext highlighter-rouge">params</code> are passed to the underlying OpenCV <code class="language-plaintext highlighter-rouge">IMWrite()</code> function to control different options, with the defaults here saving an uncompressed TIFF image.
+One parameter is defined in <code class="language-plaintext highlighter-rouge">TEM_graph.consts</code>, which is <code class="language-plaintext highlighter-rouge">IMWRITE_TIFF_COMPRESSION</code>.</p>
+
+<h4 id="togpunode">
+<a class="anchor" href="#togpunode" aria-hidden="true"><span class="octicon octicon-link"></span></a>ToGPUNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = ToGPUNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+</dl>
+
+<p>This node transfers OpenCV image data from CPU memory to GPU memory for further processing.</p>
+
+<h4 id="fromgpunode">
+<a class="anchor" href="#fromgpunode" aria-hidden="true"><span class="octicon octicon-link"></span></a>FromGPUNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = ToGPUNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+</dl>
+
+<p>This node transfers OpenCV image data from GPU memory to CPU memory for saving etc.</p>
+
+<h4 id="clonenode">
+<a class="anchor" href="#clonenode" aria-hidden="true"><span class="octicon octicon-link"></span></a>CloneNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = CloneNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+</dl>
+
+<p>This node copies the image data to a new location, so that nodes that modify it in-place do not accidentally cause other nodes to receive the modified data.</p>
+
+<h4 id="clonenodegpu">
+<a class="anchor" href="#clonenodegpu" aria-hidden="true"><span class="octicon octicon-link"></span></a>CloneNodeGPU</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = CloneNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+</dl>
+
+<p>This node has identical functionality to the <a href="#clonenode">CloneNode</a>, but uses GPU processing.</p>
+
+<h4 id="flipnode">
+<a class="anchor" href="#flipnode" aria-hidden="true"><span class="octicon octicon-link"></span></a>FlipNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = FlipNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">axis (int) = horizontal</code>: The axis to flip the image along.</dd>
+</dl>
+
+<p>This node flips an image in-place along a provided axis.
+The <code class="language-plaintext highlighter-rouge">TEM_graph.consts</code> module contains three values, <code class="language-plaintext highlighter-rouge">horizontal</code>, <code class="language-plaintext highlighter-rouge">vertical</code>, and <code class="language-plaintext highlighter-rouge">both</code>.</p>
+
+<h4 id="flipnodegpu">
+<a class="anchor" href="#flipnodegpu" aria-hidden="true"><span class="octicon octicon-link"></span></a>FlipNodeGPU</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = FlipNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">axis (int) = horizontal</code>: The axis to flip the image along.</dd>
+</dl>
+
+<p>This node has identical functionality to the <a href="#flipnode">FlipNode</a>, but uses GPU processing.</p>
+
+<h4 id="downsamplenode">
+<a class="anchor" href="#downsamplenode" aria-hidden="true"><span class="octicon octicon-link"></span></a>DownsampleNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = FlipNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">scale (double) = 0.5</code>: The scaling to apply to the image.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">interpolation (int) = INTER_LINEAR</code>: The interpolation method to use.</dd>
+</dl>
+
+<p>This node resizes the incoming image in-place.
+The <code class="language-plaintext highlighter-rouge">TEM_graph.consts</code> module contains interpolation constants, <code class="language-plaintext highlighter-rouge">INTER_NEAREST</code>, <code class="language-plaintext highlighter-rouge">INTER_LINEAR</code>, <code class="language-plaintext highlighter-rouge">INTER_CUBIC</code>, <code class="language-plaintext highlighter-rouge">INTER_AREA</code>, <code class="language-plaintext highlighter-rouge">INTER_LANCZOS4</code>, <code class="language-plaintext highlighter-rouge">INTER_LINEAR_EXACT</code>, and <code class="language-plaintext highlighter-rouge">INTER_NEAREST_EXACT</code>.</p>
+
+<h4 id="downsamplenodegpu">
+<a class="anchor" href="#downsamplenodegpu" aria-hidden="true"><span class="octicon octicon-link"></span></a>DownsampleNodeGPU</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = FlipNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">scale (double) = 0.5</code>: The scaling to apply to the image.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">interpolation (int) = INTER_LINEAR</code>: The interpolation method to use.</dd>
+</dl>
+
+<p>This node has identical functionality to the <a href="#downsamplenode">DownsampleNode</a>, but uses GPU processing.</p>
+
+<h4 id="flatfieldnode">
+<a class="anchor" href="#flatfieldnode" aria-hidden="true"><span class="octicon octicon-link"></span></a>FlatFieldNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = FlatFieldNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">brightfield_path (string) = brightfield.tiff</code>: The path to a brightfield image.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">darkfield_path (string) = darkfield.tiff</code>: The path to a darkfield image.</dd>
+</dl>
+
+<p>This node performs flatfield corrections using the supplied brightfield and darkfield images.
+The incoming image is modified in-place.
+If the brightfield or darkfield images have a modification date newer then when they were loaded, they are automatically reloaded.</p>
+
+<h4 id="flatfieldnodegpu">
+<a class="anchor" href="#flatfieldnodegpu" aria-hidden="true"><span class="octicon octicon-link"></span></a>FlatFieldNodeGPU</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = FlatFieldNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">brightfield_path (string) = brightfield.tiff</code>: The path to a brightfield image.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">darkfield_path (string) = darkfield.tiff</code>: The path to a darkfield image.</dd>
+</dl>
+
+<p>This node has identical functionality to the <a href="#flatfieldnode">FlatFieldNode</a>, but uses the GPU for processing.</p>
+
+<h4 id="clahenode">
+<a class="anchor" href="#clahenode" aria-hidden="true"><span class="octicon octicon-link"></span></a>CLAHENode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = CLAHENode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">clipLimit (double) = 2</code>: The threshold for contrast limiting.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">tileGridSize (int) = 16</code>: The number of rows and columns the image will be split into.</dd>
+</dl>
+
+<p>This node performs Contrast Limited Adaptive Histogram Equalization in-place on incoming tiles.</p>
+
+<h4 id="clahenodegpu">
+<a class="anchor" href="#clahenodegpu" aria-hidden="true"><span class="octicon octicon-link"></span></a>CLAHENodeGPU</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = CLAHENode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">clipLimit (double) = 2</code>: The threshold for contrast limiting.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">tileGridSize (int) = 16</code>: The number of rows and columns the image will be split into.</dd>
+</dl>
+
+<p>This node has identical functionality to the <a href="#clahenode">CLAHENode</a>, but uses the GPU for processing.</p>
+
+<h4 id="matchernode">
+<a class="anchor" href="#matchernode" aria-hidden="true"><span class="octicon octicon-link"></span></a>MatcherNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = MatcherNode</code>: The name for the node.</dd>
+</dl>
+
+<p>This node must be run single threaded.
+It receives incoming image tiles and fits them to the montage matching the <code class="language-plaintext highlighter-rouge">montage_id</code> in the metadata.
+It outputs a minimap (a down-sampled) image of the entire montage, along with the fit metadata.</p>
+
+<h4 id="matchernodegpu">
+<a class="anchor" href="#matchernodegpu" aria-hidden="true"><span class="octicon octicon-link"></span></a>MatcherNodeGPU</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = MatcherNode</code>: The name for the node.</dd>
+</dl>
+
+<p>This node has identical functionality to the <a href="#matchernode">MatcherNode</a>, but uses the GPU for processing.</p>
+
+<h4 id="minmaxmeannode">
+<a class="anchor" href="#minmaxmeannode" aria-hidden="true"><span class="octicon octicon-link"></span></a>MinMaxMeanNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#int_vec_message">int_vec_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = MinMaxMeanNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+</dl>
+
+<p>This node outputs a vector of the minimum, maximum, and mean pixel values of the input image.</p>
+
+<h4 id="minmaxmeannodegpu">
+<a class="anchor" href="#minmaxmeannodegpu" aria-hidden="true"><span class="octicon octicon-link"></span></a>MinMaxMeanNodeGPU</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#int_vec_message">int_vec_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = MinMaxMeanNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+</dl>
+
+<p>This node has identical functionality to the <a href="#minmaxmeannode">MinMaxMeanNode</a>, but uses the GPU for processing.</p>
+
+<h4 id="fftnode">
+<a class="anchor" href="#fftnode" aria-hidden="true"><span class="octicon octicon-link"></span></a>FFTNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = FFTNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">dftSize (int) = 256</code>: The pixel width and height of a square to crop out of the center of the image.</dd>
+</dl>
+
+<p>The FFT node calculates the magnitude spectrum of a square section of the incoming tile image that is <code class="language-plaintext highlighter-rouge">dftSize</code> wide and tall.</p>
+
+<h4 id="fftnodegpu">
+<a class="anchor" href="#fftnodegpu" aria-hidden="true"><span class="octicon octicon-link"></span></a>FFTNodeGPU</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = FFTNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">dftSize (int) = 256</code>: The pixel width and height of a square to crop out of the center of the image.</dd>
+</dl>
+
+<p>This node has identical functionality to the <a href="#fftnode">FFTNode</a>, but uses the GPU for processing.</p>
+
+<h4 id="focusnode">
+<a class="anchor" href="#focusnode" aria-hidden="true"><span class="octicon octicon-link"></span></a>FocusNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#float_message">float_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = FFTNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">dftSize (int) = 256</code>: The width and height of the incoming FFT magnitude spectrum.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">frequencyStart (int) = 50</code>: The lower bound of spatial frequencies to evaluate for focus.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">frequencyEnd (int) = 251</code>: The upper bound of spatial frequencies to evaluate for focus.</dd>
+</dl>
+
+<p>This node calculates a focus score based using a FFT magnitude spectrum.</p>
+
+<h4 id="focusnodegpu">
+<a class="anchor" href="#focusnodegpu" aria-hidden="true"><span class="octicon octicon-link"></span></a>FocusNodeGPU</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#gpu_mat_message">gpu_mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#float_message">float_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = FFTNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">dftSize (int) = 256</code>: The width and height of the incoming FFT magnitude spectrum.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">frequencyStart (int) = 50</code>: The lower bound of spatial frequencies to evaluate for focus.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">frequencyEnd (int) = 251</code>: The upper bound of spatial frequencies to evaluate for focus.</dd>
+</dl>
+
+<p>This node has identical functionality to the <a href="#focusnode">FocusNode</a>, but uses the GPU for processing.</p>
+
+<h4 id="histogramnode">
+<a class="anchor" href="#histogramnode" aria-hidden="true"><span class="octicon octicon-link"></span></a>HistogramNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>C++</dd>
+  <dt>Input</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = HistogramNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">bins (int) = 256</code>: The number of bins to use when calculating the histogram.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">width (int) = 512</code>: The width of the resulting histogram image.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">height (int) = 200</code>: The height of the resulting histogram image.</dd>
+</dl>
+
+<p>This node creates a histogram plot as an image.</p>
+
+<h4 id="temcommsinputnode">
+<a class="anchor" href="#temcommsinputnode" aria-hidden="true"><span class="octicon octicon-link"></span></a>TEMCommsInputNode</h4>
+
+<h4 id="publishfilenode">
+<a class="anchor" href="#publishfilenode" aria-hidden="true"><span class="octicon octicon-link"></span></a>PublishFileNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>Python</dd>
+  <dt>Input</dt>
+  <dd><a href="#str_message">str_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#str_message">str_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = PublishFileNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">topic (string) = None</code>: The topic to publish the file path on. Must not be <code class="language-plaintext highlighter-rouge">None</code>.</dd>
+</dl>
+
+<p>This node publishes the path to a file (usually the output of am <a href="#imwritenode">IMWriteNode</a>) using the <a href="/TEM_architecture/topics.html">TEM_comms</a> library.
+The node outputs the input data without modification.</p>
+
+<h4 id="publishfocusnode">
+<a class="anchor" href="#publishfocusnode" aria-hidden="true"><span class="octicon octicon-link"></span></a>PublishFocusNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>Python</dd>
+  <dt>Input</dt>
+  <dd><a href="#float_message">float_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#float_message">float_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = PublishFocusNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+</dl>
+
+<p>This node publishes the focus score on the <a href="/TEM_architecture/topics.html#tile-statistics-focus">tile.statistics.focus</a> topic using the <a href="/TEM_architecture/topics.html">TEM_comms</a> library.
+The node outputs the input data without modification.</p>
+
+<h4 id="publishminmaxmeannode">
+<a class="anchor" href="#publishminmaxmeannode" aria-hidden="true"><span class="octicon octicon-link"></span></a>PublishMinMaxMeanNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>Python</dd>
+  <dt>Input</dt>
+  <dd><a href="#int_vec_message">int_vec_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#int_vec_message">int_vec_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = PublishMinMaxMeanNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+</dl>
+
+<p>This node publishes the minimum, maximum, and mean pixel values on the <a href="/TEM_architecture/topics.html#tile-statistics-min_max_mean">tile.statistics.min_max_mean</a> topic using the <a href="/TEM_architecture/topics.html">TEM_comms</a> library.
+The node outputs the input data without modification.</p>
+
+<h4 id="publishtransformnode">
+<a class="anchor" href="#publishtransformnode" aria-hidden="true"><span class="octicon octicon-link"></span></a>PublishTransformNode</h4>
+
+<dl>
+  <dt>Language</dt>
+  <dd>Python</dd>
+  <dt>Input</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Output</dt>
+  <dd><a href="#mat_message">mat_message</a></dd>
+  <dt>Arguments</dt>
+  <dd>
+<code class="language-plaintext highlighter-rouge">name (string) = PublishTransformNode</code>: The name for the node.</dd>
+  <dd>
+<code class="language-plaintext highlighter-rouge">concurrency (int) = unlimited</code>: The maximum number of copies of the node to run.</dd>
+</dl>
+
+<p>This node publishes the transform and other matching data from the message metadata on the <a href="/TEM_architecture/topics.html#tile-transform">tile.transform</a> topic using the <a href="/TEM_architecture/topics.html">TEM_comms</a> library.
+The node outputs the input data without modification.</p>
+
+<h3 id="message-types">
+<a class="anchor" href="#message-types" aria-hidden="true"><span class="octicon octicon-link"></span></a>Message Types</h3>
+
+<p>All data types are defined as having some metadata, along with data.
+The common metadata includes the following keys:</p>
+
+<dl>
+  <dt>tile_id (string)</dt>
+  <dd>The unique ID of the tile</dd>
+  <dt>montage_id (string)</dt>
+  <dd>The unique ID of the montage</dd>
+  <dt>row (int)</dt>
+  <dd>The row in the montage where the tile is located</dd>
+  <dt>column (int)</dt>
+  <dd>The column in the montage where the tile if located</dd>
+  <dt>overlap (float)</dt>
+  <dd>The decimal fraction of overlap between tiles</dd>
+</dl>
+
+<h4 id="str_message">
+<a class="anchor" href="#str_message" aria-hidden="true"><span class="octicon octicon-link"></span></a>str_message</h4>
+
+<p>This message type consists of metadata and a string. This is often used for storing file paths. It has the following keys:</p>
+
+<dl>
+  <dt>metadata (Metadata)</dt>
+  <dd>The message metadata</dd>
+  <dt>data (string)</dt>
+  <dd>The string data</dd>
+</dl>
+
+<h4 id="mat_message">
+<a class="anchor" href="#mat_message" aria-hidden="true"><span class="octicon octicon-link"></span></a>mat_message</h4>
+
+<p>This message type consists of metadata and OpenCV image data. It has the following keys:</p>
+
+<dl>
+  <dt>metadata (Metadata)</dt>
+  <dd>The message metadata</dd>
+  <dt>data (cv::Mat)</dt>
+  <dd>Image data</dd>
+</dl>
+
+<h4 id="gpu_mat_message">
+<a class="anchor" href="#gpu_mat_message" aria-hidden="true"><span class="octicon octicon-link"></span></a>gpu_mat_message</h4>
+
+<p>This message type consists of metadata and OpenCV image data residing on the GPU. It has the following keys:</p>
+
+<dl>
+  <dt>metadata (Metadata)</dt>
+  <dd>The message metadata</dd>
+  <dt>data (cv::cuda::GpuMat)</dt>
+  <dd>Image data on the GPU</dd>
+</dl>
+
+<h4 id="float_message">
+<a class="anchor" href="#float_message" aria-hidden="true"><span class="octicon octicon-link"></span></a>float_message</h4>
+
+<p>This message type consists of metadata and a single floating point value. It has the following keys:</p>
+
+<dl>
+  <dt>metadata (Metadata)</dt>
+  <dd>The message metadata</dd>
+  <dt>data (float)</dt>
+  <dd>A floating point value</dd>
+</dl>
+
+<h4 id="int_vec_message">
+<a class="anchor" href="#int_vec_message" aria-hidden="true"><span class="octicon octicon-link"></span></a>int_vec_message</h4>
+
+<p>This message type consists of metadata and a vector of integers. It has the following keys:</p>
+
+<dl>
+  <dt>metadata (Metadata)</dt>
+  <dd>The message metadata</dd>
+  <dt>data (int vector)</dt>
+  <dd>A vector of integers</dd>
+</dl>
+
+<h3 id="python-api">
+<a class="anchor" href="#python-api" aria-hidden="true"><span class="octicon octicon-link"></span></a>Python API</h3>
+
+<h3 id="config-file">
+<a class="anchor" href="#config-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Config File</h3>
+
+<h3 id="launch-script">
+<a class="anchor" href="#launch-script" aria-hidden="true"><span class="octicon octicon-link"></span></a>Launch Script</h3>
 
 </div>
     </div>
