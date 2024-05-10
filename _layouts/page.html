@@ -46,5 +46,8 @@ layout: raw_page
   </div>
 {% endif %}
 <div class="mdl-card__supporting-text">
+  {% if page.toc %}
+    <h3>Table of Contents</h3>
+  {% endif %}
   {{ content | toc }}
 </div>
