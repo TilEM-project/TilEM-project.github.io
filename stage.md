@@ -9,6 +9,7 @@ receives:
     - stage.motion.command
     - stage.aperture.command
 assigned: Cameron
+github: AllenInstitute/Sprite_Stage_Service
 ---
 
 The stage service abstracts the interfaces of the various hardware components related to positioning and transitioning between apertures.
