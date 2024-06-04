@@ -17,7 +17,7 @@ receives:
     - stage.rotation.status
     - stage.motion.status
     - scope.status
-assigned: Derrick
+assigned: Cameron
 ---
 
 {% diagram layout=neato %}

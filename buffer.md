@@ -10,6 +10,7 @@ receives:
     - tile.transform
 sends:
     - buffer.status
+assigned: Ross
 ---
 
 Tile images and metadata must be stored during montaging, then uploaded after montaging is complete.
