@@ -18,3 +18,9 @@ baseurl: /TEM_architecture
 
 plugins:
   - jekyll-toc
+
+toc:
+  min_level: 1
+  max_level: 4
+  inject_anchors_content: <i class="fa fa-link"></i>
+  inject_anchors_side: right
