@@ -10524,6 +10524,12 @@ fieldset[disabled] .mdl-textfield .mdl-textfield__label, .mdl-textfield.is-disab
 .page-container pre.highlight .nt {
   color: darkgoldenrod;
 }
+.page-container pre.highlight .c1 {
+  color: silver;
+}
+.page-container pre.highlight .na {
+  color: steelblue;
+}
 .page-container blockquote {
   border: 2px solid;
   border-radius: 6px;
