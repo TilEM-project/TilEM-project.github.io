@@ -89,7 +89,7 @@
 <div class="mdl-card__supporting-text">
   
   <p>Aloha is an AWS Lambda Function which takes raw tile images uploaded from the <a href="/TEM_architecture/buffer.html">tile upload buffer</a>, and saves down-sampled and compressed image to AWS S3 for use in <a href="https://github.com/google/neuroglancer">Neuroglancer</a> and other tools.
-This service performs the down-sampling and compression, saves the compressed images to S3, and places the S3 URIs in <a href="/TEM_architecture/tem_db.html">TEM DB</a>.</p>
+This service performs the down-sampling and compression, saves the compressed images to S3, and places the S3 URIs in <a href="/TEM_architecture/tem_db.html">TEM DB</a>. It is also responsible for updating image metadata in TEM DB.</p>
 
 </div>
     </div>
