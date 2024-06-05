@@ -342,4 +342,6 @@ topics:
                 example: 120
 ---
 
-The topics are listed below, and implemented in the library linked above.
+Messages in this system are sent and recieved using our [Pigeon](https://pypi.org/project/pigeon-client/) library.
+The message definitions for each topic are listed below, and implemented in the library linked above.
+These are also available on the Python package index as [`pigeon-tem-comms`](https://pypi.org/project/pigeon-tem-comms/).
