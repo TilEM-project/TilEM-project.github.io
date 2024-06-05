@@ -42,7 +42,7 @@ with Cluster("Docker Compose", graph_attr={"bgcolor": "#E0F2F1"}):
     camera_service = Python("Camera\nService", pin="true", pos="-1, 0.5", href="{{ '/camera.html' | relative_url }}")
     stage_service = Python("Stage\nService", pin="true", pos="-0.75, 0.5", href="{{ '/stage.html' | relative_url }}")
     cpp_pipeline = Cpp("Image Processing\nPipeline", pin="true", pos="-0.75, 0", href="{{ '/pipeline.html' | relative_url }}")
-    buffer = Python("Buffer\nService", pin="true", pos="-0.5, 0.125", href="{{ '/buffer.html' | relative_url }}")
+    buffer = Python("Buffer\nService", pin="true", pos="-0.5, 0", href="{{ '/buffer.html' | relative_url }}")
     ui_server = Python("UI Server", pin="true", pos="-1, 0.125", href="{{ '/ui_server.html' | relative_url }}")
 
 microscope = Custom("Microscope", "_my_icons/TEM.png", pin="true", pos="-0.5, 0.75")
@@ -73,7 +73,6 @@ stage << Edge() >> stage_service
 camera << Edge() >> camera_service
 s3 << aloha >> tem_db
 cpp_pipeline >> ui_server
-buffer >> tem_db
 {% enddiagram %}
 
 Most of the nodes in this diagram are hyperlinks to further documentation on this system.

@@ -22,8 +22,7 @@ The buffer service is responsible for the following tasks:
 
 1. Store tile metadata during montaging.
 1. After montaging:
-    1. Upload metadata to [TEM DB]({{ '/tem_db.html' | relative_url }}).
-    1. Upload each tile to the [aloha]({{ '/aloha.html' | relative_url }}) service.
+    1. Upload each tile and its metadata to the [aloha]({{ '/aloha.html' | relative_url }}) service.
     1. Check that aloha successfully processed the tile.
     1. Delete the tile (and intermediate files) from the SSD.
 1. If montaging is aborted: delete all tiles (and intermediate files).
