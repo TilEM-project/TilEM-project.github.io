@@ -81,7 +81,7 @@ output_transform >> Edge(headlabel="tile.transform", href="{{ '/topics.html#tile
 #### Receive Tile Filepath
 
 Uses
-: [TEMCommsInput](#temcommsinput)
+: [SubscribeRawTileNode](#subscriberawtilenode)
 
 This node receives the metadata and the path to a raw tile to process from the [message broker]({{ '/broker.html' | relative_url }}) on the [tile.raw]({{ '/topics.html#tile-raw | relative_url}}) topic, and passes the filename to the load tile node.
 
@@ -723,7 +723,20 @@ Arguments
 
 This node creates a histogram plot as an image.
 
-#### TEMCommsInputNode
+#### SubscribeRawTileNode
+
+Language
+: Python
+
+Output
+: [str_message](#str_message)
+
+Arguments
+: `host (string) = 127.0.0.1`: The host of the message broker.
+: `port (int) = 61616`: The port to use to connect to the message broker.
+: `username (string) = None`: The username to use when connecting to the message broker.
+: `password (string) = None`: The password to use when connecting to the message broker.
+: `wait_interval (float) = 0.1`: The amount of time to wait in seconds when a new file is not availble to process.
 
 #### PublishFileNode
 
@@ -737,6 +750,11 @@ Output
 : [str_message](#str_message)
 
 Arguments
+: `service (string) = None`: The service name to provide to the broker. Must not be `None`.
+: `host (string) = 127.0.0.1`: The host of the message broker.
+: `port (int) = 61616`: The port to use to connect to the message broker.
+: `username (string) = None`: The username to use when connecting to the message broker.
+: `password (string) = None`: The password to use when connecting to the message broker.
 : `name (string) = PublishFileNode`: The name for the node.
 : `concurrency (int) = unlimited`: The maximum number of copies of the node to run.
 : `topic (string) = None`: The topic to publish the file path on. Must not be `None`.
@@ -756,6 +774,11 @@ Output
 : [float_message](#float_message)
 
 Arguments
+: `service (string) = None`: The service name to provide to the broker. Must not be `None`.
+: `host (string) = 127.0.0.1`: The host of the message broker.
+: `port (int) = 61616`: The port to use to connect to the message broker.
+: `username (string) = None`: The username to use when connecting to the message broker.
+: `password (string) = None`: The password to use when connecting to the message broker.
 : `name (string) = PublishFocusNode`: The name for the node.
 : `concurrency (int) = unlimited`: The maximum number of copies of the node to run.
 
@@ -774,6 +797,11 @@ Output
 : [int_vec_message](#int_vec_message)
 
 Arguments
+: `service (string) = None`: The service name to provide to the broker. Must not be `None`.
+: `host (string) = 127.0.0.1`: The host of the message broker.
+: `port (int) = 61616`: The port to use to connect to the message broker.
+: `username (string) = None`: The username to use when connecting to the message broker.
+: `password (string) = None`: The password to use when connecting to the message broker.
 : `name (string) = PublishMinMaxMeanNode`: The name for the node.
 : `concurrency (int) = unlimited`: The maximum number of copies of the node to run.
 
@@ -792,6 +820,11 @@ Output
 : [mat_message](#mat_message)
 
 Arguments
+: `service (string) = None`: The service name to provide to the broker. Must not be `None`.
+: `host (string) = 127.0.0.1`: The host of the message broker.
+: `port (int) = 61616`: The port to use to connect to the message broker.
+: `username (string) = None`: The username to use when connecting to the message broker.
+: `password (string) = None`: The password to use when connecting to the message broker.
 : `name (string) = PublishTransformNode`: The name for the node.
 : `concurrency (int) = unlimited`: The maximum number of copies of the node to run.
 
@@ -870,6 +903,113 @@ data (int vector)
 
 ### Python API
 
+Pipelines can be defined and run using a simple Python API.
+The library for doing so can be imported using,
+
+```python
+import TEM_graph
+```
+
+A graph can then be created using,
+
+```python
+graph = TEM_graph.graph()
+```
+
+Nodes are acessible in the `TEM_graph.nodes` submodule.
+For example, a CLAHE node could be created using,
+
+```python
+CLAHE_node = TEM_graph.nodes.CLAHENode(
+    clipLimit=3,
+)
+```
+
+Alternatively, if this operation should be performed on a GPU, the GPU version of the node could be crated,
+
+```python
+CLAHE_node = TEM_graph.nodes.CLAHENodeGPU(
+    clipLimit=3,
+)
+```
+
+> **Please note:**
+> 
+> before this node could be used, the image data would have to be moved to GPU memory using the [ToGPUNode](#togpunode).
+
+Once the desired nodes are created, they can be connected together using the `TEM_graph.make_edge()` function.
+For example,
+
+```python
+TEM_graph.make_edge(to_GPU_node, CLAHE_node)
+```
+
+would connect the output of the `to_GPU_node` to the input of the `CLAHE_node`.
+Once the graph is assembled, input nodes must be actived using the `.activate()` method of the input node.
+
+After the graph is running, the `graph.wait_for_all()` function will wait for processing to be complete.
+Alternatively, the `graph.cancel()` function can be used to immediately halt data processing.
+
 ### Config File
 
-### Launch Script
+To further streamline pipeline creation, a [YAML](https://yaml.org/) configuration file format was created.
+An example the following pipeline could be crated using a configuration file.
+
+{% diagram %}
+from diagrams.programming.language import Cpp, Python
+from diagrams.generic.blank import Blank
+from diagrams import Node
+
+with Cluster("Intel TBB", graph_attr={"bgcolor": "#FFE0B2"}):
+    input = Python("SubscribeRawTileNode", href="#subscriberawtilenode")
+    load = Cpp("IMReadNode", href="#imreadnode")
+    min_max_mean = Cpp("MinMaxMeanNode", href="#minmaxmeannode")
+    output_min_max_mean = Python("PublishMinMaxMeanNode", href="#publishminmaxmeannode")
+    hist = Cpp("HistogramNode", href="#histogramnode")
+    save_hist = Cpp("IMWriteNode", href="imwritenode")
+    output_hist = Python("PublishFileNode", href="#publishfilenode")
+
+input >> load >> min_max_mean >> output_min_max_mean
+load >> hist >> save_hist >> output_hist
+{% enddiagram %}
+
+The configuration file to create this pipeline is:
+
+```yaml
+nodes: # All nodes must be defined under this key
+  input: # This is the name of the first node
+    type: SubscribeRawTileNode # This is the name of the class that instantiates the node
+    to: read # The name of the node which should recieve the output of this node
+  read:
+    type: IMReadNode
+    to: # Multiple node names can also be specified
+      - histogram
+      - min_max_mean
+  histogram:
+    type: HistogramNode
+    to: save
+  save:
+    type: IMWriteNode
+    args: # Keyword arguments can be defined that will be provided to the node when it is initialized
+      output_dir: /tmp/
+    to: send_histogram
+  send_histogram:
+    type: PublishFileNode
+    args:
+      service: publish_histogram
+      topic: tile.statistics.histogram
+    # The 'to' key is not required
+  min_max_mean:
+    type: MinMaxMeanNode
+    to: send_min_max_mean
+  send_min_max_mean:
+    type: PublishMinMaxMeanNode
+    args:
+      service: publish_min_max_mean
+```
+
+Once a pipeline configuration file has been written, a command line utility can be used to run the pipeline:
+
+```bash
+TEM_graph pipeline.yaml
+```
