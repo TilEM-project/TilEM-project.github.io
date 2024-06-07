@@ -11,6 +11,7 @@ receives:
 sends:
     - buffer.status
 assigned: Ross
+github: AllenInstitute/temca_montage_manager
 ---
 
 Tile images and metadata must be stored during montaging, then uploaded after montaging is complete.
