@@ -125,6 +125,12 @@ These are also available on the Python package index as <a href="https://pypi.or
         
             <li><a href="#tile-transform">tile.transform</a></li>
         
+            <li><a href="#ui-edit">ui.edit</a></li>
+        
+            <li><a href="#ui-run">ui.run</a></li>
+        
+            <li><a href="#ui-setup">ui.setup</a></li>
+        
     </ul>
 </div>
 
@@ -2922,6 +2928,436 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="ui-edit">ui.edit</h3>
+        <p><p>This message contains values that can be set on the UI edit pane.</p>
+</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>roi_id</strong> (string): <p>The unique ID for the ROI.</p>
+</li>
+            
+                <li><strong>roi_pos_x</strong> (int): <p>The X location of the ROI centroid in nanometers.</p>
+</li>
+            
+                <li><strong>roi_pos_y</strong> (int): <p>The Y location of the ROI centroid in nanometers.</p>
+</li>
+            
+                <li><strong>roi_width</strong> (int): <p>The width of the ROI in nanometers.</p>
+</li>
+            
+                <li><strong>roi_height</strong> (int): <p>The height of the ROI in nanometers.</p>
+</li>
+            
+                <li><strong>roi_angle</strong> (float): <p>The angle of the ROI relative to the X axis in radians.</p>
+</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "roi_id": "ROI_1",
+    "roi_pos_x": 1928493,
+    "roi_pos_y": 199384,
+    "roi_width": 1728840,
+    "roi_height": 873527,
+    "roi_angle": 1.37
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/TEM_architecture/ui.html">User Interface</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="ui-run">ui.run</h3>
+        <p><p>The message contains values that can be set on the UI run pane.</p>
+</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>session_id</strong> (string or null): <p>The unique identifier of the imaging session. Required if <code class="language-plaintext highlighter-rouge">montage</code> is <code class="language-plaintext highlighter-rouge">true</code>.</p>
+</li>
+            
+                <li><strong>grid_first</strong> (int or null): <p>The first grid to image. Required if <code class="language-plaintext highlighter-rouge">montage</code> is <code class="language-plaintext highlighter-rouge">true</code>.</p>
+</li>
+            
+                <li><strong>grid_last</strong> (int or null): <p>The last grid to image. Required if <code class="language-plaintext highlighter-rouge">montage</code> is <code class="language-plaintext highlighter-rouge">true</code>.</p>
+</li>
+            
+                <li><strong>montage</strong> (bool): <p>Set to <code class="language-plaintext highlighter-rouge">true</code> to begin montaging.</p>
+</li>
+            
+                <li><strong>abort_now</strong> (bool): <p>Set to <code class="language-plaintext highlighter-rouge">true</code> to immediately abort montaging.</p>
+</li>
+            
+                <li><strong>abort_at_end</strong> (bool): <p>Set to <code class="language-plaintext highlighter-rouge">true</code> to abort montaging at end of current montage.</p>
+</li>
+            
+                <li><strong>resume</strong> (bool): <p>Set to <code class="language-plaintext highlighter-rouge">true</code> to continue resuming montaging after an error has occured.</p>
+</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "session_id": MN18_RMOp_5f,
+    "grid_first": 42,
+    "grid_last": 57,
+    "montage": false,
+    "abort_now": false,
+    "abort_at_end": false,
+    "resume": true
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/TEM_architecture/ui.html">User Interface</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="ui-setup">ui.setup</h3>
+        <p><p>This message contains values that can be set on the UI setup pane.</p>
+</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>conch_owner</strong> (string): <p>The conch owner name, or <code class="language-plaintext highlighter-rouge">null</code> to keep current value.</p>
+</li>
+            
+                <li><strong>auto_focus</strong> (bool): <p>Set to <code class="language-plaintext highlighter-rouge">true</code> to initiate the auto-focus method.</p>
+</li>
+            
+                <li><strong>auto_exposure</strong> (bool): <p>Set to <code class="language-plaintext highlighter-rouge">true</code> to initiate the auto-exposure method.</p>
+</li>
+            
+                <li><strong>lens_correction</strong> (bool): <p>Set to <code class="language-plaintext highlighter-rouge">true</code> to begin a lens correction montage.</p>
+</li>
+            
+                <li><strong>acquire_brightfield</strong> (bool): <p>Set to <code class="language-plaintext highlighter-rouge">true</code> to initiate the brightfield collection method.</p>
+</li>
+            
+                <li><strong>acquire_darkfield</strong> (bool): <p>Set to <code class="language-plaintext highlighter-rouge">true</code> to initiate the darkfield collection method.</p>
+</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "conch_owner": "Kim",
+    "auto_focus": false,
+    "auto_exposure": false,
+    "lens_correction": false,
+    "acquire_brightfield": false,
+    "acquire_darkfield": false
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/TEM_architecture/ui.html">User Interface</a></li>
                 
             
                 
