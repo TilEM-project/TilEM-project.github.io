@@ -340,6 +340,92 @@ topics:
                 type: int
                 description: The current HV tank voltage in kilovolts.
                 example: 120
+    ui.setup:
+        description: This message contains values that can be set on the UI setup pane.
+        payload:
+            conch_owner:
+                type: string
+                description: The conch owner name, or `null` to keep current value.
+                example: Kim
+            auto_focus:
+                type: bool
+                description: Set to `true` to initiate the auto-focus method.
+                example: false
+            auto_exposure:
+                type: bool
+                description: Set to `true` to initiate the auto-exposure method.
+                example: false
+            lens_correction:
+                type: bool
+                description: Set to `true` to begin a lens correction montage.
+                example: false
+            acquire_brightfield:
+                type: bool
+                description: Set to `true` to initiate the brightfield collection method.
+                example: false
+            acquire_darkfield:
+                type: bool
+                description: Set to `true` to initiate the darkfield collection method.
+                example: false
+    ui.edit:
+        description: This message contains values that can be set on the UI edit pane.
+        payload:
+            roi_id:
+                type: string
+                description: The unique ID for the ROI.
+                example: ROI_1
+            roi_pos_x:
+                type: int
+                description: The X location of the ROI centroid in nanometers.
+                example: 1928493
+            roi_pos_y:
+                type: int
+                description: The Y location of the ROI centroid in nanometers.
+                example: 199384
+            roi_width:
+                type: int
+                description: The width of the ROI in nanometers.
+                example: 1728840
+            roi_height:
+                type: int
+                description: The height of the ROI in nanometers.
+                example: 873527
+            roi_angle:
+                type: float
+                description: The angle of the ROI relative to the X axis in radians.
+                example: 1.37
+    ui.run:
+        description: The message contains values that can be set on the UI run pane.
+        payload:
+            session_id:
+                type: string or null
+                description: The unique identifier of the imaging session. Required if `montage` is `true`.
+                example: MN18_RMOp_5f
+            grid_first:
+                type: int or null
+                description: The first grid to image. Required if `montage` is `true`.
+                example: 42
+            grid_last:
+                type: int or null
+                description: The last grid to image. Required if `montage` is `true`.
+                example: 57
+            montage:
+                type: bool
+                description: Set to `true` to begin montaging.
+                example: false
+            abort_now:
+                type: bool
+                description: Set to `true` to immediately abort montaging.
+                example: false
+            abort_at_end:
+                type: bool
+                description: Set to `true` to abort montaging at end of current montage.
+                example: false
+            resume:
+                type: bool
+                description: Set to `true` to continue resuming montaging after an error has occured.
+                example: true
+
 ---
 
 Messages in this system are sent and recieved using our [Pigeon](https://pypi.org/project/pigeon-client/) library.

@@ -11,6 +11,9 @@ receives:
     - tile.statistics.focus
     - buffer.status
     - scope.status
+    - ui.setup
+    - ui.edit
+    - ui.run
 ---
 
 The microscope user interface is a webpage available from the [UI server]({{ '/ui_server.html' | relative_url }}).
