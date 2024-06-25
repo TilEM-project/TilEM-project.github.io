@@ -22,7 +22,7 @@ jobs:
           $HOME/gems/bin/bundle install
           pip install diagrams
           sudo apt-get install -y graphviz
-          jekyll build
+          bundle exec jekyll build
           rm .gitignore
 
       - name: Deploy 🚀
