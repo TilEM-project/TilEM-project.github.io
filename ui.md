@@ -11,6 +11,7 @@ receives:
     - tile.statistics.focus
     - buffer.status
     - scope.status
+sends:
     - ui.setup
     - ui.edit
     - ui.run
