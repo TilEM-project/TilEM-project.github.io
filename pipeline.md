@@ -233,7 +233,7 @@ This node copies the image data, since the following node modifies it in-place.
 #### Down-sample
 
 Uses
-: [DownsampleNodeGPU](#downsamplenodegpu)
+: [ResizeNodeGPU](#resizenodegpu)
 
 This node down-samples the partially processed tile for [UI]({{ '/ui.html' | relative_url }}) display.
 
@@ -442,7 +442,7 @@ Arguments
 
 This node has identical functionality to the [FlipNode](#flipnode), but uses GPU processing.
 
-#### DownsampleNode
+#### ResizeNode
 
 Language
 : C++
@@ -457,12 +457,12 @@ Arguments
 : `name (string) = FlipNode`: The name for the node.
 : `concurrency (int) = unlimited`: The maximum number of copies of the node to run.
 : `scale (double) = 0.5`: The scaling to apply to the image.
-: `interpolation (int) = INTER_LINEAR`: The interpolation method to use.
+: `interpolation (int) = INTER_AREA`: The interpolation method to use.
 
 This node resizes the incoming image in-place.
 The `TEM_graph.consts` module contains interpolation constants, `INTER_NEAREST`, `INTER_LINEAR`, `INTER_CUBIC`, `INTER_AREA`, `INTER_LANCZOS4`, `INTER_LINEAR_EXACT`, and `INTER_NEAREST_EXACT`.
 
-#### DownsampleNodeGPU
+#### ResizeNodeGPU
 
 Language
 : C++
@@ -934,7 +934,7 @@ CLAHE_node = TEM_graph.nodes.CLAHENodeGPU(
 ```
 
 > **Please note:**
-> 
+>
 > before this node could be used, the image data would have to be moved to GPU memory using the [ToGPUNode](#togpunode).
 
 Once the desired nodes are created, they can be connected together using the `TEM_graph.make_edge()` function.
