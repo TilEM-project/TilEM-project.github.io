@@ -29,9 +29,9 @@ topics:
                 description: The column of the montage where the tile was imaged.
                 example: 24
             overlap:
-                type: float
-                description: The percent overlap of the tiles expressed as a decimal number.
-                example: 0.1
+                type: int
+                description: The number of pixels of overlap between tiles.
+                example: 512
     tile.statistics.min_max_mean:
         description: This message contains simple statistics about a processed tile.
         payload:
