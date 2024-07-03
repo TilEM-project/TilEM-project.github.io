@@ -848,8 +848,8 @@ row (int)
 column (int)
 : The column in the montage where the tile if located
 
-overlap (float)
-: The decimal fraction of overlap between tiles
+overlap (int)
+: The number of pixels of overlap between tiles
 
 #### str_message
 
