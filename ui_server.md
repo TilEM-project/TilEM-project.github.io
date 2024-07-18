@@ -6,7 +6,7 @@ receives:
     - tile.jpeg
     - tile.minimap
     - tile.statistics.histogram
-assigned: Ben
+assigned: Jessy
 ---
 
 The UI Server is a service which provides a web based user interface for the microscope.

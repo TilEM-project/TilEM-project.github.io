@@ -13,12 +13,15 @@ Russel:
   email: russelt@alleninstitute.org
   github: RussTorres
   slack: U0UBNAL6S
-Ben:
-  name: Ben Sutton
-  email: ben.sutton@alleninstitute.org
-  github: MoxenWolf
-  slack: UPJ2L1WKA
+# Ben:
+#   name: Ben Sutton
+#   email: ben.sutton@alleninstitute.org
+#   github: MoxenWolf
+#   slack: UPJ2L1WKA
 Ross:
   name: Ross Hytnen
   email: rossh@alleninstitute.org
   github: rhytnen
+Jessy:
+  name: Jessy Liao
+  email: jessy.liao@alleninstitute.org
