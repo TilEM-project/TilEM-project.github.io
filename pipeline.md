@@ -576,6 +576,8 @@ Arguments
 This node must be run single threaded.
 It receives incoming image tiles and fits them to the montage matching the `montage_id` in the metadata.
 It outputs a minimap (a down-sampled) image of the entire montage, along with the fit metadata.
+If the `montage_id` is a zero length string, the tile is a preview tile and no matching should be performed.
+In this case, a zero size image should be output.
 
 #### MatcherNodeGPU
 

@@ -14,7 +14,7 @@ topics:
                 example: 69005602-15b0-4407-bf5b-4bddd6629141
             montage_id:
                 type: string
-                description: The montage ID. If `null`, the tile is for UI display purposes only.
+                description: The montage ID. If a zero length string, the tile is for UI display purposes only.
                 example: 4330c7cf-e45b-4950-89cf-82dc0f815fe9
             path:
                 type: string
@@ -39,6 +39,10 @@ topics:
                 type: string
                 description: The tile ID.
                 example: 69005602-15b0-4407-bf5b-4bddd6629141
+            montage_id:
+                type: string
+                description: The montage ID. If a zero length string, the tile is for UI display purposes only.
+                example: 4330c7cf-e45b-4950-89cf-82dc0f815fe9
             min:
                 type: int
                 description: The minimum pixel value.
@@ -58,6 +62,10 @@ topics:
                 type: string
                 description: The tile ID.
                 example: 69005602-15b0-4407-bf5b-4bddd6629141
+            montage_id:
+                type: string
+                description: The montage ID. If a zero length string, the tile is for UI display purposes only.
+                example: 4330c7cf-e45b-4950-89cf-82dc0f815fe9
             path:
                 type: string
                 description: The path where the histogram is stored.
@@ -69,6 +77,10 @@ topics:
                 type: string
                 description: The tile ID.
                 example: 69005602-15b0-4407-bf5b-4bddd6629141
+            montage_id:
+                type: string
+                description: The montage ID. If a zero length string, the tile is for UI display purposes only.
+                example: 4330c7cf-e45b-4950-89cf-82dc0f815fe9
             focus:
                 type: float
                 description: The focus score.
@@ -80,6 +92,10 @@ topics:
                 type: string
                 description: The tile ID.
                 example: 69005602-15b0-4407-bf5b-4bddd6629141
+            montage_id:
+                type: string
+                description: The montage ID. If a zero length string, the tile is for UI display purposes only.
+                example: 4330c7cf-e45b-4950-89cf-82dc0f815fe9
             path:
                 type: string
                 description: The path where the processed tile is stored.
@@ -113,6 +129,10 @@ topics:
                 type: string
                 description: The tile ID.
                 example: 69005602-15b0-4407-bf5b-4bddd6629141
+            montage_id:
+                type: string
+                description: The montage ID. If a zero length string, the tile is for UI display purposes only.
+                example: 4330c7cf-e45b-4950-89cf-82dc0f815fe9
             rotation:
                 type: float
                 description: The rotation in radians of the tile for it to fit in the montage.
@@ -395,7 +415,7 @@ topics:
                 description: The angle of the ROI relative to the X axis in radians.
                 example: 1.37
     ui.run:
-        description: The message contains values that can be set on the UI run pane.
+        description: This message contains values that can be set on the UI run pane.
         payload:
             session_id:
                 type: string or null
@@ -425,9 +445,42 @@ topics:
                 type: bool
                 description: Set to `true` to continue resuming montaging after an error has occured.
                 example: true
-
+    montage.start:
+        description: This message contains basic information about the montage before the first tile is captured.
+        payload:
+            montage_id:
+                type: string
+                description: The montage ID.
+                example: 4330c7cf-e45b-4950-89cf-82dc0f815fe9
+            num_tiles:
+                type: int
+                description: The number of tiles in the montage.
+                example: 8372
+    montage.finished:
+        description: This message indicated that all tiles of a montage have been captured and includes various metadata about the montage.
+        payload:
+            montage_id:
+                type: string
+                description: The montage ID.
+                example: 4330c7cf-e45b-4950-89cf-82dc0f815fe9
+            num_tiles:
+                type: int
+                description: The number of tiles in the montage.
+                example: 8372
+            roi:
+                type: string
+                description: The ID of the ROI that was montaged.
+                example: 273274
+            specimen:
+                type: string
+                description: The ID of the specimen that was montaged.
+                example: 192372L
+            metadata:
+                type: dict or list
+                description: The metadata of the montage.
+                example: "{\"session_id\": \"MN18_RMOp_5f\", \"roi\": \"392171\"}"
 ---
 
-Messages in this system are sent and recieved using our [Pigeon](https://pypi.org/project/pigeon-client/) library.
+Messages in this system are sent and received using our [Pigeon](https://pypi.org/project/pigeon-client/) library.
 The message definitions for each topic are listed below, and implemented in the library linked above.
 These are also available on the Python package index as [`pigeon-tem-comms`](https://pypi.org/project/pigeon-tem-comms/).

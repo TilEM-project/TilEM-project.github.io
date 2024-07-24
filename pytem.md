@@ -10,6 +10,8 @@ sends:
     - stage.rotation.command
     - stage.motion.command
     - scope.command
+    - montage.start
+    - montage.finished
 receives:
     - camera.image
     - camera.status

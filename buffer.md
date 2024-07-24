@@ -8,6 +8,8 @@ receives:
     - tile.statistics.histogram
     - tile.statistics.min_max_mean
     - tile.transform
+    - montage.start
+    - montage.finished
 sends:
     - buffer.status
 assigned: Ross
