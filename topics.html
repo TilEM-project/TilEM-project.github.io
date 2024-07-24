@@ -77,7 +77,7 @@
 
 
 <div class="mdl-card__supporting-text mdl-card--border">
-    <p>Messages in this system are sent and recieved using our <a href="https://pypi.org/project/pigeon-client/">Pigeon</a> library.
+    <p>Messages in this system are sent and received using our <a href="https://pypi.org/project/pigeon-client/">Pigeon</a> library.
 The message definitions for each topic are listed below, and implemented in the library linked above.
 These are also available on the Python package index as <a href="https://pypi.org/project/pigeon-tem-comms/"><code class="language-plaintext highlighter-rouge">pigeon-tem-comms</code></a>.</p>
 
@@ -92,6 +92,10 @@ These are also available on the Python package index as <a href="https://pypi.or
             <li><a href="#camera-settings">camera.settings</a></li>
         
             <li><a href="#camera-status">camera.status</a></li>
+        
+            <li><a href="#montage-finished">montage.finished</a></li>
+        
+            <li><a href="#montage-start">montage.start</a></li>
         
             <li><a href="#scope-command">scope.command</a></li>
         
@@ -814,6 +818,282 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
                     <li><a href="/TEM_architecture/ui.html">User Interface</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="montage-finished">montage.finished</h3>
+        <p><p>This message indicated that all tiles of a montage have been captured and includes various metadata about the montage.</p>
+</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>montage_id</strong> (string): <p>The montage ID.</p>
+</li>
+            
+                <li><strong>num_tiles</strong> (int): <p>The number of tiles in the montage.</p>
+</li>
+            
+                <li><strong>roi</strong> (string): <p>The ID of the ROI that was montaged.</p>
+</li>
+            
+                <li><strong>specimen</strong> (string): <p>The ID of the specimen that was montaged.</p>
+</li>
+            
+                <li><strong>metadata</strong> (dict or list): <p>The metadata of the montage.</p>
+</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "montage_id": "4330c7cf-e45b-4950-89cf-82dc0f815fe9",
+    "num_tiles": 8372,
+    "roi": "273274",
+    "specimen": "192372L",
+    "metadata": {"session_id": "MN18_RMOp_5f", "roi": "392171"}
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/TEM_architecture/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/TEM_architecture/buffer.html">Tile Upload Buffer</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="montage-start">montage.start</h3>
+        <p><p>This message contains basic information about the montage before the first tile is captured.</p>
+</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>montage_id</strong> (string): <p>The montage ID.</p>
+</li>
+            
+                <li><strong>num_tiles</strong> (int): <p>The number of tiles in the montage.</p>
+</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "montage_id": "4330c7cf-e45b-4950-89cf-82dc0f815fe9",
+    "num_tiles": 8372
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/TEM_architecture/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/TEM_architecture/buffer.html">Tile Upload Buffer</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
                 
             
                 
@@ -2204,6 +2484,9 @@ These are also available on the Python package index as <a href="https://pypi.or
                 <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
 </li>
             
+                <li><strong>montage_id</strong> (string): <p>The montage ID. If a zero length string, the tile is for UI display purposes only.</p>
+</li>
+            
                 <li><strong>path</strong> (string): <p>The path where the processed tile is stored.</p>
 </li>
             
@@ -2215,6 +2498,7 @@ These are also available on the Python package index as <a href="https://pypi.or
                 <pre class="highlight">
 <code>{
     "tile_id": "69005602-15b0-4407-bf5b-4bddd6629141",
+    "montage_id": "4330c7cf-e45b-4950-89cf-82dc0f815fe9",
     "path": "/storage/processed/69005602-15b0-4407-bf5b-4bddd6629141.tiff"
 }</code>
                 </pre>
@@ -2336,7 +2620,7 @@ These are also available on the Python package index as <a href="https://pypi.or
                 <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
 </li>
             
-                <li><strong>montage_id</strong> (string): <p>The montage ID. If <code class="language-plaintext highlighter-rouge">null</code>, the tile is for UI display purposes only.</p>
+                <li><strong>montage_id</strong> (string): <p>The montage ID. If a zero length string, the tile is for UI display purposes only.</p>
 </li>
             
                 <li><strong>path</strong> (string): <p>The path where the raw tile is stored.</p>
@@ -2484,6 +2768,9 @@ These are also available on the Python package index as <a href="https://pypi.or
                 <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
 </li>
             
+                <li><strong>montage_id</strong> (string): <p>The montage ID. If a zero length string, the tile is for UI display purposes only.</p>
+</li>
+            
                 <li><strong>focus</strong> (float): <p>The focus score.</p>
 </li>
             
@@ -2495,6 +2782,7 @@ These are also available on the Python package index as <a href="https://pypi.or
                 <pre class="highlight">
 <code>{
     "tile_id": "69005602-15b0-4407-bf5b-4bddd6629141",
+    "montage_id": "4330c7cf-e45b-4950-89cf-82dc0f815fe9",
     "focus": 2.67
 }</code>
                 </pre>
@@ -2618,6 +2906,9 @@ These are also available on the Python package index as <a href="https://pypi.or
                 <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
 </li>
             
+                <li><strong>montage_id</strong> (string): <p>The montage ID. If a zero length string, the tile is for UI display purposes only.</p>
+</li>
+            
                 <li><strong>path</strong> (string): <p>The path where the histogram is stored.</p>
 </li>
             
@@ -2629,6 +2920,7 @@ These are also available on the Python package index as <a href="https://pypi.or
                 <pre class="highlight">
 <code>{
     "tile_id": "69005602-15b0-4407-bf5b-4bddd6629141",
+    "montage_id": "4330c7cf-e45b-4950-89cf-82dc0f815fe9",
     "path": "/storage/histogram/69005602-15b0-4407-bf5b-4bddd6629141.tiff"
 }</code>
                 </pre>
@@ -2752,6 +3044,9 @@ These are also available on the Python package index as <a href="https://pypi.or
                 <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
 </li>
             
+                <li><strong>montage_id</strong> (string): <p>The montage ID. If a zero length string, the tile is for UI display purposes only.</p>
+</li>
+            
                 <li><strong>min</strong> (int): <p>The minimum pixel value.</p>
 </li>
             
@@ -2769,6 +3064,7 @@ These are also available on the Python package index as <a href="https://pypi.or
                 <pre class="highlight">
 <code>{
     "tile_id": "69005602-15b0-4407-bf5b-4bddd6629141",
+    "montage_id": "4330c7cf-e45b-4950-89cf-82dc0f815fe9",
     "min": 5,
     "max": 249,
     "mean": 187
@@ -2894,6 +3190,9 @@ These are also available on the Python package index as <a href="https://pypi.or
                 <li><strong>tile_id</strong> (string): <p>The tile ID.</p>
 </li>
             
+                <li><strong>montage_id</strong> (string): <p>The montage ID. If a zero length string, the tile is for UI display purposes only.</p>
+</li>
+            
                 <li><strong>rotation</strong> (float): <p>The rotation in radians of the tile for it to fit in the montage.</p>
 </li>
             
@@ -2911,6 +3210,7 @@ These are also available on the Python package index as <a href="https://pypi.or
                 <pre class="highlight">
 <code>{
     "tile_id": "69005602-15b0-4407-bf5b-4bddd6629141",
+    "montage_id": "4330c7cf-e45b-4950-89cf-82dc0f815fe9",
     "rotation": 3.14,
     "x": 1019172,
     "y": 1918840
@@ -3171,7 +3471,7 @@ These are also available on the Python package index as <a href="https://pypi.or
 
     <div class="mdl-card__supporting-text mdl-card--border topic-container">
         <h3 id="ui-run">ui.run</h3>
-        <p><p>The message contains values that can be set on the UI run pane.</p>
+        <p><p>This message contains values that can be set on the UI run pane.</p>
 </p>
 
         <h4>Payload</h4>
