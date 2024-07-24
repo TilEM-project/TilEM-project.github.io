@@ -75,4 +75,7 @@ s3 << aloha >> tem_db
 cpp_pipeline >> ui_server
 {% enddiagram %}
 
-Most of the nodes in this diagram are hyperlinks to further documentation on this system.
+Most of the nodes in this diagram are hyperlinks to further documentation of this system.
+
+The configuration for this system as a whole is stored on GitHub at [AllenInstitute/TEM_config](https://github.com/AllenInstitute/TEM_config).
+This repository includes both a Docker compose file for starting all the services that are part of the system, and the configuration files for the services.
