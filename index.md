@@ -77,5 +77,6 @@ cpp_pipeline >> ui_server
 
 Most of the nodes in this diagram are hyperlinks to further documentation of this system.
 
+This system primarily sends messages between services using the [STOMP protocul](https://stomp.github.io/) with the [Pigeon](https://pypi.org/project/pigeon-client/) library.
 The configuration for this system as a whole is stored on GitHub at [AllenInstitute/TEM_config](https://github.com/AllenInstitute/TEM_config).
 This repository includes both a Docker compose file for starting all the services that are part of the system, and the configuration files for the services.
