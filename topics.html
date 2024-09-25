@@ -97,6 +97,8 @@ These are also available on the Python package index as <a href="https://pypi.or
         
             <li><a href="#montage-start">montage.start</a></li>
         
+            <li><a href="#qc-status">qc.status</a></li>
+        
             <li><a href="#scope-command">scope.command</a></li>
         
             <li><a href="#scope-status">scope.status</a></li>
@@ -221,10 +223,14 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
         <ul>
+            
+                
             
                 
             
@@ -349,6 +355,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -366,6 +374,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
                     <li><a href="/TEM_architecture/camera.html">Camera Service</a></li>
+                
+            
                 
             
                 
@@ -481,6 +491,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -506,6 +518,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
                     <li><a href="/TEM_architecture/pytem.html">pyTEM</a></li>
+                
+            
                 
             
                 
@@ -617,6 +631,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -634,6 +650,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
                     <li><a href="/TEM_architecture/camera.html">Camera Service</a></li>
+                
+            
                 
             
                 
@@ -773,6 +791,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -798,6 +818,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
                     <li><a href="/TEM_architecture/pytem.html">pyTEM</a></li>
+                
+            
                 
             
                 
@@ -919,6 +941,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -934,6 +958,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
                     <li><a href="/TEM_architecture/buffer.html">Tile Upload Buffer</a></li>
+                
+            
                 
             
                 
@@ -1051,6 +1077,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -1074,6 +1102,140 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="qc-status">qc.status</h3>
+        <p><p>This message indicates the state of tile/montage QC metrics.</p>
+</p>
+
+        <h4>Payload</h4>
+        <ul>
+            
+                <li><strong>state</strong> (string): <p>The state of the QC. Must be either “GOOD” if imaging should continue, “STOP_AT_END” if imaging should be stopped at then end of the montage, or “STOP_NOW” if imaging should be stopped immediately.</p>
+</li>
+            
+        </ul>
+
+        <h4>Example</h4>
+        <div class="language-json highlighter-rouge">
+            <div class="highlight">
+                <pre class="highlight">
+<code>{
+    "state": "STOP_AT_END"
+}</code>
+                </pre>
+            </div>
+        </div>
+        
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/TEM_architecture/qc.html">QC Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/TEM_architecture/pytem.html">pyTEM</a></li>
                 
             
                 
@@ -1187,10 +1349,14 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
         <ul>
+            
+                
             
                 
             
@@ -1312,6 +1478,8 @@ These are also available on the Python package index as <a href="https://pypi.or
                 
             
                 
+            
+                
                     <li><a href="/TEM_architecture/scope.html">Microscope Service</a></li>
                 
             
@@ -1356,6 +1524,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
                     <li><a href="/TEM_architecture/pytem.html">pyTEM</a></li>
+                
+            
                 
             
                 
@@ -1465,10 +1635,14 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
         <ul>
+            
+                
             
                 
             
@@ -1584,6 +1758,8 @@ These are also available on the Python package index as <a href="https://pypi.or
                 
             
                 
+            
+                
                     <li><a href="/TEM_architecture/stage.html">Stage Service</a></li>
                 
             
@@ -1626,6 +1802,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
                     <li><a href="/TEM_architecture/pytem.html">pyTEM</a></li>
+                
+            
                 
             
                 
@@ -1739,10 +1917,14 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
         <ul>
+            
+                
             
                 
             
@@ -1862,6 +2044,8 @@ These are also available on the Python package index as <a href="https://pypi.or
                 
             
                 
+            
+                
                     <li><a href="/TEM_architecture/stage.html">Stage Service</a></li>
                 
             
@@ -1904,6 +2088,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
                     <li><a href="/TEM_architecture/pytem.html">pyTEM</a></li>
+                
+            
                 
             
                 
@@ -2017,10 +2203,14 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
         <ul>
+            
+                
             
                 
             
@@ -2153,6 +2343,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -2178,6 +2370,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
                     <li><a href="/TEM_architecture/pytem.html">pyTEM</a></li>
+                
+            
                 
             
                 
@@ -2287,10 +2481,14 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
         <ul>
+            
+                
             
                 
             
@@ -2419,10 +2617,14 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
         <ul>
+            
+                
             
                 
             
@@ -2555,6 +2757,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -2570,6 +2774,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
                     <li><a href="/TEM_architecture/buffer.html">Tile Upload Buffer</a></li>
+                
+            
                 
             
                 
@@ -2703,6 +2909,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -2726,6 +2934,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
                     <li><a href="/TEM_architecture/pipeline.html">Image Processing Pipeline</a></li>
+                
+            
                 
             
                 
@@ -2839,6 +3049,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -2866,6 +3078,10 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
+                
+                    <li><a href="/TEM_architecture/qc.html">QC Service</a></li>
                 
             
                 
@@ -2977,6 +3193,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -3004,6 +3222,10 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
+                
+                    <li><a href="/TEM_architecture/qc.html">QC Service</a></li>
                 
             
                 
@@ -3123,6 +3345,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -3150,6 +3374,10 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
+                
+                    <li><a href="/TEM_architecture/qc.html">QC Service</a></li>
                 
             
                 
@@ -3269,6 +3497,8 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
         </ul>
 
         <h4>Receivers</h4>
@@ -3296,6 +3526,10 @@ These are also available on the Python package index as <a href="https://pypi.or
             
                 
             
+                
+            
+                
+                    <li><a href="/TEM_architecture/qc.html">QC Service</a></li>
                 
             
                 
@@ -3408,6 +3642,8 @@ These are also available on the Python package index as <a href="https://pypi.or
                 
             
                 
+            
+                
                     <li><a href="/TEM_architecture/ui.html">User Interface</a></li>
                 
             
@@ -3421,6 +3657,8 @@ These are also available on the Python package index as <a href="https://pypi.or
 
         <h4>Receivers</h4>
         <ul>
+            
+                
             
                 
             
@@ -3558,6 +3796,8 @@ These are also available on the Python package index as <a href="https://pypi.or
                 
             
                 
+            
+                
                     <li><a href="/TEM_architecture/ui.html">User Interface</a></li>
                 
             
@@ -3571,6 +3811,8 @@ These are also available on the Python package index as <a href="https://pypi.or
 
         <h4>Receivers</h4>
         <ul>
+            
+                
             
                 
             
@@ -3704,6 +3946,8 @@ These are also available on the Python package index as <a href="https://pypi.or
                 
             
                 
+            
+                
                     <li><a href="/TEM_architecture/ui.html">User Interface</a></li>
                 
             
@@ -3717,6 +3961,8 @@ These are also available on the Python package index as <a href="https://pypi.or
 
         <h4>Receivers</h4>
         <ul>
+            
+                
             
                 
             
