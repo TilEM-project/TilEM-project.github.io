@@ -479,6 +479,13 @@ topics:
                 type: dict or list
                 description: The metadata of the montage.
                 example: "{\"session_id\": \"MN18_RMOp_5f\", \"roi\": \"392171\"}"
+    qc.status:
+        description: This message indicates the state of tile/montage QC metrics.
+        payload:
+            state:
+                type: string
+                description: The state of the QC. Must be either "GOOD" if imaging should continue, "STOP_AT_END" if imaging should be stopped at then end of the montage, or "STOP_NOW" if imaging should be stopped immediately.
+                example: STOP_AT_END
 ---
 
 Messages in this system are sent and received using our [Pigeon](https://pypi.org/project/pigeon-client/) library.

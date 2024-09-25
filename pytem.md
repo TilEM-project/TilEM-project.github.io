@@ -19,6 +19,7 @@ receives:
     - stage.rotation.status
     - stage.motion.status
     - scope.status
+    - qc.status
 assigned: Cameron
 github: AllenInstitute/pytem
 ---
