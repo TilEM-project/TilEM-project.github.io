@@ -29,7 +29,7 @@ This service uses the [Pigeon](https://pigeon.readthedocs.io/en/latest/) client 
 Furthermore, a [library](https://github.com/AllenInstitute/pigeon-transitions) integrating Pigeon and the Python [Transitions](https://github.com/pytransitions/transitions) library to allow easy creation of the state machine.
 This library can also create a state transition diagrams of the state machine:
 
-![State Diagram]({{ '/graph.png' | relative_url }})
+[![State Diagram]({{ '/graph.png' | relative_url }})]({{ '/graph.png' | relative_url }})
 
 ## Simplified State Diagram
 
