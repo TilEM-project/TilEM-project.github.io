@@ -337,6 +337,18 @@ topics:
                 type: int or null
                 description: The desired magnification level, or `null` to keep current magnification. Must be provided if `mag_mode` is not `null`.
                 example: 3000
+            spot_size:
+                type: int or null
+                description: The desired spot size, or `null` to keep the current spot size.
+                example: 123
+            beam_offset:
+                type: "[int, int] or null"
+                description: The desired beam offset location, or `null` to keep the current beam offset.
+                example: "[54, 23]"
+            screen:
+                type: string
+                description: Command the screen to raise or lower. Must be either `up` or `down`.
+                example: up
     scope.status:
         description: This message contains status information about the microscope.
         payload:
@@ -360,6 +372,14 @@ topics:
                 type: int
                 description: The current HV tank voltage in kilovolts.
                 example: 120
+            spot_size:
+                type: int
+                description: The current spot size value.
+                example: 284
+            beam_offset:
+                type: "[int, int]"
+                description: The current beam offset location.
+                example: "[293, 172]"
     ui.setup:
         description: This message contains values that can be set on the UI setup pane.
         payload:
