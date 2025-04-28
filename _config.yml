@@ -14,7 +14,7 @@ header:
     - name: Unassigned
       href: /unassigned.html
 
-baseurl: /TEM_architecture
+baseurl: ""
 
 plugins:
   - jekyll-toc

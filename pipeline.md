@@ -66,14 +66,14 @@ lens_correction >> matcher >> minimap_from_gpu >> save_minimap >> output_minimap
 matcher >> output_transform
 clahe >> clone >> downsample >> from_gpu_jpeg >> save_jpeg >> output_jpeg
 
-input << Edge(label="tile.raw", href="{{ '/topics.html#tile-raw' | relative_url }}") << Blank(pin="true", pos="-0.375, 0")
-output_min_max_mean >> Edge(headlabel="tile.statistics.min_max_mean", href="{{ '/topics.html#tile-statistics-min_max_mean' | relative_url }}") >> Blank(pin="true", pos="2.875, 0.625")
-output_focus >> Edge(headlabel="tile.statistics.focus", href="{{ '/topics.html#tile-statistics-focus' | relative_url }}") >> Blank(pin="true", pos="2.875, 0.375")
-output_jpeg >> Edge(headlabel="tile.jpeg", href="{{ '/topics.html#tile-jpeg' | relative_url }}") >> Blank(pin="true", pos="2.875, 0.125")
-output_hist >> Edge(headlabel="tile.statistics.histogram", href="{{ '/topics.html#tile-statistics-histogram' | relative_url }}") >> Blank(pin="true", pos="2.875, -0.125")
-output >> Edge(headlabel="tile.processed", href="{{ '/topics.html#tile-processed' | relative_url }}") >> Blank(pin="true", pos="2.875, -0.375")
-output_minimap >> Edge(headlabel="tile.minimap", href="{{ '/topics.html#tile-minimap' | relative_url }}") >> Blank(pin="true", pos="2.875, -0.625")
-output_transform >> Edge(headlabel="tile.transform", href="{{ '/topics.html#tile-transform' | relative_url }}") >> Blank(pin="true", pos="2.875, -0.875")
+input << Edge(label="tile.raw", href="/topics.html#tile-raw") << Blank(pin="true", pos="-0.375, 0")
+output_min_max_mean >> Edge(headlabel="tile.statistics.min_max_mean", href="/topics.html#tile-statistics-min_max_mean") >> Blank(pin="true", pos="2.875, 0.625")
+output_focus >> Edge(headlabel="tile.statistics.focus", href="/topics.html#tile-statistics-focus") >> Blank(pin="true", pos="2.875, 0.375")
+output_jpeg >> Edge(headlabel="tile.jpeg", href="/topics.html#tile-jpeg") >> Blank(pin="true", pos="2.875, 0.125")
+output_hist >> Edge(headlabel="tile.statistics.histogram", href="/topics.html#tile-statistics-histogram") >> Blank(pin="true", pos="2.875, -0.125")
+output >> Edge(headlabel="tile.processed", href="/topics.html#tile-processed") >> Blank(pin="true", pos="2.875, -0.375")
+output_minimap >> Edge(headlabel="tile.minimap", href="/topics.html#tile-minimap") >> Blank(pin="true", pos="2.875, -0.625")
+output_transform >> Edge(headlabel="tile.transform", href="/topics.html#tile-transform") >> Blank(pin="true", pos="2.875, -0.875")
 {% enddiagram %}
 
 ### Functionality
@@ -83,7 +83,7 @@ output_transform >> Edge(headlabel="tile.transform", href="{{ '/topics.html#tile
 Uses
 : [SubscribeRawTileNode](#subscriberawtilenode)
 
-This node receives the metadata and the path to a raw tile to process from the [message broker]({{ '/broker.html' | relative_url }}) on the [tile.raw]({{ '/topics.html#tile-raw | relative_url}}) topic, and passes the filename to the load tile node.
+This node receives the metadata and the path to a raw tile to process from the [message broker](/broker.html) on the [tile.raw]({{ '/topics.html#tile-raw | relative_url}}) topic, and passes the filename to the load tile node.
 
 
 #### Load Tile
@@ -121,7 +121,7 @@ Uses
 : [CLAHENodeGPU](#clahenodegpu)
 
 The Contrast Limited Adaptive Histogram Equalization algorithm is applied to the tile.
-The resulting image is sent to multiple functions for further analysis, including an [FFT](#fft) for calculating the [focus score](#focus-score), calculating the [minimum, maximum, and mean](#min-max-mean) pixel values, [histogram](#calculate-histogram), [clone](#clone) for [UI]({{ 'ui.html' | relative_url }}) display, and further processing, starting with the [lens correction](#lens-correction).
+The resulting image is sent to multiple functions for further analysis, including an [FFT](#fft) for calculating the [focus score](#focus-score), calculating the [minimum, maximum, and mean](#min-max-mean) pixel values, [histogram](#calculate-histogram), [clone](#clone) for [UI](ui.html) display, and further processing, starting with the [lens correction](#lens-correction).
 
 #### Lens Correction
 
@@ -151,7 +151,7 @@ The processed tile can now be saved to disk.
 Uses
 : [PublishFileNode](#publishfilenode)
 
-The filepath of the processed tile can now be sent via the [broker]({{ '/broker.html' | relative_url }}) to other services on the [tile.processed]({{ '/topics.html#tile-processed' | relative_url }}) topic.
+The filepath of the processed tile can now be sent via the [broker](/broker.html) to other services on the [tile.processed](/topics.html#tile-processed) topic.
 
 #### Tile Matcher
 
@@ -165,7 +165,7 @@ This node performs template matching of each tile with its neighbors. It outputs
 Uses
 : [PublishTransformNode](#publishtransformnode)
 
-This node sends the transform of the matched tile along with other metadata to the [tile.transform]({{ '/topics.html#tile-transform' | relative_url }}) topic via the [broker]({{ '/broker.html' | relative_url }}).
+This node sends the transform of the matched tile along with other metadata to the [tile.transform](/topics.html#tile-transform) topic via the [broker](/broker.html).
 
 #### Minimap to CPU Memory
 
@@ -186,7 +186,7 @@ The minimap can is saved to disk.
 Uses
 : [PublishFileNode](#publishfilenode)
 
-The path to the minimap can now be sent via the [broker]({{ '/broker.html' | relative_url }}) on the [tile.minimap]({{ '/topics.html#tile-minimap' | relative_url }}) topic.
+The path to the minimap can now be sent via the [broker](/broker.html) on the [tile.minimap](/topics.html#tile-minimap) topic.
 
 #### Min, Max, Mean
 
@@ -200,7 +200,7 @@ This node calculates the minimum, maximum, and mean pixel values.
 Uses
 : [PublishMinMaxMeanNode](#publishminmaxmeannode)
 
-This node sends the minimum, maximum, and mean pixel values to other services via the [broker]({{ '/broker.html' | relative_url }}) on the [tile.statistics.min_max_mean]({{ '/topics.html#tile-statistics-min_max_mean' | relative_url }}) topic.
+This node sends the minimum, maximum, and mean pixel values to other services via the [broker](/broker.html) on the [tile.statistics.min_max_mean](/topics.html#tile-statistics-min_max_mean) topic.
 
 #### FFT
 
@@ -221,7 +221,7 @@ This node uses the FFT data to create a metric for the quality of the focus.
 Uses
 : [PublishFocusNode](#publishfocusnode)
 
-This node sends the focus score to other services via the [broker]({{ '/broker.html' | relative_url }}) on the [tile.statistics.focus]({{ '/topics.html#tile-statistics-focus' | relative_url }}) topic.
+This node sends the focus score to other services via the [broker](/broker.html) on the [tile.statistics.focus](/topics.html#tile-statistics-focus) topic.
 
 #### Clone
 
@@ -235,7 +235,7 @@ This node copies the image data, since the following node modifies it in-place.
 Uses
 : [ResizeNodeGPU](#resizenodegpu)
 
-This node down-samples the partially processed tile for [UI]({{ '/ui.html' | relative_url }}) display.
+This node down-samples the partially processed tile for [UI](/ui.html) display.
 
 #### Down-sampled Image to CPU Memory
 
@@ -249,14 +249,14 @@ The down-sampled image must be moved to CPU memory before it can be saved to dis
 Uses
 : [IMWriteNode](#imwritenode)
 
-The down-sampled image should be saved using JPEG compression for the [UI]({{ '/ui.html' | relative_url }}).
+The down-sampled image should be saved using JPEG compression for the [UI](/ui.html).
 
 #### Send JPEG Filepath
 
 Uses
 : [PublishFileNode](#publishfilenode)
 
-The path to the JPEG compressed image can be published via the [broker]({{ '/broker.html' | relative_url }}) on the [tile.jpeg]({{ '/topics.html#tile-jpeg' | relative_url }}) topic.
+The path to the JPEG compressed image can be published via the [broker](/broker.html) on the [tile.jpeg](/topics.html#tile-jpeg) topic.
 
 #### Histogram Transfer to CPU Memory
 
@@ -284,7 +284,7 @@ This node saves the histogram to SSD storage.
 Uses
 : [PublishFileNode](#publishfilenode)
 
-This node sends the filepath to the histogram to other services using the [broker]({{ '/broker.html' | relative_url }}) on the [tile.statistics.histogram]({{ '/topics.html#tile-statistics-histogram' | relative_url }}) topic.
+This node sends the filepath to the histogram to other services using the [broker](/broker.html) on the [tile.statistics.histogram](/topics.html#tile-statistics-histogram) topic.
 
 ### Nodes
 
@@ -761,7 +761,7 @@ Arguments
 : `concurrency (int) = unlimited`: The maximum number of copies of the node to run.
 : `topic (string) = None`: The topic to publish the file path on. Must not be `None`.
 
-This node publishes the path to a file (usually the output of am [IMWriteNode](#imwritenode)) using the [TEM_comms]({{ '/topics.html' | relative_url }}) library.
+This node publishes the path to a file (usually the output of am [IMWriteNode](#imwritenode)) using the [TEM_comms](/topics.html) library.
 The node outputs the input data without modification.
 
 #### PublishFocusNode
@@ -784,7 +784,7 @@ Arguments
 : `name (string) = PublishFocusNode`: The name for the node.
 : `concurrency (int) = unlimited`: The maximum number of copies of the node to run.
 
-This node publishes the focus score on the [tile.statistics.focus]({{ '/topics.html#tile-statistics-focus' | relative_url }}) topic using the [TEM_comms]({{ '/topics.html' | relative_url }}) library.
+This node publishes the focus score on the [tile.statistics.focus](/topics.html#tile-statistics-focus) topic using the [TEM_comms](/topics.html) library.
 The node outputs the input data without modification.
 
 #### PublishMinMaxMeanNode
@@ -807,7 +807,7 @@ Arguments
 : `name (string) = PublishMinMaxMeanNode`: The name for the node.
 : `concurrency (int) = unlimited`: The maximum number of copies of the node to run.
 
-This node publishes the minimum, maximum, and mean pixel values on the [tile.statistics.min_max_mean]({{ '/topics.html#tile-statistics-min_max_mean' | relative_url }}) topic using the [TEM_comms]({{ '/topics.html' | relative_url }}) library.
+This node publishes the minimum, maximum, and mean pixel values on the [tile.statistics.min_max_mean](/topics.html#tile-statistics-min_max_mean) topic using the [TEM_comms](/topics.html) library.
 The node outputs the input data without modification.
 
 #### PublishTransformNode
@@ -830,7 +830,7 @@ Arguments
 : `name (string) = PublishTransformNode`: The name for the node.
 : `concurrency (int) = unlimited`: The maximum number of copies of the node to run.
 
-This node publishes the transform and other matching data from the message metadata on the [tile.transform]({{ '/topics.html#tile-transform' | relative_url }}) topic using the [TEM_comms]({{ '/topics.html' | relative_url }}) library.
+This node publishes the transform and other matching data from the message metadata on the [tile.transform](/topics.html#tile-transform) topic using the [TEM_comms](/topics.html) library.
 The node outputs the input data without modification.
 
 ### Message Types

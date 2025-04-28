@@ -25,11 +25,11 @@ github: AllenInstitute/pytem
 ---
 
 pyTEM is the main hierarchical state machine orchestrating all the components.
-This service uses the [Pigeon](https://pigeon.readthedocs.io/en/latest/) client for communication via the [message broker]({{ '/broker.html' | relative_url }}).
+This service uses the [Pigeon](https://pigeon.readthedocs.io/en/latest/) client for communication via the [message broker](/broker.html).
 Furthermore, a [library](https://github.com/AllenInstitute/pigeon-transitions) integrating Pigeon and the Python [Transitions](https://github.com/pytransitions/transitions) library to allow easy creation of the state machine.
 This library can also create a state transition diagrams of the state machine:
 
-[![State Diagram]({{ '/graph.png' | relative_url }})]({{ '/graph.png' | relative_url }})
+[![State Diagram](/graph.png)](/graph.png)
 
 ## Simplified State Diagram
 
@@ -112,28 +112,28 @@ The `Montage` machine collects the required tiles.
 
 #### UpdateImage
 
-The `UpdateImage` machine requests an image from the [camera]({{ 'camera.html' | relative_url }}), and sends it to the [image processing pipeline]({{ 'pipeline.html' | relative_url }}).
+The `UpdateImage` machine requests an image from the [camera](camera.html), and sends it to the [image processing pipeline](pipeline.html).
 Ultimately, this image will then be shown on the [UI]({{ 'ui.html' | relative_url}}).
 
 #### Darkfield
 
-The `Darkfield` machine collects a darkfield image by lowering the screen on the [microcope]({{ 'scope.html' | relative_url }}), collecting a series of images, averaging them, then raising the screen again.
+The `Darkfield` machine collects a darkfield image by lowering the screen on the [microcope](scope.html), collecting a series of images, averaging them, then raising the screen again.
 
 #### Brightfield
 
-The `Brightfield` machine collects a brightfield image by moving the [stage]({{ 'stage.html' | relative_url }}) while collecting a series of images, then averaging them.
+The `Brightfield` machine collects a brightfield image by moving the [stage](stage.html) while collecting a series of images, then averaging them.
 
 #### AutoFocus
 
-The `AutoFocus` machine optimizes the focus by maximizing the focus score produced by the [image processing pipeline]({{ 'pipeline.html' | relative_url }}).
+The `AutoFocus` machine optimizes the focus by maximizing the focus score produced by the [image processing pipeline](pipeline.html).
 
 #### AutoExposure
 
-The `AutoExposure` machine optimizes the exposure by finding the [camera]({{ 'camera.html' | relative_url }}) exposure which produces a mean value within the correct range as calculated by the [image processing pipeline]({{ 'pipeline.html' | relative_url }}).
+The `AutoExposure` machine optimizes the exposure by finding the [camera](camera.html) exposure which produces a mean value within the correct range as calculated by the [image processing pipeline](pipeline.html).
 
 #### BeamCenter
 
-The `BeamCenter` machine centers the electron beam in the [microscope's]({{ 'scope.html' | relative_url }}) field of view.
+The `BeamCenter` machine centers the electron beam in the [microscope's](scope.html) field of view.
 
 #### BeamSpread
 
@@ -149,15 +149,15 @@ The `LensCorrection` machine collects a lens correction montage.
 
 #### FindAperture
 
-The `FindAperture` machine finds the bounds of the current aperture by moving the [stage]({{ 'stage.html' | relative_url }}) and processing images.
+The `FindAperture` machine finds the bounds of the current aperture by moving the [stage](stage.html) and processing images.
 
 #### MoveStage
 
-The `MoveStage` machine moves the [stage]({{ 'stage.html' | relative_url }}) to the location of the next tile.
+The `MoveStage` machine moves the [stage](stage.html) to the location of the next tile.
 
 #### CaptureTile
 
-The `CaptureTile` machine captures a single tile using the [camera]({{ 'camera.html' | relative_url }}).
+The `CaptureTile` machine captures a single tile using the [camera](camera.html).
 
 #### Shutdown
 
