@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.-.min.css"/> -->
-<link rel="stylesheet" href="/TEM_architecture/assets/css/style.css"/>
+<link rel="stylesheet" href="/assets/css/style.css"/>
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/font-awesome.min.css"> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script>
   window.MathJax = {
@@ -28,14 +28,14 @@
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">
-        <a href="/TEM_architecture/">TEM Architecture</a>
+        <a href="/">TEM Architecture</a>
       </span>
       <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         
-          <a class="mdl-navigation__link" href="/TEM_architecture/topics.html">Topics</a>
+          <a class="mdl-navigation__link" href="link.href">Topics</a>
         
-          <a class="mdl-navigation__link" href="/TEM_architecture/assignments.html">Assignments</a>
+          <a class="mdl-navigation__link" href="link.href">Assignments</a>
         
       </nav>
     </div>
@@ -44,13 +44,13 @@
     <span class="mdl-layout-title">TEM Architecture</span>
     <nav class="mdl-navigation">
       
-        <a class="mdl-navigation__link" href="/TEM_architecture/topics.html">Topics</a>
+        <a class="mdl-navigation__link" href="link.href">Topics</a>
         
       
-        <a class="mdl-navigation__link" href="/TEM_architecture/assignments.html">Assignments</a>
+        <a class="mdl-navigation__link" href="link.href">Assignments</a>
         
       
-        <a class="mdl-navigation__link" href="/TEM_architecture/unassigned.html">Unassigned</a>
+        <a class="mdl-navigation__link" href="link.href">Unassigned</a>
         
       
     </nav>
@@ -81,11 +81,11 @@
       <ul>
         
         
-          <li><a href="/TEM_architecture/topics.html#tile-jpeg">tile.jpeg</a></li>
+          <li><a href="/topics.html#tile-jpeg">tile.jpeg</a></li>
         
-          <li><a href="/TEM_architecture/topics.html#tile-minimap">tile.minimap</a></li>
+          <li><a href="/topics.html#tile-minimap">tile.minimap</a></li>
         
-          <li><a href="/TEM_architecture/topics.html#tile-statistics-histogram">tile.statistics.histogram</a></li>
+          <li><a href="/topics.html#tile-statistics-histogram">tile.statistics.histogram</a></li>
         
       </ul>
     
@@ -95,12 +95,13 @@
   
   <p>The UI Server is a service which provides a web based user interface for the microscope.
 It primarily serves HTML and JavaScript files to the client.
-Additionally, the down-sampled JPEG tiles and minimap received on the <a href="/topics.html#tile-jpeg"><code class="language-plaintext highlighter-rouge">tile.jpeg</code></a> and <a href="/topics.html#tile-minimap"><code class="language-plaintext highlighter-rouge">tile.minimap</code></a> topics are sent to the <a href="/TEM_architecture/ui.html">client</a> via a websocket.</p>
+Additionally, the down-sampled JPEG tiles and minimap received on the <a href="/topics.html#tile-jpeg"><code class="language-plaintext highlighter-rouge">tile.jpeg</code></a> and <a href="/topics.html#tile-minimap"><code class="language-plaintext highlighter-rouge">tile.minimap</code></a> topics are sent to the <a href="/ui.html">client</a> via a websocket.</p>
 
 <p>The JavaScript code running in the client’s browser is written using <a href="https://vuejs.org/">Vue.js</a> and uses <a href="https://github.com/stomp-js/stompjs">STOMP.js</a> to communicate with the <a href="/broker.html">message broker</a>.
-Further documentation on the UI is available <a href="/TEM_architecture/ui.html">here</a>.</p>
+Further documentation on the UI is available <a href="/ui.html">here</a>.</p>
 
 </div>
+
     </div>
 </div>
         <footer class="mdl-mega-footer">

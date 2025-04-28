@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.-.min.css"/> -->
-<link rel="stylesheet" href="/TEM_architecture/assets/css/style.css"/>
+<link rel="stylesheet" href="/assets/css/style.css"/>
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/font-awesome.min.css"> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script>
   window.MathJax = {
@@ -28,14 +28,14 @@
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">
-        <a href="/TEM_architecture/">TEM Architecture</a>
+        <a href="/">TEM Architecture</a>
       </span>
       <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         
-          <a class="mdl-navigation__link" href="/TEM_architecture/topics.html">Topics</a>
+          <a class="mdl-navigation__link" href="link.href">Topics</a>
         
-          <a class="mdl-navigation__link" href="/TEM_architecture/assignments.html">Assignments</a>
+          <a class="mdl-navigation__link" href="link.href">Assignments</a>
         
       </nav>
     </div>
@@ -44,13 +44,13 @@
     <span class="mdl-layout-title">TEM Architecture</span>
     <nav class="mdl-navigation">
       
-        <a class="mdl-navigation__link" href="/TEM_architecture/topics.html">Topics</a>
+        <a class="mdl-navigation__link" href="link.href">Topics</a>
         
       
-        <a class="mdl-navigation__link" href="/TEM_architecture/assignments.html">Assignments</a>
+        <a class="mdl-navigation__link" href="link.href">Assignments</a>
         
       
-        <a class="mdl-navigation__link" href="/TEM_architecture/unassigned.html">Unassigned</a>
+        <a class="mdl-navigation__link" href="link.href">Unassigned</a>
         
       
     </nav>
@@ -82,7 +82,7 @@
       <ul>
         
         
-          <li><a href="/TEM_architecture/topics.html#qc-status">qc.status</a></li>
+          <li><a href="/topics.html#qc-status">qc.status</a></li>
         
       </ul>
     
@@ -91,13 +91,13 @@
       <ul>
         
         
-          <li><a href="/TEM_architecture/topics.html#tile-statistics-focus">tile.statistics.focus</a></li>
+          <li><a href="/topics.html#tile-statistics-focus">tile.statistics.focus</a></li>
         
-          <li><a href="/TEM_architecture/topics.html#tile-statistics-histogram">tile.statistics.histogram</a></li>
+          <li><a href="/topics.html#tile-statistics-histogram">tile.statistics.histogram</a></li>
         
-          <li><a href="/TEM_architecture/topics.html#tile-statistics-min_max_mean">tile.statistics.min_max_mean</a></li>
+          <li><a href="/topics.html#tile-statistics-min_max_mean">tile.statistics.min_max_mean</a></li>
         
-          <li><a href="/TEM_architecture/topics.html#tile-transform">tile.transform</a></li>
+          <li><a href="/topics.html#tile-transform">tile.transform</a></li>
         
       </ul>
     
@@ -105,12 +105,13 @@
 
 <div class="mdl-card__supporting-text">
   
-  <p>To allow <a href="/TEM_architecture/pyTEM.html">pyTEM</a> to easily determine if the quality of tiles is good, this service regularly sends status message to <a href="/TEM_architecture/pyTEM.html">pyTEM</a> on the <a href="/TEM_architecture/topics.html#qc-status">qc.status</a> topic.
+  <p>To allow <a href="pyTEM.html">pyTEM</a> to easily determine if the quality of tiles is good, this service regularly sends status message to <a href="pyTEM.html">pyTEM</a> on the <a href="topics.html#qc-status">qc.status</a> topic.
 This topic takes one of three values, <code class="language-plaintext highlighter-rouge">GOOD</code> meaning that imaging should continue, <code class="language-plaintext highlighter-rouge">STOP_AT_END</code> meaning that imaging should be stopped once the current montage is complete, and <code class="language-plaintext highlighter-rouge">STOP_NOW</code> when imaging should be stopped immediately.
-This service determines which value to send by looking at the statistical values sent by the <a href="/TEM_architecture/pipeline.html">image processing pipeline</a>.
+This service determines which value to send by looking at the statistical values sent by the <a href="pipeline.html">image processing pipeline</a>.
 In the future, the measurements from the multi-system monitoring system could be included as well.</p>
 
 </div>
+
     </div>
 </div>
         <footer class="mdl-mega-footer">
