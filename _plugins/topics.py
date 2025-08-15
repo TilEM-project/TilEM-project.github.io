@@ -3,6 +3,7 @@ import json
 import jsonschema2md
 import re
 
+jsonschema2md.Parser.locale = "en_US"
 
 parser = jsonschema2md.Parser(header_level=2)
 
