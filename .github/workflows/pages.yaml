@@ -20,7 +20,7 @@ jobs:
           export PATH="$HOME/gems/bin:$PATH"
           gem install bundler
           $HOME/gems/bin/bundle install
-          pip install diagrams
+          pip install diagrams pigeon-tem-comms jsonschema2md
           sudo apt-get install -y graphviz
           bundle exec jekyll build
           rm .gitignore

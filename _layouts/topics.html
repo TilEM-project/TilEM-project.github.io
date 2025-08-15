@@ -11,7 +11,7 @@ layout: raw_page
     </div>
 {% endif %}
 
-{% assign topics = page.topics | sort %}
+{% assign topics = site.data.topics | sort %}
 
 <div class="mdl-card__supporting-text mdl-card--border">
     {{ content }}
@@ -24,34 +24,7 @@ layout: raw_page
 
 {% for topic in topics %}
     <div class="mdl-card__supporting-text mdl-card--border topic-container">
-        <h3 id="{{ topic[0] | replace: '.', '-' }}">{{ topic[0] }}</h3>
-        <p>{{ topic[1].description | markdownify }}</p>
-
-        <h4>Payload</h4>
-        <ul>
-            {% for element in topic[1].payload %}
-                <li><strong>{{ element[0] }}</strong> ({{ element[1].type }}): {{ element[1].description | markdownify }}</li>
-            {% endfor %}
-        </ul>
-
-        <h4>Example</h4>
-        <div class="language-json highlighter-rouge">
-            <div class="highlight">
-                <pre class="highlight">
-<code>{
-    {%- for element in topic[1].payload %}
-        {%- if element[1].type == "string" %}
-    "{{ element[0] }}": "{{ element[1].example }}"
-        {%- else %}
-    "{{ element[0] }}": {{ element[1].example }}
-        {%- endif -%}
-        {%- unless forloop.last -%},{%- endunless -%}
-    {%- endfor %}
-}</code>
-                </pre>
-            </div>
-        </div>
-        
+        {{ topic[1] | markdownify }}
 
         <h4>Sender</h4>
         <ul>
