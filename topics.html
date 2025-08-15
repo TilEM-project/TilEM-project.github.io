@@ -83,9 +83,5277 @@ These are also available on the Python package index as <a href="https://pypi.or
 
     <ul>
         
+            <li><a href="#buffer-status">buffer.status</a></li>
+        
+            <li><a href="#calibration-centroid">calibration.centroid</a></li>
+        
+            <li><a href="#calibration-resolution">calibration.resolution</a></li>
+        
+            <li><a href="#camera-command">camera.command</a></li>
+        
+            <li><a href="#camera-image">camera.image</a></li>
+        
+            <li><a href="#camera-settings">camera.settings</a></li>
+        
+            <li><a href="#camera-status">camera.status</a></li>
+        
+            <li><a href="#montage-complete">montage.complete</a></li>
+        
+            <li><a href="#montage-minimaps">montage.minimaps</a></li>
+        
+            <li><a href="#qc-status">qc.status</a></li>
+        
+            <li><a href="#roi-create">roi.create</a></li>
+        
+            <li><a href="#roi-current">roi.current</a></li>
+        
+            <li><a href="#roi-load">roi.load</a></li>
+        
+            <li><a href="#scope-command">scope.command</a></li>
+        
+            <li><a href="#scope-status">scope.status</a></li>
+        
+            <li><a href="#stage-aperture-command">stage.aperture.command</a></li>
+        
+            <li><a href="#stage-aperture-status">stage.aperture.status</a></li>
+        
+            <li><a href="#stage-motion-command">stage.motion.command</a></li>
+        
+            <li><a href="#stage-motion-status">stage.motion.status</a></li>
+        
+            <li><a href="#stage-rotation-command">stage.rotation.command</a></li>
+        
+            <li><a href="#stage-rotation-status">stage.rotation.status</a></li>
+        
+            <li><a href="#state">state</a></li>
+        
+            <li><a href="#tile-mini">tile.mini</a></li>
+        
+            <li><a href="#tile-preview">tile.preview</a></li>
+        
+            <li><a href="#tile-processed">tile.processed</a></li>
+        
+            <li><a href="#tile-raw">tile.raw</a></li>
+        
+            <li><a href="#tile-statistics-focus">tile.statistics.focus</a></li>
+        
+            <li><a href="#tile-statistics-histogram">tile.statistics.histogram</a></li>
+        
+            <li><a href="#tile-statistics-min_max_mean">tile.statistics.min_max_mean</a></li>
+        
+            <li><a href="#tile-transform">tile.transform</a></li>
+        
+            <li><a href="#ui-edit">ui.edit</a></li>
+        
+            <li><a href="#ui-run">ui.run</a></li>
+        
+            <li><a href="#ui-setup">ui.setup</a></li>
+        
     </ul>
 </div>
 
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="bufferstatus">buffer.status</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/queue_length"></a><strong><code class="language-plaintext highlighter-rouge">queue_length</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/free_space"></a><strong><code class="language-plaintext highlighter-rouge">free_space</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/upload_rate"></a><strong><code class="language-plaintext highlighter-rouge">upload_rate</code></strong> <em>(integer, required)</em></p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/buffer.html">Tile Upload Buffer</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/ui.html">User Interface</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="calibrationcentroid">calibration.centroid</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/aperture_id"></a><strong><code class="language-plaintext highlighter-rouge">aperture_id</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/x"></a><strong><code class="language-plaintext highlighter-rouge">x</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/y"></a><strong><code class="language-plaintext highlighter-rouge">y</code></strong> <em>(integer, required)</em></p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="calibrationresolution">calibration.resolution</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/lowmag"></a><strong><code class="language-plaintext highlighter-rouge">lowmag</code></strong> <em>(object, required)</em>: Can contain additional properties.</p>
+
+    <ul>
+      <li><a id="properties/lowmag/additionalProperties"></a><strong>Additional properties</strong>: Refer to <em><a href="#%24defs/_Resolution">_Resolution</a></em>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/mag"></a><strong><code class="language-plaintext highlighter-rouge">mag</code></strong> <em>(object, required)</em>: Can contain additional properties.</p>
+
+    <ul>
+      <li><a id="properties/mag/additionalProperties"></a><strong>Additional properties</strong>: Refer to <em><a href="#%24defs/_Resolution">_Resolution</a></em>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="definitions">Definitions</h4>
+
+<ul>
+  <li>
+    <p><a id="%24defs/_Resolution"></a><strong><code class="language-plaintext highlighter-rouge">_Resolution</code></strong> <em>(object)</em>: Cannot contain additional properties.</p>
+
+    <ul>
+      <li>
+        <p><a id="%24defs/_Resolution/properties/nm_per_px"></a><strong><code class="language-plaintext highlighter-rouge">nm_per_px</code></strong> <em>(array, required)</em>: Length must be equal to 2.</p>
+      </li>
+      <li>
+        <p><a id="%24defs/_Resolution/properties/rotation"></a><strong><code class="language-plaintext highlighter-rouge">rotation</code></strong> <em>(number, required)</em></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="cameracommand">camera.command</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/tile_id"></a><strong><code class="language-plaintext highlighter-rouge">tile_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/montage_id"></a><strong><code class="language-plaintext highlighter-rouge">montage_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/row"></a><strong><code class="language-plaintext highlighter-rouge">row</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/column"></a><strong><code class="language-plaintext highlighter-rouge">column</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/overlap"></a><strong><code class="language-plaintext highlighter-rouge">overlap</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/brightfield"></a><strong><code class="language-plaintext highlighter-rouge">brightfield</code></strong>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/brightfield/anyOf/0"></a><em>boolean</em></p>
+          </li>
+          <li>
+            <p><a id="properties/brightfield/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/darkfield"></a><strong><code class="language-plaintext highlighter-rouge">darkfield</code></strong>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/darkfield/anyOf/0"></a><em>boolean</em></p>
+          </li>
+          <li>
+            <p><a id="properties/darkfield/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/lens_correction"></a><strong><code class="language-plaintext highlighter-rouge">lens_correction</code></strong>: Default: <code class="language-plaintext highlighter-rouge">true</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/lens_correction/anyOf/0"></a><em>boolean</em></p>
+          </li>
+          <li>
+            <p><a id="properties/lens_correction/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/camera.html">Camera Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="cameraimage">camera.image</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/tile_id"></a><strong><code class="language-plaintext highlighter-rouge">tile_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/montage_id"></a><strong><code class="language-plaintext highlighter-rouge">montage_id</code></strong> <em>(string, required)</em></p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/camera.html">Camera Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="camerasettings">camera.settings</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/exposure"></a><strong><code class="language-plaintext highlighter-rouge">exposure</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/exposure/anyOf/0"></a><em>number</em></p>
+          </li>
+          <li>
+            <p><a id="properties/exposure/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/gain"></a><strong><code class="language-plaintext highlighter-rouge">gain</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/gain/anyOf/0"></a><em>number</em></p>
+          </li>
+          <li>
+            <p><a id="properties/gain/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/width"></a><strong><code class="language-plaintext highlighter-rouge">width</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/width/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/width/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/height"></a><strong><code class="language-plaintext highlighter-rouge">height</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/height/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/height/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/camera.html">Camera Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="camerastatus">camera.status</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/exposure"></a><strong><code class="language-plaintext highlighter-rouge">exposure</code></strong> <em>(number, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/gain"></a><strong><code class="language-plaintext highlighter-rouge">gain</code></strong> <em>(number, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/width"></a><strong><code class="language-plaintext highlighter-rouge">width</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/height"></a><strong><code class="language-plaintext highlighter-rouge">height</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/temp"></a><strong><code class="language-plaintext highlighter-rouge">temp</code></strong> <em>(number, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/target_temp"></a><strong><code class="language-plaintext highlighter-rouge">target_temp</code></strong> <em>(number, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/device_name"></a><strong><code class="language-plaintext highlighter-rouge">device_name</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/device_model_id"></a><strong><code class="language-plaintext highlighter-rouge">device_model_id</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/device_sn"></a><strong><code class="language-plaintext highlighter-rouge">device_sn</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/bit_depth"></a><strong><code class="language-plaintext highlighter-rouge">bit_depth</code></strong></p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/bit_depth/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/bit_depth/anyOf/1"></a><em>string</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/camera.html">Camera Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/ui.html">User Interface</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="montagecomplete">montage.complete</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/montage_id"></a><strong><code class="language-plaintext highlighter-rouge">montage_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/tiles"></a><strong><code class="language-plaintext highlighter-rouge">tiles</code></strong> <em>(object, required)</em>: Can contain additional properties.</p>
+
+    <ul>
+      <li><a id="properties/tiles/additionalProperties"></a><strong>Additional properties</strong>: Refer to <em><a href="#%24defs/Tile">Tile</a></em>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/acquisition_id"></a><strong><code class="language-plaintext highlighter-rouge">acquisition_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/start_time"></a><strong><code class="language-plaintext highlighter-rouge">start_time</code></strong> <em>(string, format: date-time, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/pixel_size"></a><strong><code class="language-plaintext highlighter-rouge">pixel_size</code></strong> <em>(number, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/rotation_angle"></a><strong><code class="language-plaintext highlighter-rouge">rotation_angle</code></strong> <em>(number, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/aperture_centroid"></a><strong><code class="language-plaintext highlighter-rouge">aperture_centroid</code></strong> <em>(array, required)</em>: Length must be equal to 2.</p>
+  </li>
+</ul>
+
+<h4 id="definitions">Definitions</h4>
+
+<ul>
+  <li>
+    <p><a id="%24defs/Tile"></a><strong><code class="language-plaintext highlighter-rouge">Tile</code></strong> <em>(object)</em>: Cannot contain additional properties.</p>
+
+    <ul>
+      <li>
+        <p><a id="%24defs/Tile/properties/raster_index"></a><strong><code class="language-plaintext highlighter-rouge">raster_index</code></strong> <em>(integer, required)</em></p>
+      </li>
+      <li>
+        <p><a id="%24defs/Tile/properties/stage_position"></a><strong><code class="language-plaintext highlighter-rouge">stage_position</code></strong> <em>(array, required)</em>: Length must be equal to 2.</p>
+      </li>
+      <li>
+        <p><a id="%24defs/Tile/properties/raster_position"></a><strong><code class="language-plaintext highlighter-rouge">raster_position</code></strong> <em>(array, required)</em>: Length must be equal to 2.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="montageminimaps">montage.minimaps</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/montage_id"></a><strong><code class="language-plaintext highlighter-rouge">montage_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/montage"></a><strong><code class="language-plaintext highlighter-rouge">montage</code></strong> <em>(required)</em>: Refer to <em><a href="#%24defs/Minimap">Minimap</a></em>.</p>
+  </li>
+  <li>
+    <p><a id="properties/focus"></a><strong><code class="language-plaintext highlighter-rouge">focus</code></strong> <em>(required)</em>: Refer to <em><a href="#%24defs/Minimap">Minimap</a></em>.</p>
+  </li>
+</ul>
+
+<h4 id="definitions">Definitions</h4>
+
+<ul>
+  <li>
+    <p><a id="%24defs/Minimap"></a><strong><code class="language-plaintext highlighter-rouge">Minimap</code></strong> <em>(object)</em>: Cannot contain additional properties.</p>
+
+    <ul>
+      <li>
+        <p><a id="%24defs/Minimap/properties/image"></a><strong><code class="language-plaintext highlighter-rouge">image</code></strong></p>
+
+        <ul>
+          <li>
+            <p><strong>Any of</strong></p>
+
+            <ul>
+              <li>
+                <p><a id="%24defs/Minimap/properties/image/anyOf/0"></a><em>string</em></p>
+              </li>
+              <li>
+                <p><a id="%24defs/Minimap/properties/image/anyOf/1"></a><em>null</em></p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p><a id="%24defs/Minimap/properties/colorbar"></a><strong><code class="language-plaintext highlighter-rouge">colorbar</code></strong> <em>(string, required)</em></p>
+      </li>
+      <li>
+        <p><a id="%24defs/Minimap/properties/min"></a><strong><code class="language-plaintext highlighter-rouge">min</code></strong></p>
+
+        <ul>
+          <li>
+            <p><strong>Any of</strong></p>
+
+            <ul>
+              <li>
+                <p><a id="%24defs/Minimap/properties/min/anyOf/0"></a><em>number</em></p>
+              </li>
+              <li>
+                <p><a id="%24defs/Minimap/properties/min/anyOf/1"></a><em>null</em></p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p><a id="%24defs/Minimap/properties/max"></a><strong><code class="language-plaintext highlighter-rouge">max</code></strong></p>
+
+        <ul>
+          <li>
+            <p><strong>Any of</strong></p>
+
+            <ul>
+              <li>
+                <p><a id="%24defs/Minimap/properties/max/anyOf/0"></a><em>number</em></p>
+              </li>
+              <li>
+                <p><a id="%24defs/Minimap/properties/max/anyOf/1"></a><em>null</em></p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="qcstatus">qc.status</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li><a id="properties/state"></a><strong><code class="language-plaintext highlighter-rouge">state</code></strong> <em>(string, required)</em>: Must be one of: “GOOD”, “STOP_AT_END”, or “STOP_NOW”.</li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/qc.html">QC Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="roicreate">roi.create</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/center"></a><strong><code class="language-plaintext highlighter-rouge">center</code></strong> <em>(required)</em>: Refer to <em><a href="#%24defs/Vertex">Vertex</a></em>.</p>
+  </li>
+  <li>
+    <p><a id="properties/width"></a><strong><code class="language-plaintext highlighter-rouge">width</code></strong> <em>(number, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/height"></a><strong><code class="language-plaintext highlighter-rouge">height</code></strong> <em>(number, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/rotation_angle"></a><strong><code class="language-plaintext highlighter-rouge">rotation_angle</code></strong> <em>(number)</em>: Default: <code class="language-plaintext highlighter-rouge">0.0</code>.</p>
+  </li>
+  <li>
+    <p><a id="properties/montage_id"></a><strong><code class="language-plaintext highlighter-rouge">montage_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/specimen_id"></a><strong><code class="language-plaintext highlighter-rouge">specimen_id</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/specimen_id/anyOf/0"></a><em>string</em></p>
+          </li>
+          <li>
+            <p><a id="properties/specimen_id/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/grid_id"></a><strong><code class="language-plaintext highlighter-rouge">grid_id</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/grid_id/anyOf/0"></a><em>string</em></p>
+          </li>
+          <li>
+            <p><a id="properties/grid_id/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/section_id"></a><strong><code class="language-plaintext highlighter-rouge">section_id</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/section_id/anyOf/0"></a><em>string</em></p>
+          </li>
+          <li>
+            <p><a id="properties/section_id/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/queue_position"></a><strong><code class="language-plaintext highlighter-rouge">queue_position</code></strong>: Position in queue, None means set as current. Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/queue_position/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/queue_position/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="definitions">Definitions</h4>
+
+<ul>
+  <li>
+    <p><a id="%24defs/Vertex"></a><strong><code class="language-plaintext highlighter-rouge">Vertex</code></strong> <em>(object)</em>: Cannot contain additional properties.</p>
+
+    <ul>
+      <li>
+        <p><a id="%24defs/Vertex/properties/x"></a><strong><code class="language-plaintext highlighter-rouge">x</code></strong> <em>(number, required)</em></p>
+      </li>
+      <li>
+        <p><a id="%24defs/Vertex/properties/y"></a><strong><code class="language-plaintext highlighter-rouge">y</code></strong> <em>(number, required)</em></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="roicurrent">roi.current</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/vertices"></a><strong><code class="language-plaintext highlighter-rouge">vertices</code></strong> <em>(array, required)</em></p>
+
+    <ul>
+      <li><a id="properties/vertices/items"></a><strong>Items</strong>: Refer to <em><a href="#%24defs/Vertex">Vertex</a></em>.</li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/rotation_angle"></a><strong><code class="language-plaintext highlighter-rouge">rotation_angle</code></strong> <em>(number, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/buffer_size"></a><strong><code class="language-plaintext highlighter-rouge">buffer_size</code></strong> <em>(number)</em>: Default: <code class="language-plaintext highlighter-rouge">0.0</code>.</p>
+  </li>
+  <li>
+    <p><a id="properties/montage_id"></a><strong><code class="language-plaintext highlighter-rouge">montage_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/specimen_id"></a><strong><code class="language-plaintext highlighter-rouge">specimen_id</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/specimen_id/anyOf/0"></a><em>string</em></p>
+          </li>
+          <li>
+            <p><a id="properties/specimen_id/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/grid_id"></a><strong><code class="language-plaintext highlighter-rouge">grid_id</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/grid_id/anyOf/0"></a><em>string</em></p>
+          </li>
+          <li>
+            <p><a id="properties/grid_id/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/section_id"></a><strong><code class="language-plaintext highlighter-rouge">section_id</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/section_id/anyOf/0"></a><em>string</em></p>
+          </li>
+          <li>
+            <p><a id="properties/section_id/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/metadata"></a><strong><code class="language-plaintext highlighter-rouge">metadata</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/metadata/anyOf/0"></a><em>object</em>: Can contain additional properties.</p>
+          </li>
+          <li>
+            <p><a id="properties/metadata/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/queue_position"></a><strong><code class="language-plaintext highlighter-rouge">queue_position</code></strong>: Position in queue, None means set as current. Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/queue_position/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/queue_position/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="definitions">Definitions</h4>
+
+<ul>
+  <li>
+    <p><a id="%24defs/Vertex"></a><strong><code class="language-plaintext highlighter-rouge">Vertex</code></strong> <em>(object)</em>: Cannot contain additional properties.</p>
+
+    <ul>
+      <li>
+        <p><a id="%24defs/Vertex/properties/x"></a><strong><code class="language-plaintext highlighter-rouge">x</code></strong> <em>(number, required)</em></p>
+      </li>
+      <li>
+        <p><a id="%24defs/Vertex/properties/y"></a><strong><code class="language-plaintext highlighter-rouge">y</code></strong> <em>(number, required)</em></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="roiload">roi.load</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/specimen_id"></a><strong><code class="language-plaintext highlighter-rouge">specimen_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/section_id"></a><strong><code class="language-plaintext highlighter-rouge">section_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/grid_id"></a><strong><code class="language-plaintext highlighter-rouge">grid_id</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/grid_id/anyOf/0"></a><em>string</em></p>
+          </li>
+          <li>
+            <p><a id="properties/grid_id/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/queue_position"></a><strong><code class="language-plaintext highlighter-rouge">queue_position</code></strong>: Position in queue, None means set as current. Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/queue_position/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/queue_position/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="scopecommand">scope.command</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/focus"></a><strong><code class="language-plaintext highlighter-rouge">focus</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/focus/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/focus/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/mag_mode"></a><strong><code class="language-plaintext highlighter-rouge">mag_mode</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/mag_mode/anyOf/0"></a><em>string</em>: Must be one of: “LM”, “MAG1”, or “MAG2”.</p>
+          </li>
+          <li>
+            <p><a id="properties/mag_mode/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/mag"></a><strong><code class="language-plaintext highlighter-rouge">mag</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/mag/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/mag/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/brightness"></a><strong><code class="language-plaintext highlighter-rouge">brightness</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/brightness/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/brightness/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/beam_offset"></a><strong><code class="language-plaintext highlighter-rouge">beam_offset</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/beam_offset/anyOf/0"></a><em>array</em>: Length must be equal to 2.</p>
+          </li>
+          <li>
+            <p><a id="properties/beam_offset/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/spot_size"></a><strong><code class="language-plaintext highlighter-rouge">spot_size</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/spot_size/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/spot_size/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/screen"></a><strong><code class="language-plaintext highlighter-rouge">screen</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/screen/anyOf/0"></a><em>string</em>: Must be one of: “up” or “down”.</p>
+          </li>
+          <li>
+            <p><a id="properties/screen/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/scope.html">Microscope Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="scopestatus">scope.status</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/focus"></a><strong><code class="language-plaintext highlighter-rouge">focus</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/aperture"></a><strong><code class="language-plaintext highlighter-rouge">aperture</code></strong></p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/aperture/anyOf/0"></a><em>string</em></p>
+          </li>
+          <li>
+            <p><a id="properties/aperture/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/mag_mode"></a><strong><code class="language-plaintext highlighter-rouge">mag_mode</code></strong> <em>(string, required)</em>: Must be one of: “MAG” or “LOWMAG”.</p>
+  </li>
+  <li>
+    <p><a id="properties/mag"></a><strong><code class="language-plaintext highlighter-rouge">mag</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/tank_voltage"></a><strong><code class="language-plaintext highlighter-rouge">tank_voltage</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/brightness"></a><strong><code class="language-plaintext highlighter-rouge">brightness</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/beam_offset"></a><strong><code class="language-plaintext highlighter-rouge">beam_offset</code></strong> <em>(array, required)</em>: Length must be equal to 2.</p>
+  </li>
+  <li>
+    <p><a id="properties/spot_size"></a><strong><code class="language-plaintext highlighter-rouge">spot_size</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/screen"></a><strong><code class="language-plaintext highlighter-rouge">screen</code></strong></p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/screen/anyOf/0"></a><em>string</em>: Must be one of: “up” or “down”.</p>
+          </li>
+          <li>
+            <p><a id="properties/screen/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/scope.html">Microscope Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/ui.html">User Interface</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="stageaperturecommand">stage.aperture.command</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/aperture_id"></a><strong><code class="language-plaintext highlighter-rouge">aperture_id</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/aperture_id/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/aperture_id/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/calibrate"></a><strong><code class="language-plaintext highlighter-rouge">calibrate</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/stage.html">Stage Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="stageaperturestatus">stage.aperture.status</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/current_aperture"></a><strong><code class="language-plaintext highlighter-rouge">current_aperture</code></strong></p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/current_aperture/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/current_aperture/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/calibrated"></a><strong><code class="language-plaintext highlighter-rouge">calibrated</code></strong> <em>(boolean, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/error"></a><strong><code class="language-plaintext highlighter-rouge">error</code></strong> <em>(string)</em>: Default: <code class="language-plaintext highlighter-rouge">""</code>.</p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/stage.html">Stage Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/ui.html">User Interface</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="stagemotioncommand">stage.motion.command</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/x"></a><strong><code class="language-plaintext highlighter-rouge">x</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/x/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/x/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/y"></a><strong><code class="language-plaintext highlighter-rouge">y</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/y/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/y/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/z"></a><strong><code class="language-plaintext highlighter-rouge">z</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/z/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/z/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/calibrate"></a><strong><code class="language-plaintext highlighter-rouge">calibrate</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/stage.html">Stage Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="stagemotionstatus">stage.motion.status</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/x"></a><strong><code class="language-plaintext highlighter-rouge">x</code></strong></p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/x/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/x/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/y"></a><strong><code class="language-plaintext highlighter-rouge">y</code></strong></p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/y/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/y/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/z"></a><strong><code class="language-plaintext highlighter-rouge">z</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/z/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/z/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/in_motion"></a><strong><code class="language-plaintext highlighter-rouge">in_motion</code></strong> <em>(boolean, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/error"></a><strong><code class="language-plaintext highlighter-rouge">error</code></strong> <em>(string)</em>: Default: <code class="language-plaintext highlighter-rouge">""</code>.</p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/stage.html">Stage Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/ui.html">User Interface</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="stagerotationcommand">stage.rotation.command</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/angle_x"></a><strong><code class="language-plaintext highlighter-rouge">angle_x</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/angle_x/anyOf/0"></a><em>number</em></p>
+          </li>
+          <li>
+            <p><a id="properties/angle_x/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/angle_y"></a><strong><code class="language-plaintext highlighter-rouge">angle_y</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/angle_y/anyOf/0"></a><em>number</em></p>
+          </li>
+          <li>
+            <p><a id="properties/angle_y/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/eucentric_height"></a><strong><code class="language-plaintext highlighter-rouge">eucentric_height</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/eucentric_height/anyOf/0"></a><em>number</em></p>
+          </li>
+          <li>
+            <p><a id="properties/eucentric_height/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/calibrate"></a><strong><code class="language-plaintext highlighter-rouge">calibrate</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="stagerotationstatus">stage.rotation.status</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/angle_x"></a><strong><code class="language-plaintext highlighter-rouge">angle_x</code></strong> <em>(number, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/angle_y"></a><strong><code class="language-plaintext highlighter-rouge">angle_y</code></strong> <em>(number, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/eucentric_height"></a><strong><code class="language-plaintext highlighter-rouge">eucentric_height</code></strong> <em>(number, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/in_motion"></a><strong><code class="language-plaintext highlighter-rouge">in_motion</code></strong> <em>(boolean, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/error"></a><strong><code class="language-plaintext highlighter-rouge">error</code></strong> <em>(string)</em>: Default: <code class="language-plaintext highlighter-rouge">""</code>.</p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/ui.html">User Interface</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="state">state</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li><a id="properties/state"></a><strong><code class="language-plaintext highlighter-rouge">state</code></strong> <em>(string, required)</em></li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="tilemini">tile.mini</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/tile_id"></a><strong><code class="language-plaintext highlighter-rouge">tile_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/montage_id"></a><strong><code class="language-plaintext highlighter-rouge">montage_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/row"></a><strong><code class="language-plaintext highlighter-rouge">row</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/column"></a><strong><code class="language-plaintext highlighter-rouge">column</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/overlap"></a><strong><code class="language-plaintext highlighter-rouge">overlap</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/image"></a><strong><code class="language-plaintext highlighter-rouge">image</code></strong> <em>(string, required)</em></p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="tilepreview">tile.preview</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/tile_id"></a><strong><code class="language-plaintext highlighter-rouge">tile_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/montage_id"></a><strong><code class="language-plaintext highlighter-rouge">montage_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/row"></a><strong><code class="language-plaintext highlighter-rouge">row</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/column"></a><strong><code class="language-plaintext highlighter-rouge">column</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/overlap"></a><strong><code class="language-plaintext highlighter-rouge">overlap</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/image"></a><strong><code class="language-plaintext highlighter-rouge">image</code></strong> <em>(string, required)</em></p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="tileprocessed">tile.processed</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/tile_id"></a><strong><code class="language-plaintext highlighter-rouge">tile_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/montage_id"></a><strong><code class="language-plaintext highlighter-rouge">montage_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/row"></a><strong><code class="language-plaintext highlighter-rouge">row</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/column"></a><strong><code class="language-plaintext highlighter-rouge">column</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/overlap"></a><strong><code class="language-plaintext highlighter-rouge">overlap</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/path"></a><strong><code class="language-plaintext highlighter-rouge">path</code></strong> <em>(string, required)</em></p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/buffer.html">Tile Upload Buffer</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="tileraw">tile.raw</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/tile_id"></a><strong><code class="language-plaintext highlighter-rouge">tile_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/montage_id"></a><strong><code class="language-plaintext highlighter-rouge">montage_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/row"></a><strong><code class="language-plaintext highlighter-rouge">row</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/column"></a><strong><code class="language-plaintext highlighter-rouge">column</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/overlap"></a><strong><code class="language-plaintext highlighter-rouge">overlap</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/path"></a><strong><code class="language-plaintext highlighter-rouge">path</code></strong> <em>(string, required)</em></p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pytem.html">pyTEM</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="tilestatisticsfocus">tile.statistics.focus</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/tile_id"></a><strong><code class="language-plaintext highlighter-rouge">tile_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/montage_id"></a><strong><code class="language-plaintext highlighter-rouge">montage_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/row"></a><strong><code class="language-plaintext highlighter-rouge">row</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/column"></a><strong><code class="language-plaintext highlighter-rouge">column</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/overlap"></a><strong><code class="language-plaintext highlighter-rouge">overlap</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/focus"></a><strong><code class="language-plaintext highlighter-rouge">focus</code></strong> <em>(number, required)</em></p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/buffer.html">Tile Upload Buffer</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/qc.html">QC Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/ui.html">User Interface</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="tilestatisticshistogram">tile.statistics.histogram</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/tile_id"></a><strong><code class="language-plaintext highlighter-rouge">tile_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/montage_id"></a><strong><code class="language-plaintext highlighter-rouge">montage_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/row"></a><strong><code class="language-plaintext highlighter-rouge">row</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/column"></a><strong><code class="language-plaintext highlighter-rouge">column</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/overlap"></a><strong><code class="language-plaintext highlighter-rouge">overlap</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/hist"></a><strong><code class="language-plaintext highlighter-rouge">hist</code></strong> <em>(array, required)</em></p>
+
+    <ul>
+      <li><a id="properties/hist/items"></a><strong>Items</strong> <em>(integer)</em></li>
+    </ul>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/buffer.html">Tile Upload Buffer</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/qc.html">QC Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/ui_server.html">UI Server</a></li>
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="tilestatisticsmin_max_mean">tile.statistics.min_max_mean</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/tile_id"></a><strong><code class="language-plaintext highlighter-rouge">tile_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/montage_id"></a><strong><code class="language-plaintext highlighter-rouge">montage_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/row"></a><strong><code class="language-plaintext highlighter-rouge">row</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/column"></a><strong><code class="language-plaintext highlighter-rouge">column</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/overlap"></a><strong><code class="language-plaintext highlighter-rouge">overlap</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/min"></a><strong><code class="language-plaintext highlighter-rouge">min</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/max"></a><strong><code class="language-plaintext highlighter-rouge">max</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/mean"></a><strong><code class="language-plaintext highlighter-rouge">mean</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/std"></a><strong><code class="language-plaintext highlighter-rouge">std</code></strong> <em>(integer, required)</em></p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/buffer.html">Tile Upload Buffer</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/qc.html">QC Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/ui.html">User Interface</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="tiletransform">tile.transform</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/tile_id"></a><strong><code class="language-plaintext highlighter-rouge">tile_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/montage_id"></a><strong><code class="language-plaintext highlighter-rouge">montage_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/row"></a><strong><code class="language-plaintext highlighter-rouge">row</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/column"></a><strong><code class="language-plaintext highlighter-rouge">column</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/overlap"></a><strong><code class="language-plaintext highlighter-rouge">overlap</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/rotation"></a><strong><code class="language-plaintext highlighter-rouge">rotation</code></strong> <em>(number, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/x"></a><strong><code class="language-plaintext highlighter-rouge">x</code></strong> <em>(number, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/y"></a><strong><code class="language-plaintext highlighter-rouge">y</code></strong> <em>(number, required)</em></p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/pipeline.html">Image Processing Pipeline</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/buffer.html">Tile Upload Buffer</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/qc.html">QC Service</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="uiedit">ui.edit</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/roi_id"></a><strong><code class="language-plaintext highlighter-rouge">roi_id</code></strong> <em>(string, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/roi_pos_x"></a><strong><code class="language-plaintext highlighter-rouge">roi_pos_x</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/roi_pox_y"></a><strong><code class="language-plaintext highlighter-rouge">roi_pox_y</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/roi_width"></a><strong><code class="language-plaintext highlighter-rouge">roi_width</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/roi_height"></a><strong><code class="language-plaintext highlighter-rouge">roi_height</code></strong> <em>(integer, required)</em></p>
+  </li>
+  <li>
+    <p><a id="properties/roi_angle"></a><strong><code class="language-plaintext highlighter-rouge">roi_angle</code></strong> <em>(number, required)</em></p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/ui.html">User Interface</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="uirun">ui.run</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/session_id"></a><strong><code class="language-plaintext highlighter-rouge">session_id</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/session_id/anyOf/0"></a><em>string</em></p>
+          </li>
+          <li>
+            <p><a id="properties/session_id/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/grid_first"></a><strong><code class="language-plaintext highlighter-rouge">grid_first</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/grid_first/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/grid_first/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/grid_last"></a><strong><code class="language-plaintext highlighter-rouge">grid_last</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/grid_last/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/grid_last/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/montage"></a><strong><code class="language-plaintext highlighter-rouge">montage</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+  <li>
+    <p><a id="properties/abort_now"></a><strong><code class="language-plaintext highlighter-rouge">abort_now</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+  <li>
+    <p><a id="properties/abort_at_end"></a><strong><code class="language-plaintext highlighter-rouge">abort_at_end</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+  <li>
+    <p><a id="properties/resume"></a><strong><code class="language-plaintext highlighter-rouge">resume</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+  <li>
+    <p><a id="properties/cancel"></a><strong><code class="language-plaintext highlighter-rouge">cancel</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/ui.html">User Interface</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
+
+    <div class="mdl-card__supporting-text mdl-card--border topic-container">
+        <h3 id="uisetup">ui.setup</h3>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>
+    <p><a id="properties/conch_owner"></a><strong><code class="language-plaintext highlighter-rouge">conch_owner</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/conch_owner/anyOf/0"></a><em>string</em></p>
+          </li>
+          <li>
+            <p><a id="properties/conch_owner/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/auto_focus"></a><strong><code class="language-plaintext highlighter-rouge">auto_focus</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+  <li>
+    <p><a id="properties/auto_exposure"></a><strong><code class="language-plaintext highlighter-rouge">auto_exposure</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+  <li>
+    <p><a id="properties/lens_correction"></a><strong><code class="language-plaintext highlighter-rouge">lens_correction</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+  <li>
+    <p><a id="properties/acquire_brightfield"></a><strong><code class="language-plaintext highlighter-rouge">acquire_brightfield</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+  <li>
+    <p><a id="properties/acquire_darkfield"></a><strong><code class="language-plaintext highlighter-rouge">acquire_darkfield</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+  <li>
+    <p><a id="properties/center_beam"></a><strong><code class="language-plaintext highlighter-rouge">center_beam</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+  <li>
+    <p><a id="properties/spread_beam"></a><strong><code class="language-plaintext highlighter-rouge">spread_beam</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+  <li>
+    <p><a id="properties/find_aperture"></a><strong><code class="language-plaintext highlighter-rouge">find_aperture</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+  <li>
+    <p><a id="properties/calibrate_resolution"></a><strong><code class="language-plaintext highlighter-rouge">calibrate_resolution</code></strong> <em>(boolean)</em>: Default: <code class="language-plaintext highlighter-rouge">false</code>.</p>
+  </li>
+  <li>
+    <p><a id="properties/grid"></a><strong><code class="language-plaintext highlighter-rouge">grid</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/grid/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/grid/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/mag_mode"></a><strong><code class="language-plaintext highlighter-rouge">mag_mode</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/mag_mode/anyOf/0"></a><em>string</em>: Must be one of: “LM”, “MAG1”, or “MAG2”.</p>
+          </li>
+          <li>
+            <p><a id="properties/mag_mode/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><a id="properties/mag"></a><strong><code class="language-plaintext highlighter-rouge">mag</code></strong>: Default: <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+    <ul>
+      <li>
+        <p><strong>Any of</strong></p>
+
+        <ul>
+          <li>
+            <p><a id="properties/mag/anyOf/0"></a><em>integer</em></p>
+          </li>
+          <li>
+            <p><a id="properties/mag/anyOf/1"></a><em>null</em></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+        <h4>Sender</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <li><a href="/ui.html">User Interface</a></li>
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+
+        <h4>Receivers</h4>
+        <ul>
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </ul>
+    </div>
 
 
     </div>
