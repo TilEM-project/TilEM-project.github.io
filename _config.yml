@@ -24,3 +24,7 @@ toc:
   max_level: 4
   inject_anchors_content: <i class="fa fa-link"></i>
   inject_anchors_side: right
+
+topics:
+  - owner: TilEM-project
+    repo: TEM_comms

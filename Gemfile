@@ -32,3 +32,5 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
 gem "nokogiri"
 gem "jekyll-toc"
+
+gem 'json-schema-docs'
